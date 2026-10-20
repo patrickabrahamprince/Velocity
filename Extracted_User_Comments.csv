@@ -1,0 +1,21 @@
+Comment ID,Reel Shortcode,Username / Handle,User Comment Text,Category / Intent,Sentiment,Frequency Rank,Recommended Action / Answer
+C-001,DdvZj-bSbQL,@rahul_k_99,Is the 299 offer valid on weekends also?,Pricing - Student Offer,Curious,High (Top 1),Explain that ₹299 is Mon-Fri 9AM-6PM; Weekend is ₹699 for 10 laps
+C-002,DdvZj-bSbQL,@sneha.gowda_07,Do we need original student ID or digital ID card on phone allowed?,Eligibility - Student ID,Clarification,High (Top 2),Both original physical ID and verified college app digital ID are accepted
+C-003,DdvZj-bSbQL,@darshan_v,How many laps do we get for ₹299?,Offer Specs,Direct Query,High,5 high-speed laps on the 1166m track (approx 5.8 km total distance)
+C-004,Ddn0DeyTDoV,@kiran_bengaluru,What is the exact location from KR Puram/Whitefield?,Location & Route,Navigation,High,"Near NH-75 Highway, Solur Village, Hoskote (~25 mins from ITPL/Whitefield)"
+C-005,Ddn0DeyTDoV,@pooja_nair_blr,Can we book online or is it walk-in only?,Booking Method,High Intent,Critical,Online booking recommended to skip 45-min weekend queues & get 15% off
+C-006,Ddn0DeyTDoV,@syed_motorsport,Are the karts 200cc or 270cc 4-stroke?,Fleet & Performance,Enthusiast,Medium,Fleet features Honda 200cc & tuned SODI RT8 270cc engines reaching 85+ km/h
+C-007,DY8wD8Cxa8g,@anand_kumar_rider,What are the timings for superbike morning track sessions?,Motorcycle Track Day,Direct Query,High,Daily 06:00 AM – 10:00 AM (₹1500 for 4 hours track + protein breakfast & coffee)
+C-008,DY8wD8Cxa8g,@biker_girish,Is full leather suit mandatory for 300cc bikes?,Safety & Gear,Compliance,Medium,"Full riding jacket, gloves, boots, and DOT/ECE helmet are mandatory"
+C-009,DYRwasaP_5D,@meghana_shetty,Are tandem double seater karts available for young kids?,Family & Kids,Family Inquiry,High,Yes! 2-Seater Tandem karts for parents + kids (ages 4+) with dual harnesses
+C-010,DYRwasaP_5D,@rohit_sharma_09,What is the price of the food combo with go-karting?,Combo Packages,Value Query,High,₹399 + tax for 6 Laps + Chilled Mojito + Snacks (Mon-Fri)
+C-011,DZ2s8ilJXfm,@samarth_vlogs,Can we mount our own GoPro on the helmet?,Camera & Media,Content Creation,Medium,"Yes, or rent our onboard 4K 60FPS GoPro helmet cam for ₹199"
+C-012,DZ2s8ilJXfm,@akash_apex,What is the track record lap time right now?,Leaderboard & Lap Time,Competitive,Medium,Current record is 00:54.212s set by Arjun Rao on the 1166m layout
+C-013,Dcu809Sy77J,@divya_reddy_23,Is advance slot booking required on Saturday evening?,Slot Availability,High Intent,Critical,"Yes, weekend sunset slots fill up fast; book online to guarantee kart allotment"
+C-014,Dcu809Sy77J,@manoj_gowda_blr,Is parking space available for cars and supercars?,Amenities & Parking,Convenience,Medium,Spacious dedicated parking with 100+ car & bike capacity on-site
+C-015,DaUk0O-pPRO,@foodie_saurav,Is the rooftop cafe pure veg or does it have non-veg also?,Cafe & Dining,Food Query,Medium,"Apex Rooftop Diner offers both gourmet veg & non-veg burgers, pizzas, and mocktails"
+C-016,DaUk0O-pPRO,@tejas_m,Do we get a trophy for group corporate bookings?,Corporate & Group GP,Event Planning,High,"Corporate GP (₹999/pax) includes race heats, podium trophy, champagne & buffet"
+C-017,DZ7loFFJD8k,@varun_speed,How many corners does the track have?,Track Specs,Technical,Medium,"19 technical turns, +4.2m elevation change, and a 160m high-speed main straight"
+C-018,DZ7loFFJD8k,@priya_m_22,What is the minimum age and height requirement to drive alone?,Rules & Safety,Eligibility,High,Age 12+ and minimum height 4ft 6in (137 cm) for solo adult karts
+C-019,DaDEJN-pcQn,@kavya_krishna,Are night floodlights active after 8 PM?,Night Timings,Timing Query,Medium,"Yes, stadium-grade floodlights are on daily until 11:30 PM"
+C-020,DaDEJN-pcQn,@nikhil_b,Can we celebrate birthday cake cutting at the cafe?,Birthday Party,Event Booking,High,"Yes, dedicated celebration party zones on the rooftop lawn and cafe lounge"

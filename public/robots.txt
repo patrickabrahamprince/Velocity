@@ -1,0 +1,30 @@
+# robots.txt — Velocity International Circuit (https://velocityinternationalcircuit.com)
+# Optimized for Google Search, Bing, and AI Answer Engines (GPTBot, PerplexityBot, ClaudeBot, Applebot)
+
+User-agent: *
+Allow: /
+Allow: /images/
+Allow: /favicon.svg
+Allow: /assets/
+
+# Dedicated AI Answer Engines (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# XML Sitemap Index
+Sitemap: https://velocityinternationalcircuit.com/sitemap.xml
