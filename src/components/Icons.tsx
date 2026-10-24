@@ -34,7 +34,7 @@ export const VelocityF1Logo: React.FC<{ className?: string; color?: string }> = 
     <div className="flex flex-col justify-center">
       <div className="flex items-center gap-1.5 leading-none">
         <span 
-          className="font-syne font-black text-xl sm:text-2xl tracking-wider uppercase italic drop-shadow-[0_0_12px_rgba(0,82,255,0.6)]"
+          className="font-asphalt font-black text-xl sm:text-2xl tracking-tight uppercase drop-shadow-[0_0_12px_rgba(0,82,255,0.6)]"
           style={{ color }}
         >
           VELOCITY

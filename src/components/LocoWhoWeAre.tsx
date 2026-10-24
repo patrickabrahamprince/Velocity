@@ -12,7 +12,7 @@ export function LocoWhoWeAre({ onOpenBooking }: LocoWhoWeAreProps) {
     {
       icon: <Flag className="w-6 h-6 text-[#feb000]" />,
       title: "1166M FIA-Grade Circuit",
-      desc: "India's biggest outdoor asphalt track featuring 19 apex turns, high-grip racing surface, and professional kerbs.",
+      desc: "Karnataka's biggest outdoor asphalt circuit featuring 19 apex turns, high-grip racing surface, and professional kerbs.",
       metric: "19 TURNS"
     },
     {

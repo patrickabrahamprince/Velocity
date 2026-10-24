@@ -191,34 +191,34 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
   const [activeTab, setActiveTab] = useState<'kart-offers' | 'food-combos' | 'bike-ride'>('kart-offers');
 
   return (
-    <section id="pricing" className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <section id="pricing" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full">
       <div className="space-y-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-semibold tracking-wider uppercase text-[#0052FF]">
-              <span className="w-2 h-2 rounded-full bg-[#0052FF]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.12] text-xs font-semibold tracking-[0.16em] uppercase text-sky-300 font-apple-display shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#0066FF] dark:bg-[#00D2FF]" />
               <span>Transparent Passes • 1,166M Track</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              Standard <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] via-[#2563EB] to-cyan-500">Race Packages</span>
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
+              Standard <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Race Packages</span>
             </h2>
-            <p className="text-sm text-slate-600 max-w-xl font-sans leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-white/70 max-w-xl font-normal font-apple-text leading-relaxed">
               Transparent per-session pricing with zero hidden fees. Includes full safety briefing, DOT-certified helmets, balaclava & RFID transponder telemetry sheets.
             </p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="bg-slate-100 p-1.5 rounded-full border border-slate-200 shadow-md inline-flex flex-wrap items-center gap-1 shrink-0">
+          <div className="bg-slate-100/90 dark:bg-[#080C1A]/80 backdrop-blur-2xl p-1.5 rounded-full border border-slate-200 dark:border-white/[0.12] shadow-sm dark:shadow-xl inline-flex flex-wrap items-center gap-1 shrink-0">
             <button
               onClick={() => {
                 soundFx.playGearShift();
                 setActiveTab('kart-offers');
               }}
-              className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-5 py-2.5 rounded-full font-semibold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 active:scale-[0.98] ${
                 activeTab === 'kart-offers'
-                  ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white shadow-md shadow-blue-600/35'
+                  : 'text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/[0.06]'
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
@@ -230,10 +230,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                 soundFx.playGearShift();
                 setActiveTab('food-combos');
               }}
-              className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-5 py-2.5 rounded-full font-semibold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 active:scale-[0.98] ${
                 activeTab === 'food-combos'
-                  ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white shadow-md shadow-blue-600/35'
+                  : 'text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/[0.06]'
               }`}
             >
               <Utensils className="w-3.5 h-3.5" />
@@ -245,10 +245,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                 soundFx.playGearShift();
                 setActiveTab('bike-ride');
               }}
-              className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-5 py-2.5 rounded-full font-semibold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 active:scale-[0.98] ${
                 activeTab === 'bike-ride'
-                  ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white shadow-md shadow-blue-600/35'
+                  : 'text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/[0.06]'
               }`}
             >
               <Bike className="w-3.5 h-3.5" />
@@ -264,51 +264,51 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               {weekdayOffers.map((offer) => (
                 <div
                   key={offer.id}
-                  className={`loco-card p-8 flex flex-col justify-between transition-all duration-300 relative bg-white border ${
+                  className={`p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 relative border ${
                     offer.popular
-                      ? 'border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,82,255,0.15)] scale-[1.02] z-10'
-                      : 'border-slate-200 shadow-sm'
+                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_20px_50px_rgba(0,102,255,0.15)] dark:shadow-[0_20px_50px_rgba(0,82,255,0.25)] scale-[1.02] z-10 text-slate-900 dark:text-white'
+                      : 'bg-white dark:bg-[#0A0E1F]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/50 shadow-sm dark:shadow-xl text-slate-900 dark:text-white'
                   }`}
                 >
                   <div>
                     {/* Badge */}
                     <div className="flex items-center justify-between gap-1 mb-4">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-1 rounded-full ${offer.popular ? 'bg-blue-50 text-[#0052FF] border border-blue-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}`}>
+                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-1 rounded-full ${offer.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
                         {offer.badge}
                       </span>
-                      <span className="text-xs font-mono text-slate-500">
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
                         {offer.timing}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 mb-1 tracking-tight">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 tracking-tight">
                       {offer.name}
                     </h3>
 
-                    <p className="text-xs mb-4 leading-relaxed font-sans text-slate-600">
+                    <p className="text-xs mb-4 leading-relaxed font-sans text-slate-500 dark:text-slate-400">
                       {offer.validity}
                     </p>
 
                     {/* Price */}
-                    <div className="my-4 pb-4 border-b border-slate-200">
+                    <div className="my-4 pb-4 border-b border-slate-200 dark:border-white/10">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 font-mono">
+                        <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
                           ₹{offer.price}
                         </span>
-                        <span className="text-xs font-medium uppercase font-mono text-slate-500">
+                        <span className="text-xs font-medium uppercase font-mono text-slate-500 dark:text-slate-400">
                           {offer.taxNote}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold mt-1 font-mono text-[#0052FF]">
+                      <div className="text-xs font-semibold mt-1 font-mono text-blue-600 dark:text-[#00D2FF]">
                         {offer.laps}
                       </div>
                     </div>
 
                     {/* Features */}
-                    <div className="space-y-2.5 mb-8 text-xs font-sans text-slate-700">
+                    <div className="space-y-2.5 mb-8 text-xs font-sans text-slate-600 dark:text-slate-300">
                       {offer.features.map((feat) => (
                         <div key={feat} className="flex items-start gap-2">
-                          <span className="font-bold text-[#0052FF] shrink-0">+</span>
+                          <span className="font-bold text-blue-600 dark:text-[#00D2FF] shrink-0">+</span>
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
@@ -323,7 +323,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     className={`w-full py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                       offer.popular
                         ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white shadow-lg shadow-blue-600/35'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200'
+                        : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
                     }`}
                   >
                     <span>Book {offer.laps.split('•')[0]}</span>
@@ -334,8 +334,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             </div>
 
             {/* Note banner */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center text-xs font-mono text-slate-600">
-              ⚡ BUCKLE UP • HOTLINE: <strong className="text-slate-900 font-bold">+91 90717 18620</strong> • SOLUR, HOSAKOTE BANGALORE
+            <div className="p-4 rounded-2xl bg-white dark:bg-[#0A0E1F]/80 border border-slate-200 dark:border-white/10 text-center text-xs font-mono text-slate-600 dark:text-slate-400 shadow-sm">
+              ⚡ BUCKLE UP • HOTLINE: <strong className="text-slate-900 dark:text-white font-bold">+91 90717 18620</strong> • SOLUR, HOSAKOTE BANGALORE
             </div>
           </div>
         )}
@@ -347,55 +347,55 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               {foodCombos.map((combo) => (
                 <div
                   key={combo.id}
-                  className={`loco-card p-6 flex flex-col justify-between transition-all duration-300 relative bg-white border ${
+                  className={`p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 relative border ${
                     combo.popular
-                      ? 'border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,82,255,0.15)] scale-[1.02] z-10'
-                      : 'border-slate-200 shadow-sm'
+                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,102,255,0.15)] dark:shadow-[0_15px_40px_rgba(0,82,255,0.25)] scale-[1.02] z-10 text-slate-900 dark:text-white'
+                      : 'bg-white dark:bg-[#0A0E1F]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/50 shadow-sm dark:shadow-md text-slate-900 dark:text-white'
                   }`}
                 >
                   <div>
                     {/* Top Tag */}
                     <div className="mb-3">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded-full ${combo.popular ? 'bg-blue-50 text-[#0052FF] border border-blue-200' : 'bg-slate-100 text-slate-700 border border-slate-200'}`}>
+                      <span className={`text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded-full ${combo.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
                         {combo.badge}
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-lg text-slate-900 mb-1 tracking-tight">
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-1 tracking-tight">
                       {combo.name}
                     </h3>
 
-                    <p className="text-xs text-slate-600 mb-3 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed font-sans">
                       {combo.validity}
                     </p>
 
                     {combo.foodIncluded && (
-                      <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-medium text-slate-700 mb-3 flex items-center gap-1.5">
-                        <Utensils className="w-3.5 h-3.5 text-[#0052FF] shrink-0" />
+                      <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-1.5">
+                        <Utensils className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
                         <span className="line-clamp-2">{combo.foodIncluded}</span>
                       </div>
                     )}
 
                     {/* Price */}
-                    <div className="my-3 pb-3 border-b border-slate-200">
+                    <div className="my-3 pb-3 border-b border-slate-200 dark:border-white/10">
                       <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-bold tracking-tight text-slate-900 font-mono">
+                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white font-mono">
                           ₹{combo.price}
                         </span>
-                        <span className="text-xs font-medium uppercase text-slate-500 font-mono">
+                        <span className="text-xs font-medium uppercase text-slate-500 dark:text-slate-400 font-mono">
                           {combo.taxNote}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold text-[#0052FF] mt-0.5 font-mono">
+                      <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] mt-0.5 font-mono">
                         {combo.laps}
                       </div>
                     </div>
 
                     {/* Features */}
-                    <div className="space-y-1.5 mb-6 text-xs text-slate-700 font-sans">
+                    <div className="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {combo.features.map((feat) => (
                         <div key={feat} className="flex items-start gap-1.5">
-                          <span className="text-[#0052FF] font-bold shrink-0">+</span>
+                          <span className="text-blue-600 dark:text-[#00D2FF] font-bold shrink-0">+</span>
                           <span className="leading-snug line-clamp-1">{feat}</span>
                         </div>
                       ))}
@@ -410,7 +410,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     className={`w-full py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                       combo.popular
                         ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white shadow-md shadow-blue-600/30'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200'
+                        : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
                     }`}
                   >
                     <span>Reserve Combo</span>
@@ -421,8 +421,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             </div>
 
             {/* Warning Banner */}
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center text-xs text-slate-700 font-medium flex items-center justify-center gap-2">
-              <Clock className="w-4 h-4 text-[#0052FF]" />
+            <div className="p-4 rounded-2xl bg-white dark:bg-[#0A0E1F]/80 border border-slate-200 dark:border-white/10 text-center text-xs text-slate-600 dark:text-slate-400 font-medium flex items-center justify-center gap-2 shadow-sm">
+              <Clock className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF]" />
               <span>All food and kart combo passes are valid until 6:00 PM daily.</span>
             </div>
           </div>
@@ -430,8 +430,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
 
         {/* Tab 3: Bike Ride 4-Hour Dawn Track Session */}
         {activeTab === 'bike-ride' && (
-          <div className="rounded-[32px] p-2 bg-gradient-to-b from-amber-200/50 via-slate-100 to-white border border-amber-300/50 shadow-xl">
-            <div className="rounded-[24px] bg-slate-50 p-8 sm:p-12 border border-slate-200">
+          <div className="rounded-[32px] p-1.5 bg-gradient-to-b from-amber-500/20 via-amber-500/5 to-transparent border border-amber-300 dark:border-amber-500/30 shadow-sm dark:shadow-2xl">
+            <div className="rounded-[26px] bg-white dark:bg-[#0A0E1F]/95 p-8 sm:p-12 border border-slate-200 dark:border-white/10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 {/* Left Column: Offer Details */}
                 <div className="lg:col-span-7 space-y-6">
@@ -439,72 +439,72 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     <span className="px-3.5 py-1 rounded-full bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
                       Bikers of Bengaluru
                     </span>
-                    <span className="text-xs font-mono text-slate-500">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
                       Open Track 6 AM – 10 AM
                     </span>
                   </div>
 
-                  <h3 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                  <h3 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
                     Superbike Dawn Session <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-700 dark:from-amber-400 dark:via-amber-500 dark:to-yellow-400">
                       4 Hours Unlimited
                     </span>
                   </h3>
 
-                  <p className="text-sm text-slate-600 font-sans leading-relaxed max-w-xl">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-xl">
                     {bikeRideOffer.validity}. Unleash your motorcycle on 1166 meters of outdoor asphalt before city highway traffic wakes up.
                   </p>
 
                   {/* Included Breakfast Callout Card */}
-                  <div className="p-5 rounded-2xl bg-white border border-slate-200 space-y-2 shadow-sm">
-                    <div className="flex items-center gap-2 text-xs font-mono text-amber-600 font-bold uppercase">
+                  <div className="p-5 rounded-2xl bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/30 space-y-2 shadow-sm">
+                    <div className="flex items-center gap-2 text-xs font-mono text-amber-700 dark:text-amber-400 font-bold uppercase">
                       <Utensils className="w-4 h-4" />
                       <span>Included in ₹1500 Pass:</span>
                     </div>
-                    <p className="text-sm font-semibold text-slate-900">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white">
                       Combo Protein Breakfast (Bread Omelet or Veg Sandwich) + Fresh Hot Cappuccino ☕🥪
                     </p>
-                    <div className="text-xs text-slate-600">
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
                       Served hot at the Apex Rooftop Diner after your morning track run.
                     </div>
                   </div>
 
                   {/* Safety Rules Pillars */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                    <div className="p-3 rounded-xl bg-white border border-slate-200 text-center space-y-1 shadow-sm">
-                      <ShieldCheck className="w-4 h-4 text-amber-500 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 font-bold">RIDING GEAR</div>
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                      <ShieldCheck className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDING GEAR</div>
                     </div>
-                    <div className="p-3 rounded-xl bg-white border border-slate-200 text-center space-y-1 shadow-sm">
-                      <Zap className="w-4 h-4 text-amber-500 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 font-bold">RESPECT LIMITS</div>
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                      <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RESPECT LIMITS</div>
                     </div>
-                    <div className="p-3 rounded-xl bg-white border border-slate-200 text-center space-y-1 shadow-sm">
-                      <Trophy className="w-4 h-4 text-amber-500 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 font-bold">STAY IN CONTROL</div>
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                      <Trophy className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">STAY IN CONTROL</div>
                     </div>
-                    <div className="p-3 rounded-xl bg-white border border-slate-200 text-center space-y-1 shadow-sm">
-                      <Sparkles className="w-4 h-4 text-amber-500 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 font-bold">RIDE SAFE</div>
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                      <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDE SAFE</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Right Column: Price & Instant Booking Card */}
-                <div className="lg:col-span-5 bg-white border border-slate-200 rounded-[28px] p-8 shadow-xl space-y-6 text-center">
+                <div className="lg:col-span-5 bg-slate-50/90 dark:bg-[#070A14] border border-amber-300 dark:border-amber-500/40 rounded-[28px] p-8 shadow-md dark:shadow-2xl space-y-6 text-center">
                   <div className="space-y-1">
-                    <div className="text-xs font-mono text-amber-600 uppercase tracking-widest font-semibold">
+                    <div className="text-xs font-mono text-amber-700 dark:text-amber-400 uppercase tracking-widest font-semibold">
                       Session Pass
                     </div>
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-5xl sm:text-6xl font-extrabold text-slate-900 font-mono">
+                      <span className="text-5xl sm:text-6xl font-extrabold text-slate-900 dark:text-white font-mono">
                         ₹1500
                       </span>
-                      <span className="text-xs font-bold uppercase text-slate-500 font-mono">
+                      <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
                         + TAX
                       </span>
                     </div>
-                    <div className="text-xs text-slate-500 font-mono">
+                    <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                       4 Hours Unlimited Access (6:00 AM – 10:00 AM)
                     </div>
                   </div>
@@ -525,7 +525,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       href="https://wa.me/919071718620?text=Hi%20Velocity%20Circuit,%20I%20want%20to%20book%20the%206%20AM%20Bike%20Ride%20Session%20(Rs%201500)"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200"
+                      className="w-full py-3 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
                     >
                       <span>WhatsApp Desk: +91 9071718620</span>
                     </a>
@@ -537,15 +537,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         )}
 
         {/* Corporate Track Takeover Notice */}
-        <div className="rounded-[30px] bg-slate-50 text-slate-900 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-slate-200">
+        <div className="rounded-[30px] bg-white dark:bg-[#0A0E1F]/90 text-slate-900 dark:text-white p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm dark:shadow-xl border border-slate-200 dark:border-white/10 backdrop-blur-xl">
           <div className="space-y-1">
-            <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[#0052FF]">
+            <div className="text-xs font-mono font-semibold uppercase tracking-wider text-blue-600 dark:text-[#00D2FF]">
               Corporate & Private Track Takeover
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               Host Your Company Grand Prix in Hoskote
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl">
               Exclusive track rental, custom podium ceremonies, gourmet catering from Apex Cafe, and live DJ setups.
             </p>
           </div>

@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
             </div>
 
             <p className="text-xs text-neutral-400 font-sans leading-relaxed max-w-sm">
-              HOUSE OF CHAMPIONS. India&apos;s biggest 1166-meter FIA-grade asphalt go-karting track & superbike circuit in Hoskote, Bangalore.
+              HOUSE OF CHAMPIONS. Karnataka&apos;s biggest 1166-meter FIA-grade asphalt go-karting track & superbike circuit in Hoskote, Bangalore.
             </p>
 
             <div className="pt-2">
@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               QUICK NAVIGATION
             </div>
             <ul className="space-y-2.5 text-xs text-neutral-400 font-sans">
-              <li><a href="#machines" className="hover:text-white transition-colors">Tuned Go-Karts</a></li>
+              <li><a href="#pricing" className="hover:text-white transition-colors">Tuned Go-Karts</a></li>
               <li><a href="#family" className="hover:text-white transition-colors">Family & Kids Tandem GP</a></li>
               <li><a href="#pricing" className="hover:text-white transition-colors">Prices & Combos</a></li>
               <li><a href="#circuit" className="hover:text-white transition-colors">19 Turns Circuit Map</a></li>

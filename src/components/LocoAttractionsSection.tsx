@@ -37,7 +37,7 @@ export function LocoAttractionsSection({ onSelectAttraction, selectedCategory: i
       tagline: 'Life is short, track is long.',
       category: 'High-Speed Racing',
       image: '/images/hero_racing_kart.jpg',
-      badge: "India's Longest Track",
+      badge: "Karnataka's Biggest Circuit",
       badgeColor: '#feb000',
       price: '₹699',
       specs: {

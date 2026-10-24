@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --color-primary: #0052FF;
@@ -7,67 +9,243 @@
     --color-primary-dark: #003ECC;
     --color-accent-gold: #00D2FF;
     --color-accent-cyan: #0284C7;
-    --color-dark: #0F172A;
-    --color-surface-dark: #FFFFFF;
-    --color-surface-card: #F8FAFC;
-    --color-surface-elevated: #FFFFFF;
-    --color-border: #E2E8F0;
+    --color-dark: #050814;
+    --color-surface-dark: #070B18;
+    --color-surface-card: #0A0F22;
+    --color-surface-elevated: #0F162E;
+    --color-border: rgba(255, 255, 255, 0.1);
   }
 }
 
-body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #FFFFFF;
+:root {
+  --font-racing: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Grotesk", "SF Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Light Mode (Default as requested by user) */
+html.light, html:not(.dark) {
+  background-color: #F8FAFC;
+  color-scheme: light;
+}
+
+html.light body, html:not(.dark) body {
+  background-color: #F8FAFC;
   color: #0F172A;
+  font-family: var(--font-body);
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  letter-spacing: -0.015em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Premium Editorial & Motorsport Typography */
-.font-loco, .font-speed {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+/* Dark Mode (When toggled) */
+html.dark {
+  background-color: #050814;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #050814;
+  color: #F8FAFC;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Gameloft Asphalt 8 Official Racing Headers: Montserrat 900, Upright, Uppercase, Tight Tracking */
+.font-asphalt,
+.font-speed,
+.font-bison,
+.asphalt-header,
+.font-heading,
+.font-loco,
+.font-syne {
+  font-family: var(--font-racing);
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.font-apple-display,
+.font-display {
+  font-family: var(--font-racing);
+  font-style: normal;
   font-weight: 800;
   letter-spacing: -0.025em;
 }
 
-.font-bison, .font-heading {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+.font-apple-text,
+.font-body,
+.font-sans {
+  font-family: var(--font-body);
+  letter-spacing: -0.012em;
 }
 
-.font-mono-tech, .font-mono {
-  font-family: 'Space Grotesk', ui-monospace, SFMono-Regular, monospace;
+.font-apple-mono,
+.font-mono,
+.font-mono-tech {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+
+/* Apple VisionOS Specular Glass Surfaces (Adaptive Light / Dark) */
+html.light .apple-glass, html:not(.dark) .apple-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 20px 45px -10px rgba(15, 23, 42, 0.06);
+}
+
+html.dark .apple-glass {
+  background: rgba(10, 14, 31, 0.78);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.14), 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+}
+
+/* Apple Glass Card (Adaptive Light / Dark) */
+html.light .apple-glass-card, html:not(.dark) .apple-glass-card {
+  background: #FFFFFF;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.light .apple-glass-card:hover, html:not(.dark) .apple-glass-card:hover {
+  border-color: rgba(0, 102, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px -10px rgba(0, 102, 255, 0.14), 0 0 0 1px rgba(0, 102, 255, 0.15);
+}
+
+html.dark .apple-glass-card {
+  background: rgba(10, 15, 34, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .apple-glass-card:hover {
+  border-color: rgba(0, 113, 227, 0.4);
+  transform: translateY(-3px);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2), 0 25px 50px -10px rgba(0, 82, 255, 0.25);
+}
+
+/* Apple Keynote Eyebrow Badge (Adaptive Light / Dark) */
+html.light .apple-badge, html:not(.dark) .apple-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(0, 102, 255, 0.07);
+  border: 1px solid rgba(0, 102, 255, 0.22);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #0052FF;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+html.dark .apple-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(0, 82, 255, 0.12);
+  border: 1px solid rgba(0, 82, 255, 0.28);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #38BDF8;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Interactive Card Cursor Spotlight Reflection */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(350px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(0, 102, 255, 0.07), transparent 75%);
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }
 
 /* Electric Royal Blue Glows & Effects */
 .glow-racing-blue {
-  box-shadow: 0 0 35px rgba(0, 82, 255, 0.25);
+  box-shadow: 0 0 35px rgba(0, 82, 255, 0.35);
 }
 
 .glow-subtle-blue {
-  box-shadow: 0 0 20px rgba(0, 82, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 82, 255, 0.2);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.35);
 }
 
-.loco-card {
+html.light .loco-card, html:not(.dark) .loco-card {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.loco-card:hover {
-  border-color: rgba(0, 82, 255, 0.4);
+html.light .loco-card:hover, html:not(.dark) .loco-card:hover {
+  border-color: rgba(0, 102, 255, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -10px rgba(0, 82, 255, 0.15), 0 0 0 1px rgba(0, 82, 255, 0.1);
+  box-shadow: 0 20px 45px -10px rgba(0, 102, 255, 0.12), 0 0 0 1px rgba(0, 102, 255, 0.15);
+}
+
+html.dark .loco-card {
+  background: #0A0F22;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .loco-card:hover {
+  border-color: rgba(0, 82, 255, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -10px rgba(0, 82, 255, 0.25), 0 0 0 1px rgba(0, 82, 255, 0.2);
 }
 
 .loco-btn-primary {
@@ -82,18 +260,18 @@ body {
 .loco-btn-primary:hover {
   background: #2563EB;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 82, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 82, 255, 0.4);
 }
 
-/* Custom Clean Scrollbar */
+/* Custom Clean Stealth Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #070B18;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #1E293B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -129,7 +307,6 @@ body {
   }
   100% {
     transform: scale(0.95);
-    opacity: 0;
   }
 }
 

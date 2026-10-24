@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
-import { TrafficLightsLoader } from './components/TrafficLightsLoader';
-import { SpeedometerHUD } from './components/SpeedometerHUD';
-import { FloatingWidgets } from './components/FloatingWidgets';
-import { QuickLeadBar } from './components/QuickLeadBar';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { CircuitMapSection } from './components/CircuitMapSection';
-import { MachinesSection } from './components/MachinesSection';
+import { AboutOfferSection } from './components/AboutOfferSection';
 import { WhyBookOnlineSection } from './components/WhyBookOnlineSection';
 import { LifestyleBentoSection } from './components/LifestyleBentoSection';
 import { FamilyDestinationSection } from './components/FamilyDestinationSection';
@@ -20,11 +15,15 @@ import { BookingModal } from './components/BookingModal';
 import { CapturedLeadsModal } from './components/CapturedLeadsModal';
 import { AuthModal } from './components/driver-os/AuthModal';
 import { DriverDashboardModal } from './components/driver-os/DriverDashboardModal';
+import { SarvamVoiceAgent } from './components/SarvamVoiceAgent';
+import { CursorGlow } from './components/CursorGlow';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { driverStore } from './utils/driverStore';
+import { smoothScroll } from './utils/smoothScroll';
 import type { DriverProfile } from './types/driverOS';
 
-export function App() {
-  const [isLoading, setIsLoading] = useState(false);
+function AppContent() {
+  const { isDark } = useTheme();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isLeadsOpen, setIsLeadsOpen] = useState(false);
@@ -32,6 +31,21 @@ export function App() {
   const [currentDriver, setCurrentDriver] = useState<DriverProfile | null>(() => driverStore.getCurrentDriver());
   const [selectedKart, setSelectedKart] = useState<string>('10 Laps All-Days GP (₹699 + Tax)');
   const [selectedPlan, setSelectedPlan] = useState<string>('');
+
+  // Start smooth scrolling engine and clear any stale URL hash on mount
+  useEffect(() => {
+    const cleanupScroll = smoothScroll.init();
+    if (typeof window !== 'undefined' && window.location.hash) {
+      try {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch {
+        // Ignore
+      }
+    }
+    return () => {
+      if (cleanupScroll) cleanupScroll();
+    };
+  }, []);
 
   const handleOpenBooking = (kartName?: string, planName?: string) => {
     if (kartName) setSelectedKart(kartName);
@@ -50,20 +64,17 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#0F172A] selection:bg-[#0052FF] selection:text-white relative w-full overflow-x-hidden flex flex-col font-sans">
-      {/* 1. Initial F1 Starting Lights Loader */}
-      {isLoading && <TrafficLightsLoader onComplete={() => setIsLoading(false)} />}
+    <div
+      className={`min-h-screen relative w-full overflow-x-hidden flex flex-col font-sans transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#050814] text-[#F8FAFC] selection:bg-[#0052FF] selection:text-white'
+          : 'bg-[#F8FAFC] text-[#0F172A] selection:bg-[#0066FF] selection:text-white'
+      }`}
+    >
+      {/* 0. Interactive Mouse Cursor Glow & Magnetic Hover Ring */}
+      <CursorGlow isDark={isDark} />
 
-      {/* 2. Interactive Telemetry HUD (Bottom Right / Collapsible) */}
-      <SpeedometerHUD />
-
-      {/* 3. Loco Bear Signature Floating Call & WhatsApp Concierge (with Lead Capture) */}
-      <FloatingWidgets onOpenBooking={() => handleOpenBooking()} />
-
-      {/* 4. Sticky Quick Lead Capture Drawer (Captures Name & Phone upon scroll) */}
-      <QuickLeadBar onOpenBooking={() => handleOpenBooking()} />
-
-      {/* 5. Sticky Glassmorphism Header */}
+      {/* 1. Sticky Glassmorphism Header with Theme Switcher */}
       <Navbar
         onOpenBooking={() => handleOpenBooking()}
         currentDriver={currentDriver}
@@ -77,21 +88,21 @@ export function App() {
         }}
       />
 
-      {/* 6. Velocity Circuit Main Content Flow (Loco Bear Color Theme & Lead Capture) */}
+      {/* 2. Main Content Flow */}
       <main className="w-full flex-1 flex flex-col">
         {/* Section 1: Hero with high-converting Name & Phone Number Lead Capture Card */}
         <HeroSection onOpenBooking={(kart) => handleOpenBooking(kart)} />
 
-        {/* Section 2: 1166M Track Map with 19 FIA Turns & Animated Kart */}
-        <CircuitMapSection />
+        {/* Section 2: About Us & What We Really Offer (6 Bento Offerings) */}
+        <AboutOfferSection onOpenBooking={(pkg) => handleOpenBooking(pkg)} />
 
-        {/* Section 3: Precision Racing Fleet ("Choose Your Ride") */}
-        <MachinesSection onSelectMachine={(sessionName) => handleOpenBooking(sessionName)} />
-
-        {/* Section 4: Why Book Online Instead of Walking In? */}
+        {/* Section 3: Why Book Online Instead of Walking In? */}
         <WhyBookOnlineSection onOpenBooking={() => handleOpenBooking()} />
 
-        {/* Section 5: Circuit Lifestyle & Apex Rooftop Cafe */}
+        {/* Section 4: Standard Race Packages & Combos */}
+        <PricingSection onSelectPlan={(pName, pPrice) => handleOpenBooking(`${pName} (${pPrice})`, pName)} />
+
+        {/* Section 5: More Than Racing — Circuit Lifestyle & Apex Rooftop Cafe */}
         <LifestyleBentoSection />
 
         {/* Section 6: Family & Friends Destination */}
@@ -112,23 +123,23 @@ export function App() {
           onDriverLogin={(d) => setCurrentDriver(d)}
         />
 
-        {/* Section 9: Standard Pricing Matrix & Combos */}
-        <PricingSection onSelectPlan={(pName, pPrice) => handleOpenBooking(`${pName} (${pPrice})`, pName)} />
-
-        {/* Section 10: Social Wall & Bangalore Leaderboard */}
+        {/* Section 9: Social Wall & Bangalore Leaderboard */}
         <InstagramWall />
 
-        {/* Section 11: Frequently Asked Questions Accordion */}
+        {/* Section 10: Frequently Asked Questions Accordion */}
         <FaqSection />
       </main>
 
-      {/* 7. Loco Bear Multi-Column Mega Footer */}
+      {/* 3. Loco Bear Multi-Column Mega Footer */}
       <LocoFooter
         onOpenBooking={() => handleOpenBooking()}
         onOpenLeads={() => setIsLeadsOpen(true)}
       />
 
-      {/* 8. Interactive Modals */}
+      {/* 4. Official Sarvam AI Voice Agent docked at bottom right */}
+      <SarvamVoiceAgent onOpenBooking={() => handleOpenBooking()} />
+
+      {/* 5. Modals */}
       <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
@@ -158,6 +169,14 @@ export function App() {
         />
       )}
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

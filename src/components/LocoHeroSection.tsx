@@ -49,7 +49,7 @@ export function LocoHeroSection({ onOpenBooking, onSelectCategory }: LocoHeroSec
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full text-center flex flex-col items-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#feb000]/10 border border-[#feb000]/30 text-[#feb000] text-xs sm:text-sm font-extrabold uppercase tracking-wider mb-6 backdrop-blur-md">
           <Sparkles className="w-4 h-4 text-[#feb000]" />
-          <span>India's Biggest 1166M Asphalt Track & Family Entertainment Hub</span>
+          <span>Karnataka's Biggest 1166M Asphalt Track & Family Entertainment Hub</span>
         </div>
 
         {/* Signature Loco Bear Kinetic Headlines */}
@@ -106,7 +106,7 @@ export function LocoHeroSection({ onOpenBooking, onSelectCategory }: LocoHeroSec
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 p-4 rounded-2xl bg-[#0d121d]/90 border border-white/10 backdrop-blur-xl">
           <div className="text-center p-3 border-r border-white/10 last:border-none">
             <div className="font-bison text-3xl sm:text-4xl text-[#feb000] font-black">1166M</div>
-            <div className="text-[11px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider mt-0.5">India's Longest</div>
+            <div className="text-[11px] sm:text-xs text-slate-400 uppercase font-bold tracking-wider mt-0.5">Karnataka's Biggest</div>
           </div>
           <div className="text-center p-3 border-r border-white/10 last:border-none">
             <div className="font-bison text-3xl sm:text-4xl text-[#00f0ff] font-black">19</div>

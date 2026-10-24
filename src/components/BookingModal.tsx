@@ -167,22 +167,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#0B0E17]/95 border border-white/15 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden text-white flex flex-col max-h-[92vh] backdrop-blur-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-2xl animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-[#080C1A]/95 border border-white/[0.14] rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.9)] overflow-hidden text-white flex flex-col max-h-[92vh] backdrop-blur-2xl">
         {/* Modal Header */}
-        <div className="p-5 sm:p-6 bg-[#0E121F] border-b border-white/10 flex items-center justify-between">
+        <div className="p-5 sm:p-6 bg-[#0B0F22]/90 border-b border-white/[0.08] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0052FF] to-[#1d4ed8] flex items-center justify-center font-extrabold text-base text-white shadow-lg shadow-blue-600/30">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0071E3] to-[#1d4ed8] flex items-center justify-center font-bold text-sm text-white shadow-lg shadow-blue-600/30 font-apple-display">
               VIC
             </div>
             <div>
-              <h3 className="font-bold text-base sm:text-lg text-white tracking-tight">
+              <h3 className="font-bold text-base sm:text-lg text-white tracking-[-0.02em] font-apple-display">
                 Reserve Track Session
               </h3>
               <div className="text-[11px] font-mono text-slate-400 flex items-center gap-2">
                 <span className="text-[#38BDF8] font-semibold">Step {step} of 4</span>
                 <span>•</span>
-                <span>Hosakote 1,166m Asphalt</span>
+                <span>Karnataka&apos;s Biggest Circuit (1,166m)</span>
               </div>
             </div>
           </div>
@@ -538,21 +538,21 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
         {/* Modal Footer / Next Buttons */}
         {!isPaid && (
-          <div className="p-5 sm:p-6 bg-[#0E121F] border-t border-white/10 flex items-center justify-between">
+          <div className="p-5 sm:p-6 bg-[#0B0F22]/90 border-t border-white/[0.08] flex items-center justify-between">
             {step > 1 ? (
               <button
                 onClick={() => {
                   soundFx.playGearShift();
                   setStep(step - 1);
                 }}
-                className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-xs font-mono uppercase text-slate-300 flex items-center gap-1 cursor-pointer transition-colors"
+                className="px-4 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono uppercase text-slate-300 flex items-center gap-1 cursor-pointer transition-colors font-apple-display"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
               </button>
             ) : (
               <div className="text-xs font-mono text-slate-400">
-                Total: <span className="text-[#38BDF8] font-bold text-xl ml-1">₹{grandTotal}</span>
+                Total: <span className="text-[#38BDF8] font-bold text-xl ml-1 font-apple-mono tracking-tight">₹{grandTotal}</span>
               </div>
             )}
 
@@ -562,7 +562,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   soundFx.playGearShift();
                   setStep(step + 1);
                 }}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 font-bold text-xs uppercase tracking-wider text-white shadow-lg shadow-blue-600/25 flex items-center gap-1.5 cursor-pointer transition-all"
+                className="px-6 py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] font-semibold text-xs tracking-wide text-white shadow-lg shadow-blue-600/25 flex items-center gap-1.5 cursor-pointer transition-all font-apple-display"
               >
                 <span>Continue</span>
                 <ChevronRight className="w-4 h-4" />
@@ -570,7 +570,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             ) : (
               <button
                 onClick={handleCompletePayment}
-                className="px-6 sm:px-8 py-3 rounded-full bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer transition-all"
+                className="px-6 sm:px-8 py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] font-semibold text-xs sm:text-sm tracking-wide text-white shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer transition-all font-apple-display"
               >
                 <CreditCard className="w-4 h-4 text-white" />
                 <span>Confirm & Pay ₹{grandTotal}</span>

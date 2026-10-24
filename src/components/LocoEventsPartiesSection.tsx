@@ -12,7 +12,7 @@ export function LocoEventsPartiesSection({ onOpenBooking }: LocoEventsPartiesSec
   const packages = {
     birthday: {
       title: 'Grand Prix Birthday Celebration',
-      tagline: 'Make your birthday an unforgettable 85 km/h celebration on India’s biggest circuit!',
+      tagline: 'Make your birthday an unforgettable 85 km/h celebration on Karnataka’s biggest circuit!',
       icon: <Cake className="w-6 h-6 text-[#feb000]" />,
       badge: 'Most Popular for Kids & Adults',
       basePrice: '₹14,999',
