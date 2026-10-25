@@ -12,7 +12,7 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
       {/* Background Decor */}
       <div className="absolute top-0 right-1/3 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Callout Box */}
         <div className="rounded-[32px] p-1.5 sm:p-2 bg-gradient-to-b from-slate-200 via-slate-100 to-transparent dark:from-white/15 dark:via-white/5 dark:to-white/0 border border-slate-200 dark:border-white/10 mb-16 shadow-xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
           <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F]/95 p-8 sm:p-10 border border-slate-200 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">

@@ -110,7 +110,7 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
   };
 
   return (
-    <section id="about" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full relative">
+    <section id="about" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative">
       {/* Background Ambient Motorsport Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#0052FF]/8 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 w-[450px] h-[450px] bg-[#00D2FF]/6 rounded-full blur-[150px] pointer-events-none" />

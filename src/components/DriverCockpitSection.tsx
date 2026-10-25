@@ -76,7 +76,7 @@ export const DriverCockpitSection: React.FC<DriverCockpitSectionProps> = ({
   };
 
   return (
-    <section id="driver-os" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full">
+    <section id="driver-os" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       {/* Racing Terminal Container */}
       <div className="relative rounded-[36px] bg-white dark:bg-[#0A0E1F]/90 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white p-6 sm:p-10 lg:p-12 shadow-sm dark:shadow-[0_25px_80px_rgba(0,0,0,0.85)] backdrop-blur-xl overflow-hidden">
         {/* Glowing Background Ambience */}

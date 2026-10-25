@@ -56,7 +56,7 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
   };
 
   return (
-    <section id="club" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full">
+    <section id="club" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="rounded-[2.5rem] bg-white dark:bg-[#0A0E1F]/90 border border-slate-200 dark:border-white/10 p-8 sm:p-12 lg:p-14 text-slate-900 dark:text-white shadow-sm dark:shadow-[0_25px_80px_rgba(0,0,0,0.85)] backdrop-blur-2xl relative overflow-hidden">
         {/* Ambient Glows */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-[140px] pointer-events-none" />

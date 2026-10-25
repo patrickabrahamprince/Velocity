@@ -100,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
   };
 
   return (
-    <section className="relative w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-10 lg:pb-16">
+    <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-10 lg:pb-16">
       {/* Background Ambient Lighting in Cobalt Blue */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[600px] h-[500px] bg-[#0052FF]/8 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-[#00D2FF]/6 rounded-full blur-[140px] pointer-events-none" />
@@ -119,11 +119,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
               </div>
 
               {/* Asphalt 8 Racing Style Display Headline */}
-              <h1 className="text-4xl sm:text-6xl xl:text-[3.9rem] font-asphalt text-slate-950 dark:text-white leading-[1.02] tracking-[-0.03em]">
-                Real Racing on <br />
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-[3.6rem] font-asphalt text-slate-950 dark:text-white leading-[1.06] tracking-tight">
+                Real Racing on{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF]">
                   Karnataka&apos;s Biggest
-                </span> <br />
+                </span>{' '}
                 Asphalt Circuit
               </h1>
 

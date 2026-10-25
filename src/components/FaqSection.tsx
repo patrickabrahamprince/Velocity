@@ -88,7 +88,7 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full relative">
+    <section id="faq" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative">
       {/* Background glow accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-[#0052FF]/5 rounded-full blur-[140px] pointer-events-none" />
 

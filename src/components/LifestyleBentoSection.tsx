@@ -3,7 +3,7 @@ import { Sparkles, ArrowUpRight } from 'lucide-react';
 
 export const LifestyleBentoSection: React.FC = () => {
   return (
-    <section id="lifestyle" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full">
+    <section id="lifestyle" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
         {/* Apple Keynote Style Section Header */}
         <div className="space-y-4 max-w-3xl">

@@ -8,7 +8,7 @@ interface FamilyDestinationSectionProps {
 
 export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> = ({ onOpenBooking }) => {
   return (
-    <section id="family" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-[1480px] mx-auto w-full">
+    <section id="family" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
