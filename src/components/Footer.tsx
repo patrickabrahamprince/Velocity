@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               </div>
 
               <a
-                href="https://share.google/nVeWwRIvbWOKT3RJq"
+                href="https://www.google.com/maps/dir/?api=1&destination=Velocity+International+Circuit+Hoskote"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => soundFx.playGearShift()}

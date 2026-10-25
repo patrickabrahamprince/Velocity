@@ -72,7 +72,7 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
           </a>
 
           <a
-            href="https://share.google/nVeWwRIvbWOKT3RJq"
+            href="https://www.google.com/maps/search/?api=1&query=Velocity+International+Circuit+Hoskote"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-[#0A0E1F]/80 hover:bg-slate-50 dark:hover:bg-[#0E152F] border border-slate-200 dark:border-white/10 transition-colors group shadow-sm"
@@ -169,10 +169,18 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
                 </svg>
               </a>
             </div>
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#0A0E1F] border border-slate-200 dark:border-white/10 text-[11px] text-slate-600 dark:text-slate-300 shadow-sm">
-              <span className="text-blue-600 dark:text-[#38BDF8] font-mono font-semibold uppercase tracking-wider block mb-0.5">Route Directions</span>
-              Search <span className="text-slate-900 dark:text-white font-semibold">"Velocity International Circuit"</span> on Google Maps.
-            </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=Velocity+International+Circuit+Hoskote"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3.5 rounded-2xl bg-white dark:bg-[#0A0E1F] border border-slate-200 dark:border-white/10 text-[11px] text-slate-600 dark:text-slate-300 shadow-sm block hover:border-blue-500/50 transition-all group"
+            >
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-blue-600 dark:text-[#38BDF8] font-mono font-semibold uppercase tracking-wider block">Live Directions</span>
+                <span className="text-[10px] font-mono text-blue-600 dark:text-[#38BDF8] font-bold group-hover:translate-x-0.5 transition-transform">Get Route ↗</span>
+              </div>
+              <span className="text-slate-900 dark:text-white font-semibold">Velocity International Circuit</span>, Solur Village, NH-75 Hoskote.
+            </a>
           </div>
         </div>
 

@@ -273,7 +273,7 @@ export const CircuitMapSection: React.FC<CircuitMapSectionProps> = ({ videoUrl =
 
             {/* Direct Google Maps Link */}
             <a
-              href="https://share.google/nVeWwRIvbWOKT3RJq"
+              href="https://www.google.com/maps/search/?api=1&query=Velocity+International+Circuit+Hoskote"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundFx.playGearShift()}

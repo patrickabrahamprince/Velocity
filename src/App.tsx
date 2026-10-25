@@ -10,6 +10,7 @@ import { RepeatRacerRewards } from './components/RepeatRacerRewards';
 import { PricingSection } from './components/PricingSection';
 import { InstagramWall } from './components/InstagramWall';
 import { FaqSection } from './components/FaqSection';
+import { CircuitLocationSection } from './components/CircuitLocationSection';
 import { LocoFooter } from './components/LocoFooter';
 import { BookingModal } from './components/BookingModal';
 import { CapturedLeadsModal } from './components/CapturedLeadsModal';
@@ -128,6 +129,9 @@ function AppContent() {
 
         {/* Section 10: Frequently Asked Questions Accordion */}
         <FaqSection />
+
+        {/* Section 11: Circuit Location & Interactive Directions Map */}
+        <CircuitLocationSection />
       </main>
 
       {/* 3. Loco Bear Multi-Column Mega Footer */}

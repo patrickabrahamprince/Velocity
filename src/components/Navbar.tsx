@@ -39,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Pricing', href: '#pricing' },
     { label: 'Rooftop Cafe', href: '#lifestyle' },
     { label: 'VIP Club', href: '#club' },
+    { label: 'Location & Map', href: '#location' },
     { label: 'FAQ', href: '#faq' },
   ];
 
@@ -127,7 +128,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Location Pill */}
             <button
-              onClick={() => setIsLocationModalOpen(true)}
+              onClick={() => {
+                soundFx.playGearShift();
+                setIsLocationModalOpen(true);
+              }}
+              title="Circuit Location & Map (Hoskote, Bengaluru)"
               className={`hidden sm:flex items-center gap-1.5 h-9 px-3.5 rounded-full border text-xs font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 isDark
                   ? 'bg-white/[0.05] hover:bg-white/[0.1] border-white/10 text-white/90 shadow-inner'
@@ -135,8 +140,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <MapPin className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-              <span>{locationLabel}</span>
-              <ChevronDown className="w-3 h-3 text-slate-400 shrink-0" />
+              <span>Hoskote, BLR</span>
+              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full font-semibold ${
+                isDark ? 'bg-blue-500/20 text-[#38BDF8]' : 'bg-blue-100 text-[#0052FF]'
+              }`}>
+                Map
+              </span>
             </button>
 
             {/* Direct Race Hotline */}
@@ -210,14 +219,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
               <button
-                onClick={() => { setIsMobileMenuOpen(false); setIsLocationModalOpen(true); }}
-                className="w-full py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-200 flex items-center justify-between"
+                onClick={() => { 
+                  soundFx.playGearShift();
+                  setIsMobileMenuOpen(false); 
+                  setIsLocationModalOpen(true); 
+                }}
+                className="w-full py-2.5 px-3 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-200 flex items-center justify-between cursor-pointer hover:bg-white/10 transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-[#00D2FF]" />
-                  <span>Start: {userLocation.name.split('/')[0]}</span>
+                  <span>Circuit Location & Map (Hoskote)</span>
                 </div>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/20 text-[#38BDF8] font-bold">
+                  View Map
+                </span>
               </button>
 
               <a
