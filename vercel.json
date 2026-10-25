@@ -42,7 +42,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|images/|favicon.svg|icons.svg|robots.txt|sitemap.xml).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
