@@ -8,40 +8,40 @@ import {
   Clock, 
   ShieldCheck, 
   Sparkles, 
-  Check, 
-  ChevronRight
+  Check 
 } from 'lucide-react';
 import { soundFx } from '../utils/soundEngine';
 
 interface KartOffer {
   id: string;
   name: string;
+  fullName: string;
+  tagline: string;
   price: string;
   taxNote: string;
   laps: string;
   badge: string;
   badgeStyle: string;
   timing: string;
-  validity: string;
   popular?: boolean;
-  highlightPill?: string;
   features: string[];
   buttonText: string;
 }
 
-// All 4 Karting Offers in ONE single unified section
+// All 4 Karting Offers in ONE unified row with clean, aligned headers
 const allKartOffers: KartOffer[] = [
   {
     id: 'normal-10-laps',
-    name: '10 Laps Normal Session',
+    name: '10 Laps Normal',
+    fullName: '10 Laps Normal Session',
+    tagline: 'Standard Pitlane Queue • All Days',
     price: '699',
     taxNote: '+ 18% TAX',
     laps: '10 Laps • 1,166M Track',
-    badge: '🏁 ALL-DAYS PASS',
-    badgeStyle: 'bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-slate-200 border-slate-200 dark:border-white/10',
+    badge: 'ALL-DAYS PASS',
+    badgeStyle: 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-300 border-slate-200 dark:border-white/10',
     popular: false,
     timing: '9 AM – 11 PM',
-    validity: 'Valid on All Days (Weekdays & Weekends)',
     features: [
       '10 Full Throttle Flying Laps (11.6 KM)',
       'Tuned 200cc Honda Racing Pro Kart',
@@ -53,16 +53,16 @@ const allKartOffers: KartOffer[] = [
   },
   {
     id: 'fastrak-10-laps',
-    name: '10 Laps Fastrak VIP Session',
+    name: '10 Laps Fastrak',
+    fullName: '10 Laps Fastrak VIP Session',
+    tagline: 'Priority Zero-Wait Lane • Direct Grid',
     price: '899',
     taxNote: '+ 18% TAX',
     laps: '10 Laps • Zero Waiting',
     badge: '⚡ ZERO WAITING',
-    badgeStyle: 'bg-gradient-to-r from-[#0066FF] to-[#00D2FF] text-white border-blue-400 font-extrabold shadow-sm',
+    badgeStyle: 'bg-blue-600/10 text-blue-700 dark:text-[#00D2FF] border-blue-500/30 font-bold',
     popular: true,
     timing: '9 AM – 11 PM',
-    validity: 'Priority Fastrak Lane • Direct Grid Access',
-    highlightPill: '⚡ 0 Min Wait: Skip all pitlane queues',
     features: [
       'Priority Fastrak Pitlane Bypass',
       'Zero Waiting • Direct Grid Boarding',
@@ -74,15 +74,16 @@ const allKartOffers: KartOffer[] = [
   },
   {
     id: 'weekday-8-laps',
-    name: '8 Laps Weekday Sprint',
+    name: '8 Laps Weekday',
+    fullName: '8 Laps Weekday Sprint',
+    tagline: 'Mon to Fri Sprint (Excl. Holidays)',
     price: '499',
     taxNote: '+ 18% TAX',
     laps: '8 Laps • Mon to Fri',
-    badge: 'WEEKDAY THRILL',
+    badge: 'WEEKDAY PASS',
     badgeStyle: 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-300 border-slate-200 dark:border-white/10',
     popular: false,
     timing: '9 AM – 11 PM',
-    validity: 'Monday to Friday (Excl. Public Holidays)',
     features: [
       '8 Full Throttle Championship Laps (9.3 KM)',
       'Tuned 200cc Honda Racing Pro Kart',
@@ -94,15 +95,16 @@ const allKartOffers: KartOffer[] = [
   },
   {
     id: 'student-5-laps',
-    name: '5 Laps Student Special',
+    name: '5 Laps Student',
+    fullName: '5 Laps Student Special',
+    tagline: 'Student ID Required at Pitlane',
     price: '299',
     taxNote: '+ 18% TAX',
     laps: '5 Laps • Student Special',
-    badge: 'STUDENT ID',
-    badgeStyle: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25 font-bold',
+    badge: 'STUDENT PASS',
+    badgeStyle: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25 font-bold',
     popular: false,
     timing: '9 AM – 6 PM',
-    validity: 'Mon to Fri (Till 6 PM) • Student ID Required',
     features: [
       '5 High-Speed Laps on 1,166m Circuit',
       'Tuned 200cc Honda Racing Pro Kart',
@@ -227,14 +229,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
 
   return (
     <section id="pricing" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative">
-      {/* Background Accent Glow */}
+      {/* Background Ambient Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-blue-600/10 via-[#00D2FF]/10 to-transparent blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="space-y-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2 border-b border-slate-200/80 dark:border-white/10">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 dark:bg-white/[0.06] border border-blue-500/20 dark:border-white/[0.12] text-xs font-bold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-mono shadow-sm">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-slate-200/80 dark:border-white/10">
+          <div className="space-y-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 dark:bg-white/[0.06] border border-blue-500/20 dark:border-white/[0.12] text-xs font-bold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-mono">
               <span className="w-2 h-2 rounded-full bg-[#0066FF] dark:bg-[#00D2FF]" />
               <span>Transparent Passes • 1,166M Track</span>
             </div>
@@ -295,10 +297,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           </div>
         </div>
 
-        {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW / SECTION */}
+        {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW */}
         {activeTab === 'kart-offers' && (
           <div className="space-y-8">
-            {/* 4 Cards Grid - Fits together without tall scroll */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-3">
               {allKartOffers.map((offer) => (
                 <div
@@ -309,10 +310,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       : 'bg-white dark:bg-[#0A0E22]/90 border border-slate-200 dark:border-white/10 hover:border-blue-400/50 shadow-sm dark:shadow-md text-slate-950 dark:text-white'
                   }`}
                 >
-                  {/* Floating Most Popular VIP Badge on Fastrak card */}
+                  {/* Floating Most Popular VIP Crown Badge on Fastrak */}
                   {offer.popular && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-20">
-                      <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-[10px] font-mono uppercase tracking-wider shadow-md flex items-center gap-1">
+                      <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-[10px] font-mono uppercase tracking-wider shadow-md flex items-center gap-1.5">
                         <Sparkles className="w-3 h-3 fill-current" />
                         <span>MOST POPULAR • ZERO WAIT</span>
                       </span>
@@ -320,75 +321,66 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   )}
 
                   <div>
-                    {/* Top Header Row (Badges + Clean Timing that NEVER wraps) */}
-                    <div className="flex items-center justify-between gap-1 mb-3">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-0.5 rounded-full border ${offer.badgeStyle}`}>
+                    {/* 1. Header Top Strip: Badge & Timing */}
+                    <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
+                      <span className={`text-[10px] font-mono uppercase font-bold tracking-wider px-2.5 py-1 rounded-lg border ${offer.badgeStyle}`}>
                         {offer.badge}
                       </span>
-                      <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">
-                        {offer.timing}
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1 whitespace-nowrap">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>{offer.timing}</span>
                       </span>
                     </div>
 
-                    {/* Card Title */}
-                    <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-1 tracking-tight leading-snug">
-                      {offer.name}
-                    </h3>
+                    {/* 2. Title & Unified 1-Line Tagline */}
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug">
+                        {offer.name}
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1 truncate">
+                        {offer.tagline}
+                      </p>
+                    </div>
 
-                    {/* Validity Subtitle */}
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed font-sans min-h-[32px]">
-                      {offer.validity}
-                    </p>
-
-                    {/* Fastrak Highlight Pill (Only on Fastrak VIP) */}
-                    {offer.highlightPill && (
-                      <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-500/40 text-[11px] font-bold text-blue-700 dark:text-[#00D2FF] mb-3 flex items-center gap-1.5 shadow-sm">
-                        <Zap className="w-3.5 h-3.5 fill-current shrink-0" />
-                        <span>{offer.highlightPill}</span>
-                      </div>
-                    )}
-
-                    {/* Price Block */}
-                    <div className="my-3 pb-3 border-b border-slate-200 dark:border-white/10">
+                    {/* 3. Price Block (Horizontally aligned across all cards!) */}
+                    <div className="py-4 border-y border-slate-100 dark:border-white/10 mb-5">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white font-mono">
+                        <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-mono">
                           ₹{offer.price}
                         </span>
-                        <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">
+                        <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500">
                           {offer.taxNote}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold mt-1 font-mono text-blue-600 dark:text-[#00D2FF]">
+                      <div className={`text-xs font-semibold mt-1 font-mono ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-600 dark:text-slate-400'}`}>
                         {offer.laps}
                       </div>
                     </div>
 
-                    {/* Features List */}
-                    <div className="space-y-2 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                    {/* 4. Features List (Exactly 5 items each, perfect vertical balance) */}
+                    <div className="space-y-2.5 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {offer.features.map((feat) => (
                         <div key={feat} className="flex items-start gap-2">
-                          <span className={`font-bold shrink-0 ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-400 dark:text-slate-500'}`}>
-                            ✓
-                          </span>
+                          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-400 dark:text-slate-500'}`} />
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* CTA Button */}
+                  {/* 5. CTA Button */}
                   <button
                     onClick={() => {
                       soundFx.playRev(offer.popular ? 1.4 : 1.3);
-                      onSelectPlan(offer.name, `₹${offer.price}`);
+                      onSelectPlan(offer.fullName, `₹${offer.price}`);
                     }}
-                    className={`w-full py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98] ${
+                    className={`w-full py-3.5 px-4 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98] ${
                       offer.popular
                         ? 'bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white shadow-lg shadow-blue-500/35'
                         : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-950 dark:text-white border border-slate-200 dark:border-white/10'
                     }`}
                   >
-                    <span>{offer.buttonText}</span>
+                    <span className="whitespace-nowrap">{offer.buttonText}</span>
                     <ArrowRight className="w-4 h-4 shrink-0" />
                   </button>
                 </div>
@@ -417,22 +409,24 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                 >
                   <div>
                     {/* Top Tag & Timing */}
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-0.5 rounded-full ${combo.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
+                    <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
+                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-1 rounded-lg ${combo.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
                         {combo.badge}
                       </span>
-                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                        {combo.timing}
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>{combo.timing}</span>
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-xl text-slate-900 dark:text-white mb-1 tracking-tight">
-                      {combo.name}
-                    </h3>
-
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed font-sans">
-                      {combo.validity}
-                    </p>
+                    <div className="mb-4">
+                      <h3 className="font-bold text-xl text-slate-900 dark:text-white tracking-tight">
+                        {combo.name}
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
+                        {combo.validity}
+                      </p>
+                    </div>
 
                     {combo.foodIncluded && (
                       <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
@@ -460,7 +454,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     <div className="space-y-2 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {combo.features.map((feat) => (
                         <div key={feat} className="flex items-start gap-2">
-                          <span className="text-blue-600 dark:text-[#00D2FF] font-bold shrink-0">+</span>
+                          <Check className="w-4 h-4 text-blue-600 dark:text-[#00D2FF] shrink-0 mt-0.5" />
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
@@ -479,7 +473,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     }`}
                   >
                     <span>{combo.buttonText}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 shrink-0" />
                   </button>
                 </div>
               ))}
@@ -500,12 +494,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               {/* Product 1: 15-Minute Track Session */}
               <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400/50 transition-all text-slate-900 dark:text-white">
                 <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3.5 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-amber-400 font-bold text-xs uppercase tracking-wider font-mono">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/5">
+                    <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-amber-400 font-bold text-xs uppercase tracking-wider font-mono">
                       {bikeOffers[0].badge}
                     </span>
-                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                      Subject to Track Availability
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                      <span>Subject to Track Availability</span>
                     </span>
                   </div>
 
@@ -537,7 +532,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 font-sans">
                     {bikeOffers[0].features.map((feat) => (
                       <div key={feat} className="flex items-start gap-2">
-                        <span className="text-amber-500 font-bold shrink-0">✓</span>
+                        <Check className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                         <span className="leading-snug">{feat}</span>
                       </div>
                     ))}
@@ -553,7 +548,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Book 15-Min Session (₹500)</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 shrink-0" />
                   </button>
 
                   <a
@@ -571,8 +566,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative text-slate-900 dark:text-white">
                 <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F]/95 p-8 h-full flex flex-col justify-between">
                   <div className="space-y-5">
-                    <div className="flex items-center justify-between">
-                      <span className="px-3.5 py-1 rounded-full bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/5">
+                      <span className="px-3 py-1 rounded-lg bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
                         {bikeOffers[1].badge}
                       </span>
                       <span className="text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
@@ -622,7 +617,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {bikeOffers[1].features.map((feat) => (
                         <div key={feat} className="flex items-start gap-2">
-                          <span className="text-amber-500 font-bold shrink-0">✓</span>
+                          <Check className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
@@ -638,7 +633,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
                       <span>Book Dawn Bike Slot (₹1500)</span>
-                      <ArrowRight className="w-4 h-4 text-black" />
+                      <ArrowRight className="w-4 h-4 text-black shrink-0" />
                     </button>
 
                     <a
