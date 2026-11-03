@@ -18,7 +18,7 @@ export function LocoOffersSection({ onSelectOffer }: LocoOffersSectionProps) {
       originalPrice: '₹1,450',
       description: 'The ultimate karting + dinner combo for individuals & pairs.',
       includes: [
-        '10 Laps on 1166M Track (Honda 4-Stroke 270cc)',
+        '10 Laps on 1166M Track (Honda 4-Stroke 200cc)',
         'Gourmet Smash Burger or Artisanal Pizza Slice at Apex Cafe',
         'Chilled Red Bull or High-Protein Milkshake',
         'Official Transponder RFID Lap Timing Printout'
@@ -32,9 +32,9 @@ export function LocoOffersSection({ onSelectOffer }: LocoOffersSectionProps) {
       badgeColor: '#00f0ff',
       price: '₹1,299',
       originalPrice: '₹1,750',
-      description: 'Designed specifically for parents with kids looking for a thrilling weekend outing.',
+      description: 'Designed specifically for families and teens looking for a thrilling weekend outing.',
       includes: [
-        '10 Laps in 2-Seater Tandem Kart (Parent + Child)',
+        '10 Laps in Tuned Honda 200cc Sprint Karts',
         '2x Cold-Pressed Fruit Juices or Shakes at Apex Rooftop Cafe',
         'Podium Photo Celebration with Winner Cap',
         'Complimentary ₹200 Return Voucher for your next visit'

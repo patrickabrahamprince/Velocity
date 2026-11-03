@@ -8,8 +8,8 @@ interface ThunderProFeaturesProps {
 
 const servicesCategories = [
   { id: 'sprint', label: '5 LAPS SPRINT', speed: '85+ km/h', age: 'All Drivers', price: '₹299', kart: 'Tuned 4-Stroke Racing Go-Kart' },
-  { id: 'blitz', label: '8 LAPS BLITZ', speed: '90+ km/h', age: 'Weekday Pack', price: '₹399', kart: 'Tuned 4-Stroke Racing Go-Kart' },
-  { id: 'supersaver', label: '10 LAPS GP', speed: '95+ km/h', age: 'Most Popular', price: '₹399', kart: 'Tuned 4-Stroke Racing Go-Kart' },
+  { id: 'blitz', label: '8 LAPS BLITZ', speed: '90+ km/h', age: 'Weekday Pack', price: '₹499', kart: 'Tuned 4-Stroke Racing Go-Kart' },
+  { id: 'supersaver', label: '10 LAPS GP', speed: '95+ km/h', age: 'Most Popular', price: '₹699', kart: 'Tuned 4-Stroke Racing Go-Kart' },
   { id: 'podium', label: 'WEEKEND GP', speed: '95+ km/h', age: 'Podium Pack', price: '₹699', kart: 'Tuned 4-Stroke Racing Go-Kart' },
   { id: 'night', label: '30-MIN NIGHT RUSH', speed: 'Unlimited', age: 'Pro Racers', price: '₹1,499', kart: 'Tuned 4-Stroke Racing Go-Kart' },
   { id: 'corporate', label: 'CORPORATE CUP', speed: 'Private Track', age: 'Groups 10+', price: 'Custom', kart: 'Full Fleet Track Takeover' },

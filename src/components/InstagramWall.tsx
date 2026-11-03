@@ -44,7 +44,7 @@ const instaPosts: InstagramPost[] = [
   {
     id: 'post4',
     type: 'reel',
-    caption: 'Fresh fleet of SODI RT8 270cc Beasts lined up in the paddock. Ready for full throttle action? 🏎️💨',
+    caption: 'Fresh fleet of SODI RT8 200cc Beasts lined up in the paddock. Ready for full throttle action? 🏎️💨',
     likes: '5.1k',
     comments: '312',
     tag: '#SodiKartsIndia',
@@ -53,11 +53,11 @@ const instaPosts: InstagramPost[] = [
 ];
 
 const weeklyLeaderboard = [
-  { rank: 1, name: 'Arjun "Apex" Rao', kart: 'SODI RT8 270', time: '00:54.212', gap: 'LEADER' },
-  { rank: 2, name: 'Vikramaditya S.', kart: 'SODI RT8 270', time: '00:54.648', gap: '+0.436s' },
+  { rank: 1, name: 'Arjun "Apex" Rao', kart: 'SODI RT8 200', time: '00:54.212', gap: 'LEADER' },
+  { rank: 2, name: 'Vikramaditya S.', kart: 'SODI RT8 200', time: '00:54.648', gap: '+0.436s' },
   { rank: 3, name: 'Nisha "Nitro" Patel', kart: 'TEEN SODI 200', time: '00:55.109', gap: '+0.897s' },
-  { rank: 4, name: 'Rohan Mehra', kart: 'SODI RT8 270', time: '00:55.450', gap: '+1.238s' },
-  { rank: 5, name: 'Deepak & Tanvi', kart: '2-SEATER TANDEM', time: '00:58.320', gap: '+4.108s' },
+  { rank: 4, name: 'Rohan Mehra', kart: 'SODI RT8 200', time: '00:55.450', gap: '+1.238s' },
+  { rank: 5, name: 'Deepak Kumar', kart: 'FASTRAK 200', time: '00:56.320', gap: '+2.108s' },
 ];
 
 export const InstagramWall: React.FC = () => {

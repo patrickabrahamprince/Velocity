@@ -18,7 +18,7 @@ export function LocoWhoWeAre({ onOpenBooking }: LocoWhoWeAreProps) {
     {
       icon: <Users className="w-6 h-6 text-[#00f0ff]" />,
       title: "All-Ages Family Destination",
-      desc: "From 6-year-old rookie drivers in 2-seater tandem karts to corporate leagues and pro track riders.",
+      desc: "From junior racers in tuned 200cc sprint karts to corporate leagues and pro track superbike riders.",
       metric: "FAMILY FIRST"
     },
     {

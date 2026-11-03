@@ -108,7 +108,7 @@ export function FloatingWidgets({ onOpenBooking }: FloatingWidgetsProps) {
                 <option value="Pricing and Combos Offers">⚡ Pricing & Combo Passes</option>
                 <option value="Track Booking & Lap Passes">🏎️ 10 / 15 Lap Track Slots</option>
                 <option value="Birthday Party & Corporate GP">🎂 Birthday & Corporate Grand Prix</option>
-                <option value="2-Seater Tandem Parent+Kid Karts">👨‍👩‍👧 2-Seater Tandem Karts</option>
+                <option value="Fastrak VIP Priority Session">⚡ Fastrak Priority Session (Zero Waiting)</option>
                 <option value="Superbike Sunrise Apex Session">🏍️ Superbike Sunrise Track Days</option>
                 <option value="Apex Cafe Table Reservation">🍕 Apex Rooftop Cafe Booking</option>
                 <option value="Other Questions">💬 General Track Question</option>

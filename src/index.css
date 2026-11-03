@@ -29,12 +29,14 @@ html {
 }
 
 /* Light Mode (Default as requested by user) */
-html.light, html:not(.dark) {
+html.light,
+html:not(.dark) {
   background-color: #F8FAFC;
   color-scheme: light;
 }
 
-html.light body, html:not(.dark) body {
+html.light body,
+html:not(.dark) body {
   background-color: #F8FAFC;
   color: #0F172A;
   font-family: var(--font-body);
@@ -102,7 +104,8 @@ html.dark body {
 }
 
 /* Apple VisionOS Specular Glass Surfaces (Adaptive Light / Dark) */
-html.light .apple-glass, html:not(.dark) .apple-glass {
+html.light .apple-glass,
+html:not(.dark) .apple-glass {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
@@ -119,7 +122,8 @@ html.dark .apple-glass {
 }
 
 /* Apple Glass Card (Adaptive Light / Dark) */
-html.light .apple-glass-card, html:not(.dark) .apple-glass-card {
+html.light .apple-glass-card,
+html:not(.dark) .apple-glass-card {
   background: #FFFFFF;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -128,7 +132,8 @@ html.light .apple-glass-card, html:not(.dark) .apple-glass-card {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html.light .apple-glass-card:hover, html:not(.dark) .apple-glass-card:hover {
+html.light .apple-glass-card:hover,
+html:not(.dark) .apple-glass-card:hover {
   border-color: rgba(0, 102, 255, 0.4);
   transform: translateY(-3px);
   box-shadow: 0 20px 45px -10px rgba(0, 102, 255, 0.14), 0 0 0 1px rgba(0, 102, 255, 0.15);
@@ -150,7 +155,8 @@ html.dark .apple-glass-card:hover {
 }
 
 /* Apple Keynote Eyebrow Badge (Adaptive Light / Dark) */
-html.light .apple-badge, html:not(.dark) .apple-badge {
+html.light .apple-badge,
+html:not(.dark) .apple-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -220,7 +226,8 @@ html.dark .apple-badge {
   box-shadow: 0 0 30px rgba(0, 210, 255, 0.35);
 }
 
-html.light .loco-card, html:not(.dark) .loco-card {
+html.light .loco-card,
+html:not(.dark) .loco-card {
   background: #FFFFFF;
   border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.5rem;
@@ -228,7 +235,8 @@ html.light .loco-card, html:not(.dark) .loco-card {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html.light .loco-card:hover, html:not(.dark) .loco-card:hover {
+html.light .loco-card:hover,
+html:not(.dark) .loco-card:hover {
   border-color: rgba(0, 102, 255, 0.4);
   transform: translateY(-4px);
   box-shadow: 0 20px 45px -10px rgba(0, 102, 255, 0.12), 0 0 0 1px rgba(0, 102, 255, 0.15);
@@ -267,13 +275,16 @@ html.dark .loco-card:hover {
 ::-webkit-scrollbar {
   width: 7px;
 }
+
 ::-webkit-scrollbar-track {
   background: #070B18;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1E293B;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #0052FF;
 }
@@ -284,12 +295,15 @@ html.dark .loco-card:hover {
     transform: translateY(-100%);
     opacity: 0;
   }
+
   15% {
     opacity: 0.75;
   }
+
   85% {
     opacity: 0.75;
   }
+
   100% {
     transform: translateY(220%);
     opacity: 0;
@@ -301,10 +315,12 @@ html.dark .loco-card:hover {
     transform: scale(0.95);
     opacity: 0.9;
   }
+
   50% {
     transform: scale(1.6);
     opacity: 0;
   }
+
   100% {
     transform: scale(0.95);
   }
@@ -314,6 +330,7 @@ html.dark .loco-card:hover {
   0% {
     stroke-dashoffset: 0;
   }
+
   100% {
     stroke-dashoffset: -48;
   }

@@ -19,6 +19,59 @@ interface OfferItem {
 
 const weekdayOffers: OfferItem[] = [
   {
+    id: 'normal-10-laps',
+    name: '10 Laps Normal Session',
+    price: '699',
+    taxNote: '+ 18% TAX',
+    laps: '10 Laps • 1,166M Track',
+    badge: '🔥 NORMAL SESSION',
+    popular: true,
+    timing: '9:00 AM – 11:00 PM',
+    validity: 'Valid on All Days (Including Weekends & Holidays)',
+    features: [
+      '10 Full Throttle High-Speed Laps',
+      'Tuned 200cc Honda Racing Go-Kart',
+      'Standard Pitlane Queue Access',
+      'Live F1 Timing Screen Transponder',
+      'Top 3 Podium Trophy Ceremony Access',
+    ],
+  },
+  {
+    id: 'fastrak-10-laps',
+    name: '10 Laps Fastrak VIP Session',
+    price: '899',
+    taxNote: '+ 18% TAX',
+    laps: '10 Laps • Zero Waiting',
+    badge: '⚡ ZERO WAITING',
+    popular: true,
+    timing: '9:00 AM – 11:00 PM',
+    validity: 'Priority Fastrak Lane • Zero Queue Delay',
+    features: [
+      'Priority Fastrak Pitlane Entry (No Waiting)',
+      'Zero Queue Delay • Direct Grid Entry',
+      '10 High-Speed Flying Laps (11.6 KM total)',
+      'Tuned 200cc Honda Racing Go-Kart',
+      'Digital Telemetry Timing Sheet',
+    ],
+  },
+  {
+    id: 'weekday-8-laps',
+    name: '8 Laps Weekday Sprint',
+    price: '499',
+    taxNote: '+ 18% TAX',
+    laps: '8 Laps • Weekday Only',
+    badge: 'WEEKDAY THRILL',
+    timing: '9:00 AM – 11:00 PM',
+    validity: 'Monday to Friday (Excl. Govt Holidays)',
+    features: [
+      '8 Full Throttle Championship Laps',
+      'Tuned 200cc Honda Racing Go-Kart',
+      'Open until 11 PM for Night Racing',
+      'Digital Telemetry Timing Sheet',
+      'Apex Viewing Lounge Access',
+    ],
+  },
+  {
     id: 'student-5-laps',
     name: '5 Laps Student Special',
     price: '299',
@@ -29,50 +82,69 @@ const weekdayOffers: OfferItem[] = [
     validity: 'Monday to Friday (Excl. Govt Holidays)',
     features: [
       '5 High-Speed Laps on 1166m circuit',
-      'Tuned 4-Stroke Racing Go-Kart',
+      'Tuned 200cc Honda Racing Go-Kart',
       'Valid Student ID Card Mandatory',
       'DOT Helmet & Balaclava Included',
       'Live Sector Transponder Lap Timing',
     ],
   },
-  {
-    id: 'weekday-8-laps',
-    name: '8 Laps Weekday Sprint',
-    price: '499',
-    taxNote: '+ 18% TAX',
-    laps: '8 Laps • 1,166M Track',
-    badge: 'WEEKDAY THRILL',
-    timing: '9:00 AM – 11:00 PM',
-    validity: 'Monday to Friday (Excl. Govt Holidays)',
-    features: [
-      '8 Full Throttle Championship Laps',
-      'Tuned 4-Stroke Racing Go-Kart',
-      'Open until 11 PM for Night Racing',
-      'Digital Telemetry Timing Sheet',
-      'Apex Viewing Lounge Access',
-    ],
-  },
-  {
-    id: 'all-days-10-laps',
-    name: '10 Laps All-Days GP',
-    price: '699',
-    taxNote: '+ 18% TAX',
-    laps: '10 Laps • Valid All Days',
-    badge: '🔥 MOST POPULAR',
-    popular: true,
-    timing: '9:00 AM – 11:00 PM',
-    validity: 'Valid on All Days (Including Weekends & Holidays)',
-    features: [
-      '10 High-Speed Laps (11.6 KM total)',
-      'Valid on Weekends & Public Holidays',
-      'Top 3 Podium Trophy Presentation',
-      'No Restrictions • Full Track Power',
-      'Live F1 Timing Screen Transponder',
-    ],
-  },
 ];
 
 const foodCombos: OfferItem[] = [
+  {
+    id: 'combo-fastrak',
+    name: '10 Laps Fastrak VIP',
+    price: '899',
+    taxNote: '+ TAX',
+    laps: '10 Laps • Fast Lane',
+    badge: '⚡ ZERO WAITING',
+    popular: true,
+    timing: 'Valid All Days',
+    validity: 'Priority Fastrak Pitlane • Zero Waiting Time',
+    foodIncluded: 'Fastrak VIP Pitlane Entry + Energy Drink ⚡',
+    features: [
+      '10 Full Throttle Flying Laps',
+      'Zero Waiting Time in Pitlane Queue',
+      'Tuned 200cc Honda Racing Engine',
+      'Direct Grid Access & Fastrak Priority',
+      'Digital Transponder Telemetry Sheet',
+    ],
+  },
+  {
+    id: 'combo-regular-10',
+    name: 'Regular Anyday Normal GP',
+    price: '699',
+    taxNote: '+ TAX',
+    laps: '10 Laps • Normal Session',
+    badge: '🔥 NORMAL SESSION',
+    popular: true,
+    timing: 'Anytime (All Days)',
+    validity: 'Anyday Thrill & Unmatched Fun',
+    features: [
+      '10 Full Throttle Flying Laps',
+      'Anyday Thrill & Unmatched Fun',
+      'Tuned 200cc Honda Racing Engine',
+      'Podium Ceremony Access',
+      'Full Track 1,166m Access',
+    ],
+  },
+  {
+    id: 'combo-weekday-8',
+    name: 'Weekday 8-Lap Heat',
+    price: '499',
+    taxNote: '+ TAX',
+    laps: '8 Laps',
+    badge: 'WEEKDAY',
+    timing: 'Mon - Fri (9 AM - 6 PM)',
+    validity: 'Weekday Session',
+    features: [
+      '8 High-Speed Laps',
+      'Tuned 200cc Racing Engine',
+      'Mon - Fri (9 AM - 6 PM)',
+      'Telemetry Lap Report',
+      'Apex Viewing Deck Access',
+    ],
+  },
   {
     id: 'combo-student',
     name: 'Student Combo Sprint',
@@ -90,98 +162,46 @@ const foodCombos: OfferItem[] = [
       'Live Leaderboard Timing',
     ],
   },
+];
+
+const bikeOffers: OfferItem[] = [
   {
-    id: 'combo-mojito',
-    name: '6 Laps + Mojito & Snacks',
-    price: '399',
+    id: 'bike-15-min',
+    name: '15-Minute Track Session',
+    price: '500',
     taxNote: '+ TAX',
-    laps: '6 Laps + Food & Drink',
-    badge: 'TASTE & SPEED',
+    laps: '15 Mins • Half or Full Track',
+    badge: '⚡ QUICK PASS',
+    timing: 'Daytime (Subject to Track Availability)',
+    validity: '15 Minutes session on half track or full track when available',
+    features: [
+      '15 Minutes of Uninterrupted Open Track Asphalt',
+      'Half Track or Full Track access (based on live track availability)',
+      'Open for 300cc to 1000cc+ motorcycles',
+      'Live Sector Transponder Lap Timing',
+      'Full riding gear mandatory (Ride Safe • Come Back Safe)',
+    ],
+  },
+  {
+    id: 'bike-dawn-session',
+    name: 'Superbike Dawn Session (4 Hours)',
+    price: '1500',
+    taxNote: '+ TAX',
+    laps: '4 Hours Unlimited Track',
+    badge: '6 AM TO 10 AM',
     popular: true,
-    timing: 'Valid till 6:00 PM',
-    validity: 'All Days till 6 PM',
-    foodIncluded: 'Refreshing Mojito 🍹 + Hot Snacks 🍟',
+    timing: '06:00 AM TO 10:00 AM',
+    validity: 'Open track for 300cc–1000cc+ motorcycles',
+    foodIncluded: 'Combo Protein Breakfast (Bread Omelet / Veg Sandwich) + Hot Cappuccino ☕🥪',
     features: [
-      '6 High-Speed Flying Laps',
-      'Refreshing Mojito Included',
-      'Crispy Hot Snacks from Apex Cafe',
-      'Taste bites to fuel your racing',
-      'Valid until 6:00 PM',
-    ],
-  },
-  {
-    id: 'combo-weekday-8',
-    name: 'Weekday 8-Lap Heat',
-    price: '499',
-    taxNote: '+ TAX',
-    laps: '8 Laps',
-    badge: 'WEEKDAY',
-    timing: 'Mon - Fri (9 AM - 6 PM)',
-    validity: 'Student ID Mandatory',
-    features: [
-      '8 High-Speed Laps',
-      'Student ID Mandatory',
-      'Mon - Fri (9 AM - 6 PM)',
-      'Telemetry Lap Report',
-      'Apex Viewing Deck Access',
-    ],
-  },
-  {
-    id: 'combo-regular-10',
-    name: 'Regular Anyday Unmatched',
-    price: '699',
-    taxNote: '+ TAX',
-    laps: '10 Laps',
-    badge: 'UNMATCHED',
-    timing: 'Anytime (All Days)',
-    validity: 'Anyday Thrill & Fun',
-    features: [
-      '10 Full Throttle Flying Laps',
-      'Anyday Thrill & Unmatched Fun',
-      'No Timing Restrictions',
-      'Podium Ceremony Access',
-      'Full Track 1166m Access',
-    ],
-  },
-  {
-    id: 'combo-family-tandem',
-    name: 'Family Tandem & Meal GP',
-    price: '899',
-    taxNote: '+ TAX',
-    laps: '2-Seater Kart + Food',
-    badge: '👨‍👩‍👧 FAMILY',
-    popular: true,
-    timing: 'Valid All Days',
-    validity: 'Parent + Child Co-Pilot Heat',
-    foodIncluded: '2 Beverages 🍹 + Loaded Fries / Nachos 🍟',
-    features: [
-      '2-Seater Tandem Kart for Parent & Child',
-      'Dual 4-Point Racing Harnesses',
-      '2 Fresh Mocktails/Juices + Hot Snack',
-      'Podium Photo Moment on Track',
-      'Valid All Days & Weekends',
+      '4 Hours of Unlimited Track Access (6:00 AM – 10:00 AM)',
+      'Combo Protein Breakfast (Bread Omelet or Veg Sandwich)',
+      'Fresh Hot Cappuccino at Apex Rooftop Cafe',
+      'Open track for knee-dragging & apex practice before highway traffic',
+      'Full riding gear mandatory (Ride Safe • Come Back Safe)',
     ],
   },
 ];
-
-const bikeRideOffer: OfferItem = {
-  id: 'bike-dawn-session',
-  name: 'Bike Ride Dawn Session',
-  price: '1500',
-  taxNote: '+ TAX',
-  laps: '4 Hours Open Circuit',
-  badge: '6 AM TO 10 AM',
-  timing: '06:00 AM TO 10:00 AM',
-  validity: 'Open track for 300cc–1000cc+ motorcycles',
-  foodIncluded: 'Protein Breakfast (Bread Omelet / Veg Sandwich) + Cappuccino ☕🥪',
-  features: [
-    '4 Hours of Unlimited Track Access (6 AM – 10 AM)',
-    'Combo Protein Breakfast (Bread Omelet or Veg Sandwich)',
-    'Fresh Hot Cappuccino at Apex Rooftop Cafe',
-    'Open track for knee-dragging & apex practice',
-    'Full riding gear mandatory (Ride Safe • Come Back Safe)',
-  ],
-};
 
 interface PricingSectionProps {
   onSelectPlan: (planName: string, price: string) => void;
@@ -260,7 +280,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* Tab 1: Weekday & All-Days Karting Offers */}
         {activeTab === 'kart-offers' && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
               {weekdayOffers.map((offer) => (
                 <div
                   key={offer.id}
@@ -343,7 +363,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* Tab 2: Go-Karting + Food Combos */}
         {activeTab === 'food-combos' && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
               {foodCombos.map((combo) => (
                 <div
                   key={combo.id}
@@ -428,96 +448,151 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           </div>
         )}
 
-        {/* Tab 3: Bike Ride 4-Hour Dawn Track Session */}
+        {/* Tab 3: Bike Ride 15-Min & 4-Hour Dawn Track Sessions */}
         {activeTab === 'bike-ride' && (
-          <div className="rounded-[32px] p-1.5 bg-gradient-to-b from-amber-500/20 via-amber-500/5 to-transparent border border-amber-300 dark:border-amber-500/30 shadow-sm dark:shadow-2xl">
-            <div className="rounded-[26px] bg-white dark:bg-[#0A0E1F]/95 p-8 sm:p-12 border border-slate-200 dark:border-white/10">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                {/* Left Column: Offer Details */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="flex items-center gap-2">
-                    <span className="px-3.5 py-1 rounded-full bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
-                      Bikers of Bengaluru
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              {/* Product 1: 15-Minute Track Session */}
+              <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400/50 transition-all">
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3.5 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-amber-400 font-bold text-xs uppercase tracking-wider font-mono">
+                      {bikeOffers[0].badge}
                     </span>
                     <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                      Open Track 6 AM – 10 AM
+                      Subject to Track Availability
                     </span>
                   </div>
 
-                  <h3 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-                    Superbike Dawn Session <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-700 dark:from-amber-400 dark:via-amber-500 dark:to-yellow-400">
-                      4 Hours Unlimited
-                    </span>
-                  </h3>
-
-                  <p className="text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-xl">
-                    {bikeRideOffer.validity}. Unleash your motorcycle on 1166 meters of outdoor asphalt before city highway traffic wakes up.
-                  </p>
-
-                  {/* Included Breakfast Callout Card */}
-                  <div className="p-5 rounded-2xl bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/30 space-y-2 shadow-sm">
-                    <div className="flex items-center gap-2 text-xs font-mono text-amber-700 dark:text-amber-400 font-bold uppercase">
-                      <Utensils className="w-4 h-4" />
-                      <span>Included in ₹1500 Pass:</span>
-                    </div>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                      Combo Protein Breakfast (Bread Omelet or Veg Sandwich) + Fresh Hot Cappuccino ☕🥪
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
+                      {bikeOffers[0].name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                      {bikeOffers[0].validity}. Perfect for riders who want quick apex laps and throttle practice when track slots are open.
                     </p>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">
-                      Served hot at the Apex Rooftop Diner after your morning track run.
+                  </div>
+
+                  {/* Price */}
+                  <div className="py-4 border-y border-slate-200 dark:border-white/10">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono">
+                        ₹{bikeOffers[0].price}
+                      </span>
+                      <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
+                        {bikeOffers[0].taxNote}
+                      </span>
+                    </div>
+                    <div className="text-xs text-amber-600 dark:text-amber-400 font-mono mt-1 font-semibold">
+                      {bikeOffers[0].laps}
                     </div>
                   </div>
 
-                  {/* Safety Rules Pillars */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
-                      <ShieldCheck className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDING GEAR</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
-                      <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RESPECT LIMITS</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
-                      <Trophy className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">STAY IN CONTROL</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
-                      <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
-                      <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDE SAFE</div>
-                    </div>
+                  {/* Features */}
+                  <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                    {bikeOffers[0].features.map((feat) => (
+                      <div key={feat} className="flex items-start gap-2">
+                        <span className="text-amber-500 font-bold shrink-0">✓</span>
+                        <span className="leading-snug">{feat}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Right Column: Price & Instant Booking Card */}
-                <div className="lg:col-span-5 bg-slate-50/90 dark:bg-[#070A14] border border-amber-300 dark:border-amber-500/40 rounded-[28px] p-8 shadow-md dark:shadow-2xl space-y-6 text-center">
-                  <div className="space-y-1">
-                    <div className="text-xs font-mono text-amber-700 dark:text-amber-400 uppercase tracking-widest font-semibold">
-                      Session Pass
-                    </div>
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-5xl sm:text-6xl font-extrabold text-slate-900 dark:text-white font-mono">
-                        ₹1500
+                <div className="pt-6 space-y-3">
+                  <button
+                    onClick={() => {
+                      soundFx.playRev(1.4);
+                      onSelectPlan('15-Minute Bike Track Session', '₹500');
+                    }}
+                    className="w-full py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <span>Book 15-Min Session (₹500)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  <a
+                    href="https://wa.me/919071718620?text=Hi%20Velocity%20Circuit,%20I%20want%20to%20check%20availability%20for%20the%2015-Minute%20Track%20Session%20(Rs%20500)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
+                  >
+                    <span>Check Track Slot via WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Product 2: Superbike Dawn Session (4 Hours Unlimited) */}
+              <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative">
+                <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F]/95 p-8 h-full flex flex-col justify-between">
+                  <div className="space-y-5">
+                    <div className="flex items-center justify-between">
+                      <span className="px-3.5 py-1 rounded-full bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
+                        {bikeOffers[1].badge}
                       </span>
-                      <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
-                        + TAX
+                      <span className="text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
+                        ★ MOST POPULAR BIKER PASS
                       </span>
                     </div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-                      4 Hours Unlimited Access (6:00 AM – 10:00 AM)
+
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 leading-tight">
+                        Superbike Dawn Session <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500">
+                          4 Hours Unlimited
+                        </span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                        {bikeOffers[1].validity}. Unleash your motorcycle on 1166 meters of outdoor asphalt before city highway traffic wakes up.
+                      </p>
+                    </div>
+
+                    {/* Breakfast Callout */}
+                    <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/30 space-y-1">
+                      <div className="flex items-center gap-2 text-[11px] font-mono text-amber-700 dark:text-amber-400 font-bold uppercase">
+                        <Utensils className="w-3.5 h-3.5" />
+                        <span>Included in ₹1500 Pass:</span>
+                      </div>
+                      <p className="text-xs font-semibold text-slate-900 dark:text-white">
+                        Protein Breakfast (Bread Omelet / Veg Sandwich) + Fresh Cappuccino ☕🥪
+                      </p>
+                    </div>
+
+                    {/* Price */}
+                    <div className="py-4 border-y border-slate-200 dark:border-white/10">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono">
+                          ₹{bikeOffers[1].price}
+                        </span>
+                        <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
+                          {bikeOffers[1].taxNote}
+                        </span>
+                      </div>
+                      <div className="text-xs text-amber-600 dark:text-amber-400 font-mono mt-1 font-semibold">
+                        {bikeOffers[1].laps}
+                      </div>
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                      {bikeOffers[1].features.map((feat) => (
+                        <div key={feat} className="flex items-start gap-2">
+                          <span className="text-amber-500 font-bold shrink-0">✓</span>
+                          <span className="leading-snug">{feat}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="space-y-3 pt-2">
+                  <div className="pt-6 space-y-3">
                     <button
                       onClick={() => {
                         soundFx.playRev(1.4);
-                        onSelectPlan('Bike Ride 4-Hour Session', '₹1500');
+                        onSelectPlan('Superbike Dawn Session (4 Hours)', '₹1500');
                       }}
                       className="w-full py-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
-                      <span>Book Dawn Bike Slot</span>
+                      <span>Book Dawn Bike Slot (₹1500)</span>
                       <ArrowRight className="w-4 h-4 text-black" />
                     </button>
 
@@ -525,12 +600,32 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       href="https://wa.me/919071718620?text=Hi%20Velocity%20Circuit,%20I%20want%20to%20book%20the%206%20AM%20Bike%20Ride%20Session%20(Rs%201500)"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
+                      className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
                     >
                       <span>WhatsApp Desk: +91 9071718620</span>
                     </a>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Safety Rules Pillars */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDING GEAR MANDATORY</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">HALF / FULL TRACK</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                <Trophy className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">TRANSPONDER TIMING</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#070A14] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm">
+                <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 mx-auto" />
+                <div className="text-[10px] font-mono text-slate-900 dark:text-white font-bold">RIDE SAFE COME BACK SAFE</div>
               </div>
             </div>
           </div>

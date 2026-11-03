@@ -20,8 +20,9 @@ interface Addon {
 }
 
 const availableAddons: Addon[] = [
+  { id: 'standard-no-inclusions', name: 'Standard Session (Without Any Inclusions)', price: 0, icon: Shield, description: 'Standard track session only — no optional upgrades or add-ons' },
   { id: 'gopro', name: 'GoPro 4K Helmet Cam Video', price: 199, icon: Video, description: 'Raw 60FPS high-bitrate onboard video sent to WhatsApp' },
-  { id: 'balaclava', name: 'Velocity Pro Balaclava', price: 99, icon: Shield, description: 'Brand new breathable sanitized headwear (yours to keep)' },
+  { id: 'balaclava', name: 'Velocity Pro Balaclava', price: 199, icon: Shield, description: 'Brand new breathable sanitized headwear (yours to keep)' },
   { id: 'telemetry', name: 'FIA Sector Telemetry Sheet', price: 149, icon: Zap, description: 'Corner-by-corner apex speeds & braking delta printout' },
   { id: 'podium', name: 'Podium Champagne & Trophy', price: 499, icon: Trophy, description: 'Podium presentation with champagne celebration' },
 ];
@@ -41,7 +42,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   initialKart,
 }) => {
   const [step, setStep] = useState<number>(1);
-  const [selectedKart, setSelectedKart] = useState<string>(initialKart || '10 Laps All-Days GP (₹699 + Tax)');
+  const [selectedKart, setSelectedKart] = useState<string>(initialKart || '10 Laps Normal Session (₹699 + Tax)');
   const [selectedDate, setSelectedDate] = useState<string>('2026-10-21');
   const [selectedSlot, setSelectedSlot] = useState<string>(timeSlots[4].time);
   const [driverCount, setDriverCount] = useState<number>(1);
@@ -59,6 +60,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [isPaid, setIsPaid] = useState<boolean>(false);
   const [bookingRef, setBookingRef] = useState<string>('');
   const [repeatRacerCode, setRepeatRacerCode] = useState<string>('');
+  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(true);
+  const [showFullTerms, setShowFullTerms] = useState<boolean>(false);
 
   useEffect(() => {
     const savedName = localStorage.getItem('vic_prefill_name');
@@ -73,8 +76,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   // Calculate Base Price
   let baseKartPrice = 699;
   if (selectedKart.includes('299')) baseKartPrice = 299;
-  else if (selectedKart.includes('399')) baseKartPrice = 399;
   else if (selectedKart.includes('499')) baseKartPrice = 499;
+  else if (selectedKart.includes('500')) baseKartPrice = 500;
   else if (selectedKart.includes('699')) baseKartPrice = 699;
   else if (selectedKart.includes('899')) baseKartPrice = 899;
   else if (selectedKart.includes('999')) baseKartPrice = 999;
@@ -113,16 +116,30 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const toggleAddon = (id: string) => {
     soundFx.playGearShift();
-    if (selectedAddons.includes(id)) {
-      setSelectedAddons(selectedAddons.filter((a) => a !== id));
+    if (id === 'standard-no-inclusions') {
+      if (selectedAddons.includes('standard-no-inclusions')) {
+        setSelectedAddons([]);
+      } else {
+        setSelectedAddons(['standard-no-inclusions']);
+      }
     } else {
-      setSelectedAddons([...selectedAddons, id]);
+      const withoutStandard = selectedAddons.filter((a) => a !== 'standard-no-inclusions');
+      if (withoutStandard.includes(id)) {
+        setSelectedAddons(withoutStandard.filter((a) => a !== id));
+      } else {
+        setSelectedAddons([...withoutStandard, id]);
+      }
     }
   };
 
   const handleCompletePayment = () => {
     if (!customerName || !customerPhone) {
       alert('Please fill in your name and WhatsApp number to receive your ticket & lap pass.');
+      return;
+    }
+
+    if (!agreedToTerms) {
+      alert('Please agree to the SAWOL BANGALORE LLP / Velocity International Circuit Terms & Indemnity Declaration to proceed.');
       return;
     }
 
@@ -207,12 +224,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { name: '10 Laps All-Days GP (₹699 + Tax)', desc: 'Valid Every Day • Full 1.1 KM Track', badge: '🔥 POPULAR' },
+                  { name: '10 Laps Normal Session (₹699 + Tax)', desc: 'Valid Every Day • Full 1,166M Track • Standard Queue', badge: '🔥 NORMAL' },
+                  { name: '10 Laps Fastrak VIP Session (₹899 + Tax)', desc: 'Zero Waiting • Priority Fastrak Lane & Direct Grid Access', badge: '⚡ ZERO WAITING' },
                   { name: '8 Laps Weekday Thrill (₹499 + Tax)', desc: 'Monday to Friday • 8 Fast Laps', badge: 'WEEKDAY' },
-                  { name: '6 Laps + Mojito & Snacks (₹399 + Tax)', desc: '6 Laps + Chilled Mojito + Snacks (Till 6 PM)', badge: 'BEST VALUE' },
                   { name: '5 Laps Student Special (₹299 + Tax)', desc: 'Mon to Fri (9 AM - 6 PM) • Show Student ID', badge: 'STUDENTS' },
-                  { name: 'Birthday & Group GP (₹999 + Tax)', desc: '8 Laps + Party Buffet (Min 20 People)', badge: 'GROUPS' },
-                  { name: 'Biker Morning Track Pass (₹1,500 + Tax)', desc: '6 AM - 10 AM Track + Warm Breakfast & Coffee', badge: 'BIKERS' },
+                  { name: 'Birthday & Group GP (₹999 + Tax)', desc: '6 Laps + Party Buffet (Min 20 People)', badge: 'GROUPS' },
+                  { name: 'Biker 15-Min Track Session (₹500 + Tax)', desc: '15 Mins • Half or Full Track (Subject to Track Availability)', badge: 'BIKERS 15M' },
+                  { name: 'Biker Morning Track Pass (₹1,500 + Tax)', desc: '6 AM - 10 AM Track + Warm Breakfast & Coffee', badge: 'BIKERS 4H' },
                 ].map((item) => (
                   <button
                     key={item.name}
@@ -352,7 +370,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       </div>
 
                       <div className="text-right">
-                        <div className="font-mono font-bold text-base text-white">+₹{addon.price}</div>
+                        <div className="font-mono font-bold text-base text-white">
+                          {addon.price === 0 ? '₹0' : `+₹${addon.price}`}
+                        </div>
                         <div className={`w-5 h-5 rounded-full border flex items-center justify-center ml-auto mt-1 ${
                           isChecked ? 'bg-[#0052FF] border-[#0052FF]' : 'border-white/20'
                         }`}>
@@ -471,6 +491,70 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <span className="font-mono text-xl text-[#38BDF8]">₹{grandTotal}</span>
                 </div>
               </div>
+
+              {/* Terms & Conditions and Indemnity Form Agreement */}
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="mt-1 w-4 h-4 rounded border-white/30 text-[#0052FF] focus:ring-0 bg-white/10 cursor-pointer shrink-0"
+                  />
+                  <span className="text-xs text-slate-300 leading-snug">
+                    I agree to the <strong className="text-white">Velocity International Circuit / SAWOL BANGALORE LLP</strong> Terms & Conditions and <strong className="text-[#38BDF8]">Indemnity Waiver Declaration</strong>.
+                  </span>
+                </label>
+
+                <button
+                  type="button"
+                  onClick={() => setShowFullTerms(!showFullTerms)}
+                  className="text-[11px] font-mono text-[#38BDF8] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <span>{showFullTerms ? 'Hide Indemnity Terms ▲' : 'View Full Indemnity & Circuit Waiver Document ▼'}</span>
+                </button>
+
+                {showFullTerms && (
+                  <div className="p-3.5 rounded-xl bg-black/50 border border-white/10 text-[11px] text-slate-300 space-y-2 font-sans max-h-52 overflow-y-auto leading-relaxed">
+                    <div className="font-bold text-white uppercase text-[10px] font-mono border-b border-white/10 pb-1">
+                      SAWOL BANGALORE LLP • VELOCITY INTERNATIONAL CIRCUIT INDEMNITY FORM
+                    </div>
+                    <div className="space-y-1.5">
+                      <p className="font-semibold text-slate-200">The undersigned participant declares:</p>
+                      <p>• Aware that engaging in activities at Velocity International Circuit is under his/her own responsibility & Liability subject to applicable laws & regulations.</p>
+                      <p>• Medically fit to participate in activities at Velocity International Circuit.</p>
+                      <p>• Over 18 years of age (if under 18, the presence of a legal guardian is mandatory) and holds a full valid driving license (Aadhar Card optional).</p>
+                      <p className="font-semibold text-slate-200 pt-1">The undersigned herewith:</p>
+                      <p>• Waives, releases & always indemnifies in full SAWOL BANGALORE LLP & Velocity International Circuit, associated companies, employees, directors, partners, and agents from any claim for damages, injury or negligence.</p>
+                      <p>• Understands that the activity is dangerous & will ensure full conformance with track marshals, safety flags, and circuit regulations.</p>
+                      <p>• Acknowledges & Agrees that he/she shall be exclusively liable for all losses or damages to persons or property around him/her directly or indirectly from actions at the circuit or premises.</p>
+                      <p>• The law applicable to the waiver shall be the Judicature of India subject to the exclusive jurisdiction of the system of courts in Bengaluru, Karnataka.</p>
+                      <p className="text-[10px] font-mono text-slate-400 pt-1">Registered Entity: SAWOL BANGALORE LLP, #14 Flat No. 003, Island Exotic, Benson Town, Bengaluru, Karnataka 560 046.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Cancellation & Weather Refund Policy (Below Payment) */}
+              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 space-y-2">
+                <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⏱️ Cancellation & Refund Policy</span>
+                </div>
+                <div className="space-y-1.5 text-xs text-slate-300 leading-relaxed font-sans">
+                  <div className="flex items-start gap-2">
+                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                    <span><strong>Before 8 Hours:</strong> 100% Full Refund if informed at least 8 hours prior to your scheduled session.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-rose-400 font-bold shrink-0">✕</span>
+                    <span><strong>Within 1 Hour:</strong> No Refund if informed less than 1 hour prior to your booking.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-sky-400 font-bold shrink-0">🌧️</span>
+                    <span><strong>Rain or Track Maintenance:</strong> In case of rain, wet track or unavoidable track maintenance, bookings cannot be refunded, but your session can be freely redeemed and rescheduled on your next ride.</span>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -491,15 +575,23 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               </div>
 
               {/* Booking Summary Card */}
-              <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 max-w-md mx-auto text-left space-y-1.5 text-xs font-mono text-slate-300">
+              <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-slate-300">
                 <div className="text-[#38BDF8] font-bold text-sm">BOOKING ID: #{bookingRef}</div>
                 <div>DRIVER: {customerName || 'Lead Racer'}</div>
                 <div>WHATSAPP: {customerPhone}</div>
-                <div>PACKAGE: {selectedKart} (Qty: {driverCount})</div>
+                <div>PACKAGE: {selectedKart.replace('270cc', '200cc')} (Qty: {driverCount})</div>
                 <div>DATE & TIME: {selectedDate} ({selectedSlot})</div>
                 <div>CIRCUIT: Velocity International Circuit, Hoskote</div>
                 <div className="text-emerald-400 font-semibold pt-2 border-t border-white/10">
                   ✓ Paid: ₹{grandTotal} • WhatsApp Ticket & QR Pass Dispatched
+                </div>
+
+                {/* Cancellation & Reschedule terms note */}
+                <div className="pt-2 border-t border-white/10 text-[11px] text-slate-400 font-sans space-y-1">
+                  <div className="text-amber-400 font-bold font-mono text-[10px] uppercase">Cancellation & Weather Policy:</div>
+                  <div>• Before 8 hours: Full Refund</div>
+                  <div>• Within 1 hour: No Refund</div>
+                  <div>• Rain or Track Maintenance: Can be redeemed & rescheduled on your next ride</div>
                 </div>
               </div>
 

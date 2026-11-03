@@ -5,7 +5,7 @@ interface AttractionItem {
   id: string;
   name: string;
   tagline: string;
-  category: 'High-Speed Racing' | 'Family & Tandem' | 'Superbike Track' | 'Tactical & Sim' | 'Food & Dining';
+  category: 'High-Speed Racing' | 'Family & Kids' | 'Superbike Track' | 'Tactical & Sim' | 'Food & Dining';
   image: string;
   badge: string;
   badgeColor: string;
@@ -28,7 +28,7 @@ export function LocoAttractionsSection({ onSelectAttraction, selectedCategory: i
   const [activeCategory, setActiveCategory] = useState<string>(initialCategory || 'All');
   const [activeModalItem, setActiveModalItem] = useState<AttractionItem | null>(null);
 
-  const categories = ['All', 'High-Speed Racing', 'Family & Tandem', 'Superbike Track', 'Tactical & Sim', 'Food & Dining'];
+  const categories = ['All', 'High-Speed Racing', 'Family & Kids', 'Superbike Track', 'Tactical & Sim', 'Food & Dining'];
 
   const attractions: AttractionItem[] = [
     {
@@ -47,26 +47,26 @@ export function LocoAttractionsSection({ onSelectAttraction, selectedCategory: i
         capacity: 'Single Seater'
       },
       features: [
-        'Tuned Honda 4-stroke 270cc racing engine',
+        'Tuned Honda 4-stroke 200cc racing engine',
         'FIA-standard 19 apex corners with kerbs',
         'Live RFID transponder telemetry lap times',
         'Snell-approved full face helmet & neck brace'
       ]
     },
     {
-      id: 'tandem-karts',
-      name: 'Parent-Child 2-Seater Tandem',
-      tagline: 'Double the adrenaline, 100% family safe.',
-      category: 'Family & Tandem',
-      image: '/images/kart_fleet_garage.jpg',
-      badge: 'Family Favorite',
-      badgeColor: '#00f0ff',
+      id: 'fastrak-karts',
+      name: '10 Laps Fastrak VIP Session',
+      tagline: 'Priority fast-track entry with zero waiting time.',
+      category: 'High-Speed Racing',
+      image: '/images/hero_racing_kart.jpg',
+      badge: 'Zero Waiting',
+      badgeColor: '#feb000',
       price: '₹899',
       specs: {
-        speed: '55 km/h (Gov.)',
+        speed: '85+ km/h',
         duration: '10 Laps',
-        ageLimit: 'Age 6+ (with adult)',
-        capacity: 'Dual Seater'
+        ageLimit: 'Age 12+',
+        capacity: 'Single Seater'
       },
       features: [
         'Dual steering wheel controls (Child can steer)',
@@ -186,7 +186,7 @@ export function LocoAttractionsSection({ onSelectAttraction, selectedCategory: i
             Experience The World Of <span className="text-[#feb000]">Adventure In Bangalore</span>
           </h2>
           <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-            From 85 km/h high-downforce racing karts to family tandem rides, morning superbike apex sessions, and tactical laser skirmishes.
+            From 85 km/h high-downforce racing karts to Fastrak priority sessions, morning superbike apex sessions, and tactical laser skirmishes.
           </p>
         </div>
 

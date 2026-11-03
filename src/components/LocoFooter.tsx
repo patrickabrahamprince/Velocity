@@ -101,7 +101,7 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
               <li><a href="#about" className="hover:text-blue-600 dark:hover:text-white transition-colors">About Velocity</a></li>
               <li><a href="#circuit" className="hover:text-blue-600 dark:hover:text-white transition-colors">1,166M Track Map</a></li>
               <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Pricing & Combo Passes</a></li>
-              <li><a href="#family" className="hover:text-blue-600 dark:hover:text-white transition-colors">Family & Tandem Karts</a></li>
+              <li><a href="#family" className="hover:text-blue-600 dark:hover:text-white transition-colors">Family & Group Racing</a></li>
               <li><a href="#driver-os" className="hover:text-blue-600 dark:hover:text-white transition-colors">Driver OS Pass</a></li>
             </ul>
           </div>
@@ -112,10 +112,10 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
               Fleets & Sessions
             </h4>
             <ul className="space-y-2.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-              <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Honda 270cc Pro Karts</a></li>
-              <li><a href="#family" className="hover:text-blue-600 dark:hover:text-white transition-colors">2-Seater Parent-Child Tandem</a></li>
+              <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Honda 200cc Pro Karts</a></li>
+              <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Fastrak Priority Sessions (Zero Waiting)</a></li>
               <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Superbike Dawn Sessions (6 AM)</a></li>
-              <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Kart + Mojito Combo Passes</a></li>
+              <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">15-Min & Dawn Motorcycle Passes</a></li>
               <li><a href="#pricing" className="hover:text-blue-600 dark:hover:text-white transition-colors">Corporate Grand Prix Rentals</a></li>
               <li><a href="#lifestyle" className="hover:text-blue-600 dark:hover:text-white transition-colors">Apex Rooftop Diner</a></li>
             </ul>

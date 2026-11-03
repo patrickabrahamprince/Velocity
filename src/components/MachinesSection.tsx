@@ -29,18 +29,18 @@ const fleetSessions: KartSession[] = [
     ],
   },
   {
-    id: 'tandem-2seater',
-    category: 'FAMILY & KIDS • AGES 4+ WITH PARENT',
-    title: '2-Seater Tandem GP',
+    id: 'fastrak-10',
+    category: 'FAST TRACK • ZERO WAITING',
+    title: '10 Laps Fastrak VIP',
     price: '899',
-    duration: '15 min parent+child heat',
+    duration: '20 min VIP experience',
     popular: true,
     image: '/images/hero_racing_kart.jpg',
     specs: [
-      'Dual 4-point racing safety harnesses',
-      'Parent drives + Kid co-pilot steering',
-      'Full steel roll cage protection',
-      'Unforgettable parent-child bonding',
+      'Priority Fastrak pitlane queue entry',
+      'Zero waiting time on arrival',
+      'Tuned Honda 200cc 4-Stroke Engine',
+      'Official telemetry timing sheet',
     ],
   },
   {
@@ -106,7 +106,7 @@ export const MachinesSection: React.FC<MachinesSectionProps> = ({ onSelectMachin
             Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] via-[#2563EB] to-[#0284C7]">Racing Machine</span>
           </h2>
           <p className="text-slate-600 max-w-xl text-sm font-sans leading-relaxed">
-            From 270cc 4-stroke sprint karts to family tandem rides and dawn superbike track sessions.
+            From 200cc 4-stroke sprint karts to Fastrak priority sessions and dawn superbike track sessions.
           </p>
         </div>
 

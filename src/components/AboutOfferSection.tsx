@@ -27,36 +27,36 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
     {
       id: 'pro-karting',
       title: 'Pro Go-Karting & GP Laps',
-      badge: '85+ km/h • Honda 270cc',
+      badge: '85+ km/h • Honda 200cc',
       image: '/images/track_apex_daytime.jpg',
       badgeColor: 'bg-blue-600/90 text-white',
       description: 'Championship-grade sprint racing on 1,166 meters of high-grip asphalt. 19 technical apex corners and RFID transponders recording lap times to the millisecond.',
-      highlights: ['Tuned 4-Stroke Honda Fleet', '5, 8 & 10 Lap Sprint Formats', 'WhatsApp Timing Telemetry'],
-      actionLabel: 'Book Karting Pass',
-      actionPayload: '10 Laps All-Days GP (₹699 + Tax)',
+      highlights: ['Tuned 4-Stroke Honda 200cc Fleet', '5, 8 & 10 Lap Normal Formats', 'WhatsApp Timing Telemetry'],
+      actionLabel: 'Book Normal Karting Pass',
+      actionPayload: '10 Laps Normal Session (₹699 + Tax)',
       popular: true,
     },
     {
-      id: 'family-tandem',
-      title: 'Parent & Child Tandem Karts',
-      badge: 'Ages 4+ • Dual Steering',
-      image: '/images/family_tandem_kart.jpg',
-      badgeColor: 'bg-cyan-600/90 text-white',
-      description: 'Specially engineered twin-seater karts designed for parents to race alongside their kids with full safety roll cages and dual harnesses.',
-      highlights: ['Dual 4-Point Racing Harnesses', 'Full Steel Enclosed Roll Cage', 'Sanitized Child Helmets Included'],
-      actionLabel: 'Book 2-Seater Pass',
-      actionPayload: '2-Seater Parent-Child Tandem (₹899 + Tax)',
-      popular: false,
+      id: 'fastrak-session',
+      title: 'Fastrak VIP Priority Racing',
+      badge: '⚡ Zero Waiting • Fast Lane',
+      image: '/images/hero_racing_kart.jpg',
+      badgeColor: 'bg-gradient-to-r from-amber-500 to-orange-500 text-white',
+      description: 'Skip the pitlane queue with our dedicated Fastrak VIP pass. Direct grid entry, tuned 200cc Honda engine, and 10 full throttle laps with zero waiting time.',
+      highlights: ['Priority Fastrak Pitlane Entry', 'Zero Waiting Time on Arrival', '10 High-Speed Flying Laps'],
+      actionLabel: 'Book Fastrak Pass',
+      actionPayload: '10 Laps Fastrak Session - Zero Waiting (₹899 + Tax)',
+      popular: true,
     },
     {
       id: 'superbike-dawn',
-      title: 'Superbike Dawn Track Sessions',
-      badge: 'Daily 06:00 – 10:00 AM',
+      title: 'Superbike Open Track Sessions',
+      badge: '15-Min & 4-Hr Dawn Passes',
       image: '/images/bike_track_sunrise.jpg',
       badgeColor: 'bg-amber-600/90 text-white',
-      description: 'The premier open track experience for motorcyclists in Bangalore. 4 uninterrupted morning hours of wide asphalt, plus complimentary breakfast & cappuccino.',
-      highlights: ['300cc to 1000cc+ Machines', 'Includes Breakfast & Coffee', '4 Hours Unlimited Track Access'],
-      actionLabel: 'Book Dawn Pass',
+      description: 'The premier open track experience for motorcyclists in Bangalore. 15-minute quick sessions (₹500) and 4-hour morning dawn sessions (₹1,500) on wide FIA asphalt.',
+      highlights: ['15-Min Session: ₹500 + Tax', '4-Hr Dawn Pass: ₹1,500 + Tax', 'Breakfast & Hot Cappuccino Included in Dawn Pass'],
+      actionLabel: 'Book Superbike Pass',
       actionPayload: 'Superbike Dawn Pass (₹1,500 + Tax)',
       popular: false,
     },
@@ -79,9 +79,9 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
       image: '/images/hero_racing_kart.jpg',
       badgeColor: 'bg-purple-600/90 text-white',
       description: 'Transform team outings and birthdays into real Formula-style Grand Prix battles with private heats, qualifying grids, and podium champagne presentations.',
-      highlights: ['Podium Trophies & Medals', 'Exclusive Track & Pit Lane Time', 'Customized Gourmet Buffets'],
+      highlights: ['6 Laps per Driver Included', 'Podium Trophies & Medals', 'Customized Gourmet Buffets'],
       actionLabel: 'Book Group GP',
-      actionPayload: 'Corporate & Birthday GP (₹999 + Tax/Person)',
+      actionPayload: 'Corporate & Birthday GP (6 Laps • ₹999 + Tax)',
       popular: false,
     },
     {
@@ -142,7 +142,7 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
               </p>
 
               <p className="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
-                Whether you are chasing your personal best lap time in a tuned Honda 270cc kart, leaning into high-speed apexes on a 1000cc superbike at dawn, sharing a tandem ride with your child, or celebrating a corporate podium with champagne—Velocity provides the complete motorsport lifestyle.
+                Whether you are chasing your personal best lap time in a tuned Honda 200cc kart, speeding through the Fastrak priority lane with zero waiting, leaning into high-speed apexes on a superbike at dawn, or celebrating a corporate podium with champagne—Velocity provides the complete motorsport lifestyle.
               </p>
 
               {/* Key Metric Pills */}

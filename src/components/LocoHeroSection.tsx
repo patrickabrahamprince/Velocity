@@ -9,7 +9,7 @@ interface LocoHeroSectionProps {
 export function LocoHeroSection({ onOpenBooking, onSelectCategory }: LocoHeroSectionProps) {
   const quickFilters = [
     { label: '🏎️ Pro Go-Karting', targetId: 'attractions', category: 'High-Speed Racing' },
-    { label: '👨‍👩‍👧 2-Seater Tandem', targetId: 'attractions', category: 'Family & Tandem' },
+    { label: '⚡ Fastrak Priority', targetId: 'attractions', category: 'High-Speed Racing' },
     { label: '🏍️ Superbike Track Days', targetId: 'attractions', category: 'Superbike Track' },
     { label: '🎯 Apex Laser Tag', targetId: 'attractions', category: 'Tactical & Sim' },
     { label: '🎮 F1 Sim Rig Racing', targetId: 'attractions', category: 'Tactical & Sim' },
@@ -64,7 +64,7 @@ export function LocoHeroSection({ onOpenBooking, onSelectCategory }: LocoHeroSec
 
         {/* Subtitle & Value Proposition */}
         <p className="max-w-2xl text-slate-300 text-base sm:text-lg md:text-xl font-medium leading-relaxed mb-8">
-          Experience the ultimate adrenaline rush in Bangalore. 19 FIA-spec apex corners, tuned 4-stroke racing karts, 2-seater parent-child karts, and panoramic rooftop dining.
+          Experience the ultimate adrenaline rush in Bangalore. 19 FIA-spec apex corners, tuned 200cc Honda racing karts, Fastrak zero-waiting sessions, and panoramic rooftop dining.
         </p>
 
         {/* Interactive Quick Filter Pills (Loco Bear Style) */}

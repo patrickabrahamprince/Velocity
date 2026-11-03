@@ -32,13 +32,13 @@ export const faqData: FaqItem[] = [
     id: 'pricing-packages',
     category: 'Pricing & Offers',
     question: 'How much does go-karting cost at Velocity International Circuit?',
-    answer: 'Pricing starts at ₹299 (+ 18% Tax) for the 5-Lap Student Special (Mon–Fri 9 AM–6 PM with valid Student ID). The 8-Lap Weekday Thrill is ₹499 (+ Tax), and the 10-Lap All-Days GP (valid all days including weekends) is ₹699 (+ Tax). Kart + Food Combos start at ₹399 with a Mojito & snacks included.',
+    answer: 'Pricing starts at ₹299 (+ 18% Tax) for the 5-Lap Student Special (Mon–Fri 9 AM–6 PM with valid Student ID). The 8-Lap Weekday Thrill is ₹499 (+ Tax), the 10-Lap Normal Session is ₹699 (+ Tax), and the 10-Lap Fastrak VIP Session (with Zero Waiting pitlane access) is ₹899 (+ Tax).',
   },
   {
     id: 'bike-track-days',
     category: 'Bikers & Track Days',
     question: 'Can I ride my superbike or motorcycle on the track?',
-    answer: 'Yes! Velocity hosts the Bike Ride Dawn Track Session every morning from 06:00 AM to 10:00 AM. For ₹1,500 (+ Tax), motorcyclists get 4 hours of unlimited open track access for 300cc–1000cc+ bikes, along with a complimentary Protein Breakfast (Bread Omelet / Veg Sandwich) and fresh Cappuccino at the Apex Rooftop Cafe. Full riding gear is mandatory.',
+    answer: 'Yes! Velocity offers a 15-Minute Track Session for ₹500 (+ Tax) on half or full track (subject to live track availability), and the 4-Hour Superbike Dawn Track Session every morning from 06:00 AM to 10:00 AM for ₹1,500 (+ Tax) with unlimited open track time, protein breakfast, and cappuccino at the Apex Rooftop Cafe. Full riding gear is mandatory.',
   },
   {
     id: 'timing-location',
@@ -56,19 +56,25 @@ export const faqData: FaqItem[] = [
     id: 'safety-gear',
     category: 'Safety & Rules',
     question: 'What safety gear is provided and what are the age/height requirements?',
-    answer: 'Every racer receives a sanitized DOT-certified full-face helmet and hygienic balaclava. Drivers must be at least 12 years old (minimum height 4’6” / 137cm). Closed-toe shoes (sneakers) are mandatory. Twin-seater tandem karts are available for adults racing with younger children (ages 4+).',
+    answer: 'Every racer receives a sanitized DOT-certified full-face helmet and hygienic balaclava. Drivers must be at least 12 years old (minimum height 4’6” / 137cm). Closed-toe shoes (sneakers) are mandatory for all racers.',
   },
   {
     id: 'corporate-birthday',
     category: 'Pricing & Offers',
     question: 'Can we book Velocity for corporate team outings or birthday Grand Prix events?',
-    answer: 'Yes! The Corporate & Birthday GP package is ₹999 (+ Tax per person for min 20 participants), including 8 flying laps per driver, a customized gourmet buffet at the Apex Cafe, exclusive pit lane access, race marshals, and a podium trophy presentation with champagne celebrations.',
+    answer: 'Yes! The Corporate & Birthday GP package is ₹999 (+ Tax per person for min 20 participants), including 6 flying laps per driver, a customized gourmet buffet at the Apex Cafe, exclusive pit lane access, race marshals, and a podium trophy presentation with champagne celebrations.',
   },
   {
-    id: 'family-tandem',
-    category: 'Family & Kids',
-    question: 'Can young kids experience go-karting with their parents?',
-    answer: 'Yes! Velocity offers specialized 2-Seater Tandem Go-Karts designed specifically for parents and young children (ages 4–11). The parent controls the pedals and main steering while the child sits safely in the co-pilot seat with a dual 4-point racing harness, full steel roll cage protection, and a passenger steering wheel.',
+    id: 'fastrak-priority',
+    category: 'Pricing & Offers',
+    question: 'What is the Fastrak Session and how does Zero Waiting work?',
+    answer: 'The Fastrak Session (₹899 + Tax) gives you priority fast-track pitlane access with zero waiting time. You bypass the standard queue for immediate grid boarding into your 10-lap heat on our tuned 200cc Honda racing karts with RFID telemetry transponders.',
+  },
+  {
+    id: 'cancellation-refund',
+    category: 'Safety & Rules',
+    question: 'What is the Cancellation, Refund, and Weather Policy?',
+    answer: 'Cancellations informed more than 8 hours before your booked time slot receive a 100% full refund. Cancellations made less than 1 hour prior to your slot are non-refundable. In case of rain, wet track conditions or track maintenance, sessions cannot be refunded, but your ticket can be freely redeemed and rescheduled for your next ride.',
   },
 ];
 

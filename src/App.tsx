@@ -30,7 +30,7 @@ function AppContent() {
   const [isLeadsOpen, setIsLeadsOpen] = useState(false);
   const [isDriverDashboardOpen, setIsDriverDashboardOpen] = useState(false);
   const [currentDriver, setCurrentDriver] = useState<DriverProfile | null>(() => driverStore.getCurrentDriver());
-  const [selectedKart, setSelectedKart] = useState<string>('10 Laps All-Days GP (₹699 + Tax)');
+  const [selectedKart, setSelectedKart] = useState<string>('10 Laps Normal Session (₹699 + Tax)');
   const [selectedPlan, setSelectedPlan] = useState<string>('');
 
   // Start smooth scrolling engine and handle clean SEO routes
@@ -43,7 +43,8 @@ function AppContent() {
       const pathToTarget: Record<string, { id: string; kart?: string; title?: string }> = {
         '/pricing': { id: 'pricing', title: 'Pricing & Packages | Velocity International Circuit Bangalore' },
         '/superbikes': { id: 'pricing', kart: 'Dawn Superbike Open Track Session (₹1,500 + Tax)', title: 'Superbike Sunrise Dawn Track Sessions | Velocity Circuit Bangalore' },
-        '/tandem-karts': { id: 'family', kart: 'Parent-Child 2-Seater Tandem (₹899 + Tax)', title: 'Family 2-Seater Tandem Karts | Velocity Circuit Hoskote' },
+        '/fastrak': { id: 'pricing', kart: '10 Laps Fastrak VIP Session (₹899 + Tax)', title: 'Fastrak Priority Zero-Waiting Sessions | Velocity Circuit Hoskote' },
+        '/tandem-karts': { id: 'pricing', kart: '10 Laps Fastrak VIP Session (₹899 + Tax)', title: 'Fastrak Priority Zero-Waiting Sessions | Velocity Circuit Hoskote' },
         '/location': { id: 'location', title: 'Circuit Location & Route Directions | Hoskote, Bangalore' },
         '/apex-cafe': { id: 'lifestyle', title: 'Apex Rooftop Diner & Cafe | Velocity International Circuit' },
         '/corporate-events': { id: 'about', title: 'Corporate Grand Prix & Offsites | Velocity Circuit' },

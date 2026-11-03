@@ -171,16 +171,23 @@ class SarvamVoiceEngine {
       };
     }
 
-    if (q.includes('kid') || q.includes('family') || q.includes('child') || q.includes('tandem') || q.includes('2 seater')) {
+    if (q.includes('fastrak') || q.includes('fast') || q.includes('queue') || q.includes('waiting') || q.includes('priority')) {
       return {
-        text: "We offer 2-seater tandem karts for parents and kids aged 4 and above for ₹899. Both of you get full safety harnesses and roll cages for an unforgettable family race day.",
+        text: "Our Fastrak Session is ₹899 with zero waiting in the pitlane and direct grid access. The normal 10-lap session is ₹699 on our tuned 200cc Honda racing karts.",
+        action: 'pricing',
+      };
+    }
+
+    if (q.includes('kid') || q.includes('family') || q.includes('child')) {
+      return {
+        text: "We offer junior and beginner friendly tuned 200cc karts for drivers aged 12 and above, with remote marshal wireless speed governors for complete track safety.",
         action: 'pricing',
       };
     }
 
     if (q.includes('bike') || q.includes('superbike') || q.includes('morning') || q.includes('motorcycle')) {
       return {
-        text: "Our Superbike Dawn Sessions run daily from 6:00 AM to 10:00 AM for ₹1,500. It gives you 4 full hours of open track asphalt plus a complimentary protein breakfast and cappuccino at the Apex Cafe.",
+        text: "We offer two track options for motorcycles: a 15-minute quick track session for ₹500 on half or full track, and our 4-hour Superbike Dawn Session for ₹1,500 including breakfast and cappuccino.",
         action: 'pricing',
       };
     }

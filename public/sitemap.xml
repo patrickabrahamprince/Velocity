@@ -45,16 +45,16 @@
     </image:image>
   </url>
 
-  <!-- 4. Family & 2-Seater Tandem Karts -->
+  <!-- 4. Fastrak VIP Priority Go-Karting -->
   <url>
     <loc>https://velocityinternationalcircuit.com/tandem-karts</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://velocityinternationalcircuit.com/images/family_tandem_kart.jpg</image:loc>
-      <image:title>Parent-Child 2-Seater Tandem Go-Karts</image:title>
-      <image:caption>Dual-steering family tandem karts with certified 5-point safety harness</image:caption>
+      <image:loc>https://velocityinternationalcircuit.com/images/hero_racing_kart.jpg</image:loc>
+      <image:title>Fastrak VIP Priority Zero-Waiting Go-Karting</image:title>
+      <image:caption>Priority fast-track pitlane entry with zero waiting on tuned 200cc Honda racing karts</image:caption>
     </image:image>
   </url>
 

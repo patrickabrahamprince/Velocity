@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
             </div>
             <ul className="space-y-2.5 text-xs text-neutral-400 font-sans">
               <li><a href="#pricing" className="hover:text-white transition-colors">Tuned Go-Karts</a></li>
-              <li><a href="#family" className="hover:text-white transition-colors">Family & Kids Tandem GP</a></li>
+              <li><a href="#pricing" className="hover:text-white transition-colors">Fastrak Priority & Laps</a></li>
               <li><a href="#pricing" className="hover:text-white transition-colors">Prices & Combos</a></li>
               <li><a href="#circuit" className="hover:text-white transition-colors">19 Turns Circuit Map</a></li>
               <li><a href="#lifestyle" className="hover:text-white transition-colors">Apex Rooftop Cafe</a></li>

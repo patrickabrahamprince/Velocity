@@ -31,44 +31,44 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
           <button
             onClick={() => {
               soundFx.playRev(1.4);
-              onOpenBooking('Parent-Child 2-Seater Tandem (₹899)');
+              onOpenBooking('10 Laps Normal Session (₹699 + Tax)');
             }}
             className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md shadow-blue-600/30 shrink-0 cursor-pointer flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4 fill-current" />
-            <span>Book Family Rides</span>
+            <span>Book Race Session</span>
           </button>
         </div>
 
         {/* 4 Feature Bento Pillars with Photos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Card 1: 2-Seater Tandem Karts */}
+          {/* Card 1: Junior & Rookie Sprint Karts */}
           <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F] border border-slate-200 dark:border-white/10 overflow-hidden flex flex-col justify-between hover:border-blue-500/50 transition-all duration-300 shadow-sm hover:shadow-xl group">
             <div className="h-44 w-full overflow-hidden relative bg-slate-900">
               <img
-                src="/images/family_tandem_kart.jpg"
-                alt="2-Seater Tandem Go Kart"
+                src="/images/hero_racing_kart.jpg"
+                alt="Junior & Rookie Go Kart"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
               <span className="absolute top-3 right-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-blue-600/90 text-white backdrop-blur-md">
-                Ages 4+ with Parent
+                Rookie & Teen Friendly
               </span>
             </div>
 
             <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
               <div>
                 <h3 className="font-bold text-lg text-slate-900 dark:text-white tracking-tight leading-snug">
-                  2-Seater Tandem Karts
+                  Junior & Rookie Sprint Karts
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
-                  Kids ride safely alongside parents with dual safety harnesses and an interactive steering wheel for the young co-pilot.
+                  Speed-governed 200cc karts with responsive controls and full wireless marshal supervision for teens, rookies, and families.
                 </p>
               </div>
 
               <div className="pt-3 border-t border-slate-100 dark:border-white/5 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-medium">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>Dual 4-Point Harnesses</span>
+                <span>Wireless Marshal Speed Control</span>
               </div>
             </div>
           </div>
@@ -187,11 +187,11 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               <button
                 onClick={() => {
                   soundFx.playRev(1.3);
-                  onOpenBooking('Parent-Child 2-Seater Tandem (₹899)');
+                  onOpenBooking('10 Laps Normal Session (₹699 + Tax)');
                 }}
                 className="w-full py-3.5 rounded-full bg-[#0052FF] hover:bg-[#0042D9] text-white font-semibold text-xs tracking-wider uppercase transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md shadow-blue-600/30"
               >
-                <span>Book 2-Seater Tandem Kart</span>
+                <span>Book Sprint Session</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

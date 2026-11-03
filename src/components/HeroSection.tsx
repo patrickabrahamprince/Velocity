@@ -13,28 +13,28 @@ const heroExperiences = [
     id: 'karts',
     label: 'Pro Go-Karts',
     tag: '1,166M FIA ASPHALT',
-    title: 'Tuned 270cc Honda Pro Karts',
+    title: 'Tuned 200cc Honda Pro Karts',
     badge: '85+ KM/H FLEET',
-    image: '/images/track_apex_daytime.jpg',
+    image: '/images/hero_racing_kart.jpg',
     telemetry: 'Turn 7 Apex • 82 km/h • High Grip Tarmac',
   },
   {
-    id: 'family',
-    label: '2-Seater Tandem',
-    tag: 'PARENT + CHILD RIDES',
-    title: 'Dual Steering Tandem Karts',
-    badge: 'AGES 4+ WITH PARENT',
-    image: '/images/family_tandem_kart.jpg',
-    telemetry: 'Pit Straight • Dual Harness • Steel Roll Cage',
+    id: 'fastrak',
+    label: 'Fastrak VIP',
+    tag: 'ZERO WAITING • PRIORITY LANE',
+    title: '10 Laps Fastrak Session (₹899)',
+    badge: '⚡ ZERO WAITING',
+    image: '/images/track_apex_daytime.jpg',
+    telemetry: 'Priority Fastrak Pitlane • Zero Waiting • Direct Grid Access',
   },
   {
     id: 'superbikes',
-    label: 'Superbike Sunrise',
-    tag: '06:00 AM – 10:00 AM',
-    title: 'Dawn Superbike Open Track',
+    label: 'Superbike Sessions',
+    tag: '15-MIN & 4-HR PASSES',
+    title: 'Superbike Open Track Sessions',
     badge: '300CC TO 1000CC+',
     image: '/images/bike_track_sunrise.jpg',
-    telemetry: 'Sunrise Mist • 4 Hours Open Track • Free Breakfast',
+    telemetry: '15-Min (₹500) & 4-Hr Dawn Pass (₹1,500) • High Grip Asphalt',
   },
   {
     id: 'rooftop',
@@ -129,7 +129,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
 
               {/* Clean Subtitle */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-xl">
-                Experience high-speed outdoor go-karting on authentic FIA-standard asphalt in Hoskote, Bangalore. 19 apex corners, tuned Honda karts, 2-seater family rides, and panoramic rooftop dining.
+                Experience high-speed outdoor go-karting on authentic FIA-standard asphalt in Hoskote, Bangalore. 19 apex corners, tuned Honda 200cc karts, Fastrak zero-waiting sessions, and panoramic rooftop dining.
               </p>
 
               {/* Primary Call-to-Action Buttons */}
