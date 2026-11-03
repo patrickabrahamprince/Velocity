@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trophy, ArrowRight, Bike, Utensils, Zap, Clock, ShieldCheck, Sparkles } from 'lucide-react';
+import { Trophy, ArrowRight, Bike, Utensils, Zap, Clock, ShieldCheck, Sparkles, Check } from 'lucide-react';
 import { soundFx } from '../utils/soundEngine';
 
 interface OfferItem {
@@ -9,51 +9,62 @@ interface OfferItem {
   taxNote: string;
   laps: string;
   badge?: string;
-  badgeColor?: string;
+  badgeStyle?: string;
   timing: string;
   validity: string;
   popular?: boolean;
   foodIncluded?: string;
   features: string[];
+  buttonText?: string;
 }
 
-const weekdayOffers: OfferItem[] = [
+// 1. Tab 1 Flagship 10-Lap Sessions (Normal vs Fastrak VIP)
+const flagshipKartOffers: OfferItem[] = [
   {
     id: 'normal-10-laps',
     name: '10 Laps Normal Session',
     price: '699',
     taxNote: '+ 18% TAX',
     laps: '10 Laps • 1,166M Track',
-    badge: '🔥 NORMAL SESSION',
-    popular: true,
+    badge: 'ALL-DAYS GENERAL PASS',
+    badgeStyle: 'bg-slate-100 text-slate-800 dark:bg-white/10 dark:text-slate-200 border-slate-200 dark:border-white/10',
+    popular: false,
     timing: '9:00 AM – 11:00 PM',
-    validity: 'Valid on All Days (Including Weekends & Holidays)',
+    validity: 'Standard Pitlane Queue • Valid on All Days (Including Weekends & Holidays)',
     features: [
-      '10 Full Throttle High-Speed Laps',
-      'Tuned 200cc Honda Racing Go-Kart',
-      'Standard Pitlane Queue Access',
-      'Live F1 Timing Screen Transponder',
-      'Top 3 Podium Trophy Ceremony Access',
+      '10 Full Throttle High-Speed Flying Laps (11.6 KM total)',
+      'Tuned 200cc Honda Racing Go-Kart fleet',
+      'Standard pitlane queue access with safety briefing',
+      'Live F1 timing screen transponder & personal lap sheet',
+      'Top 3 podium trophy ceremony access & photo-op',
     ],
+    buttonText: 'Book Normal Session (₹699)',
   },
   {
     id: 'fastrak-10-laps',
     name: '10 Laps Fastrak VIP Session',
     price: '899',
     taxNote: '+ 18% TAX',
-    laps: '10 Laps • Zero Waiting',
-    badge: '⚡ ZERO WAITING',
+    laps: '10 Laps • Zero Waiting Time',
+    badge: '⚡ ZERO WAITING • FAST LANE',
+    badgeStyle: 'bg-blue-600/15 text-[#0066FF] dark:text-[#00D2FF] border border-[#0066FF]/35 font-bold',
     popular: true,
     timing: '9:00 AM – 11:00 PM',
-    validity: 'Priority Fastrak Lane • Zero Queue Delay',
+    validity: 'Dedicated Priority Fastrak Lane • Zero Queue Delay • Direct Grid Entry',
     features: [
-      'Priority Fastrak Pitlane Entry (No Waiting)',
-      'Zero Queue Delay • Direct Grid Entry',
-      '10 High-Speed Flying Laps (11.6 KM total)',
-      'Tuned 200cc Honda Racing Go-Kart',
-      'Digital Telemetry Timing Sheet',
+      'Priority Fastrak pitlane bypass — zero queue waiting delay',
+      'Direct grid staging & immediate session release',
+      '10 High-Speed Flying Laps on Karnataka’s longest circuit (11.6 KM)',
+      'Tuned 200cc Honda Racing Go-Kart fleet',
+      'Personal digital telemetry timing sheet & leaderboard rank',
+      'Top 3 podium trophy celebration access',
     ],
+    buttonText: 'Book Fastrak VIP (₹899)',
   },
+];
+
+// 2. Tab 1 Value Passes (Weekday Sprint & Student Special)
+const secondaryKartOffers: OfferItem[] = [
   {
     id: 'weekday-8-laps',
     name: '8 Laps Weekday Sprint',
@@ -61,15 +72,18 @@ const weekdayOffers: OfferItem[] = [
     taxNote: '+ 18% TAX',
     laps: '8 Laps • Weekday Only',
     badge: 'WEEKDAY THRILL',
-    timing: '9:00 AM – 11:00 PM',
-    validity: 'Monday to Friday (Excl. Govt Holidays)',
+    badgeStyle: 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-300 border-slate-200 dark:border-white/10',
+    popular: false,
+    timing: 'Mon – Fri • 9:00 AM – 11:00 PM',
+    validity: 'Monday to Friday (Excluding Public Holidays)',
     features: [
       '8 Full Throttle Championship Laps',
-      'Tuned 200cc Honda Racing Go-Kart',
-      'Open until 11 PM for Night Racing',
-      'Digital Telemetry Timing Sheet',
-      'Apex Viewing Lounge Access',
+      'Tuned 200cc Honda Racing Go-Kart fleet',
+      'Open until 11:00 PM for Night Track racing under floodlights',
+      'Live Sector Transponder Lap Timing & Leaderboard',
+      'Apex Viewing Deck Lounge Access',
     ],
+    buttonText: 'Book Weekday Sprint (₹499)',
   },
   {
     id: 'student-5-laps',
@@ -77,31 +91,35 @@ const weekdayOffers: OfferItem[] = [
     price: '299',
     taxNote: '+ 18% TAX',
     laps: '5 Laps • 1,166M Track',
-    badge: 'STUDENT ID',
-    timing: '9:00 AM – 6:00 PM',
-    validity: 'Monday to Friday (Excl. Govt Holidays)',
+    badge: 'STUDENT PASS • ID REQUIRED',
+    badgeStyle: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25 font-bold',
+    popular: false,
+    timing: 'Mon – Fri • 9:00 AM – 6:00 PM',
+    validity: 'Monday to Friday (Valid till 6:00 PM) • Valid Student ID Mandatory',
     features: [
-      '5 High-Speed Laps on 1166m circuit',
-      'Tuned 200cc Honda Racing Go-Kart',
-      'Valid Student ID Card Mandatory',
-      'DOT Helmet & Balaclava Included',
+      '5 High-Speed Laps on 1,166m International Circuit',
+      'Tuned 200cc Honda Racing Go-Kart fleet',
+      'Valid physical or digital student ID required at gate',
+      'DOT-Certified helmet & sanitized balaclava included',
       'Live Sector Transponder Lap Timing',
     ],
+    buttonText: 'Book Student Special (₹299)',
   },
 ];
 
+// 3. Tab 2 Food + Kart Combos
 const foodCombos: OfferItem[] = [
   {
     id: 'combo-fastrak',
-    name: '10 Laps Fastrak VIP',
+    name: '10 Laps Fastrak VIP + Energy',
     price: '899',
     taxNote: '+ TAX',
-    laps: '10 Laps • Fast Lane',
+    laps: '10 Laps • Fast Lane Priority',
     badge: '⚡ ZERO WAITING',
     popular: true,
     timing: 'Valid All Days',
-    validity: 'Priority Fastrak Pitlane • Zero Waiting Time',
-    foodIncluded: 'Fastrak VIP Pitlane Entry + Energy Drink ⚡',
+    validity: 'Priority Fastrak Pitlane • Zero Waiting Delay',
+    foodIncluded: 'Fastrak VIP Pitlane Entry + Red Bull / Energy Drink ⚡',
     features: [
       '10 Full Throttle Flying Laps',
       'Zero Waiting Time in Pitlane Queue',
@@ -109,61 +127,51 @@ const foodCombos: OfferItem[] = [
       'Direct Grid Access & Fastrak Priority',
       'Digital Transponder Telemetry Sheet',
     ],
+    buttonText: 'Reserve Fastrak Combo (₹899)',
   },
   {
-    id: 'combo-regular-10',
-    name: 'Regular Anyday Normal GP',
-    price: '699',
+    id: 'combo-birthday',
+    name: 'Birthday & Group Celebration GP',
+    price: '999',
     taxNote: '+ TAX',
-    laps: '10 Laps • Normal Session',
-    badge: '🔥 NORMAL SESSION',
-    popular: true,
-    timing: 'Anytime (All Days)',
-    validity: 'Anyday Thrill & Unmatched Fun',
+    laps: '6 Laps • Combo Pack',
+    badge: '🎂 GROUP CELEBRATION',
+    popular: false,
+    timing: 'Valid All Days',
+    validity: '6 Laps + Artisanal Meal & Beverage at Apex Cafe',
+    foodIncluded: 'Artisanal Smash Burger / Pizza + Chilled Beverage 🍔🥤',
     features: [
-      '10 Full Throttle Flying Laps',
-      'Anyday Thrill & Unmatched Fun',
+      '6 Championship Laps on 1,166m Circuit',
       'Tuned 200cc Honda Racing Engine',
-      'Podium Ceremony Access',
-      'Full Track 1,166m Access',
+      'Freshly prepared meal at Apex Rooftop Cafe',
+      'Top 3 Podium Trophy & Photo Ceremony',
+      'Live Leaderboard Transponder Timing',
     ],
+    buttonText: 'Reserve Birthday Combo (₹999)',
   },
   {
-    id: 'combo-weekday-8',
-    name: 'Weekday 8-Lap Heat',
-    price: '499',
+    id: 'combo-weekday-burger',
+    name: 'Weekday Sprint + Burger Combo',
+    price: '649',
     taxNote: '+ TAX',
-    laps: '8 Laps',
-    badge: 'WEEKDAY',
-    timing: 'Mon - Fri (9 AM - 6 PM)',
-    validity: 'Weekday Session',
+    laps: '8 Laps • Mon-Fri Pass',
+    badge: 'WEEKDAY MEAL',
+    popular: false,
+    timing: 'Mon – Fri (9 AM – 6 PM)',
+    validity: '8 Laps + Trackside Burger & Drink',
+    foodIncluded: 'Crispy Veg / Chicken Burger + Soft Drink 🍔🥤',
     features: [
-      '8 High-Speed Laps',
-      'Tuned 200cc Racing Engine',
-      'Mon - Fri (9 AM - 6 PM)',
-      'Telemetry Lap Report',
-      'Apex Viewing Deck Access',
+      '8 High-Speed Flying Laps',
+      'Tuned 200cc Honda Racing Engine',
+      'Trackside meal at Apex Rooftop Cafe',
+      'Mon – Fri (9 AM – 6 PM)',
+      'Digital Telemetry Timing Sheet',
     ],
-  },
-  {
-    id: 'combo-student',
-    name: 'Student Combo Sprint',
-    price: '299',
-    taxNote: '+ TAX',
-    laps: '5 Laps',
-    badge: 'STUDENT',
-    timing: 'Mon - Fri (9 AM - 6 PM)',
-    validity: 'Valid till 6 PM with Student ID',
-    features: [
-      '5 Championship Laps',
-      'Mon - Fri (9 AM - 6 PM)',
-      'Valid Student ID Required',
-      'DOT Helmet & Balaclava',
-      'Live Leaderboard Timing',
-    ],
+    buttonText: 'Reserve Weekday Combo (₹649)',
   },
 ];
 
+// 4. Tab 3 Superbike Passes
 const bikeOffers: OfferItem[] = [
   {
     id: 'bike-15-min',
@@ -277,80 +285,236 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           </div>
         </div>
 
-        {/* Tab 1: Weekday & All-Days Karting Offers */}
+        {/* Tab 1: Karting Passes */}
         {activeTab === 'kart-offers' && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-              {weekdayOffers.map((offer) => (
-                <div
-                  key={offer.id}
-                  className={`p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 relative border ${
-                    offer.popular
-                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_20px_50px_rgba(0,102,255,0.15)] dark:shadow-[0_20px_50px_rgba(0,82,255,0.25)] scale-[1.02] z-10 text-slate-900 dark:text-white'
-                      : 'bg-white dark:bg-[#0A0E1F]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/50 shadow-sm dark:shadow-xl text-slate-900 dark:text-white'
-                  }`}
-                >
+          <div className="space-y-8">
+            {/* TIER 1: The 2 Main 10-Lap Sessions (Normal vs Fastrak VIP) */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                  <span className="text-xs font-mono uppercase tracking-wider font-bold text-slate-700 dark:text-slate-300">
+                    Flagship 10-Lap Sessions • All Days Pass
+                  </span>
+                </div>
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">
+                  Open 9:00 AM – 11:00 PM Daily
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                {/* 1. Normal Session (₹699) */}
+                <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/90 border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col justify-between hover:border-slate-300 dark:hover:border-white/25 transition-all shadow-sm dark:shadow-xl relative text-slate-900 dark:text-white">
                   <div>
-                    {/* Badge */}
-                    <div className="flex items-center justify-between gap-1 mb-4">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-1 rounded-full ${offer.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
-                        {offer.badge}
+                    {/* Header Row */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                      <span className={`text-[11px] font-mono uppercase font-bold px-3 py-1 rounded-full border ${flagshipKartOffers[0].badgeStyle}`}>
+                        {flagshipKartOffers[0].badge}
                       </span>
-                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                        {offer.timing}
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        <span>{flagshipKartOffers[0].timing}</span>
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 tracking-tight">
-                      {offer.name}
+                    {/* Title & Subtitle */}
+                    <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white mb-2">
+                      {flagshipKartOffers[0].name}
                     </h3>
-
-                    <p className="text-xs mb-4 leading-relaxed font-sans text-slate-500 dark:text-slate-400">
-                      {offer.validity}
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans mb-5">
+                      {flagshipKartOffers[0].validity}
                     </p>
 
-                    {/* Price */}
-                    <div className="my-4 pb-4 border-b border-slate-200 dark:border-white/10">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
-                          ₹{offer.price}
+                    {/* Price Block */}
+                    <div className="py-4 border-y border-slate-200 dark:border-white/10 mb-6">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-mono">
+                          ₹{flagshipKartOffers[0].price}
                         </span>
-                        <span className="text-xs font-medium uppercase font-mono text-slate-500 dark:text-slate-400">
-                          {offer.taxNote}
+                        <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">
+                          {flagshipKartOffers[0].taxNote}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold mt-1 font-mono text-blue-600 dark:text-[#00D2FF]">
-                        {offer.laps}
+                      <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] font-mono mt-1 flex items-center gap-2">
+                        <span>10 Flying Laps</span>
+                        <span>•</span>
+                        <span>1,166M Track (11.6 KM Total)</span>
                       </div>
                     </div>
 
-                    {/* Features */}
-                    <div className="space-y-2.5 mb-8 text-xs font-sans text-slate-600 dark:text-slate-300">
-                      {offer.features.map((feat) => (
-                        <div key={feat} className="flex items-start gap-2">
-                          <span className="font-bold text-blue-600 dark:text-[#00D2FF] shrink-0">+</span>
+                    {/* Features List */}
+                    <div className="space-y-2.5 mb-8 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans">
+                      {flagshipKartOffers[0].features.map((feat) => (
+                        <div key={feat} className="flex items-start gap-2.5">
+                          <Check className="w-4 h-4 text-blue-600 dark:text-[#00D2FF] shrink-0 mt-0.5" />
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
+                  {/* CTA Button */}
                   <button
                     onClick={() => {
                       soundFx.playRev(1.3);
-                      onSelectPlan(offer.name, `₹${offer.price}`);
+                      onSelectPlan(flagshipKartOffers[0].name, `₹${flagshipKartOffers[0].price}`);
                     }}
-                    className={`w-full py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-                      offer.popular
-                        ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white shadow-lg shadow-blue-600/35'
-                        : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
-                    }`}
+                    className="w-full py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
                   >
-                    <span>Book {offer.laps.split('•')[0]}</span>
+                    <span>{flagshipKartOffers[0].buttonText}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              ))}
+
+                {/* 2. Fastrak VIP Session (₹899) - THE HIGHLIGHTED VIP PASS */}
+                <div className="rounded-[28px] p-1 bg-gradient-to-b from-[#0066FF] via-[#0052FF] to-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.25)] relative">
+                  <div className="rounded-[25px] bg-white dark:bg-[#0D132A] p-7 sm:p-9 h-full flex flex-col justify-between text-slate-900 dark:text-white">
+                    <div>
+                      {/* Header Row */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <span className={`text-[11px] font-mono uppercase font-bold px-3 py-1 rounded-full border flex items-center gap-1.5 ${flagshipKartOffers[1].badgeStyle}`}>
+                          <Zap className="w-3.5 h-3.5 fill-current" />
+                          <span>{flagshipKartOffers[1].badge}</span>
+                        </span>
+                        <span className="text-xs font-mono text-blue-600 dark:text-[#00D2FF] font-bold whitespace-nowrap flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5 text-blue-500" />
+                          <span>{flagshipKartOffers[1].timing}</span>
+                        </span>
+                      </div>
+
+                      {/* Fastrak Callout Pill */}
+                      <div className="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/30 text-xs text-blue-900 dark:text-blue-200 font-medium mb-4 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
+                        <span className="font-semibold">Priority Fastrak Bypass: Zero queue delay & direct grid entry</span>
+                      </div>
+
+                      {/* Title & Subtitle */}
+                      <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white mb-2">
+                        {flagshipKartOffers[1].name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans mb-5">
+                        {flagshipKartOffers[1].validity}
+                      </p>
+
+                      {/* Price Block */}
+                      <div className="py-4 border-y border-slate-200 dark:border-white/10 mb-6">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-mono">
+                            ₹{flagshipKartOffers[1].price}
+                          </span>
+                          <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">
+                            {flagshipKartOffers[1].taxNote}
+                          </span>
+                        </div>
+                        <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] font-mono mt-1 flex items-center gap-2">
+                          <span>10 Flying Laps</span>
+                          <span>•</span>
+                          <span>Priority Pitlane Fastrak Lane</span>
+                        </div>
+                      </div>
+
+                      {/* Features List */}
+                      <div className="space-y-2.5 mb-8 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans">
+                        {flagshipKartOffers[1].features.map((feat) => (
+                          <div key={feat} className="flex items-start gap-2.5">
+                            <Zap className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF] shrink-0 mt-0.5 fill-current" />
+                            <span className="leading-snug">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                      onClick={() => {
+                        soundFx.playRev(1.4);
+                        onSelectPlan(flagshipKartOffers[1].name, `₹${flagshipKartOffers[1].price}`);
+                      }}
+                      className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-blue-500/35 hover:shadow-blue-500/50"
+                    >
+                      <span>{flagshipKartOffers[1].buttonText}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TIER 2: Weekday Sprint & Student Special (2 Sleek Cards) */}
+            <div className="pt-2">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-slate-400" />
+                <span className="text-xs font-mono uppercase tracking-wider font-bold text-slate-600 dark:text-slate-400">
+                  Special Value Sessions • Mon to Fri
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                {secondaryKartOffers.map((offer) => (
+                  <div
+                    key={offer.id}
+                    className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#0A0E1F]/90 border border-slate-200 dark:border-white/10 hover:border-blue-400/50 transition-all flex flex-col justify-between shadow-sm dark:shadow-md text-slate-900 dark:text-white"
+                  >
+                    <div>
+                      {/* Header Row */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <span className={`text-[11px] font-mono uppercase font-bold px-3 py-1 rounded-full border ${offer.badgeStyle}`}>
+                          {offer.badge}
+                        </span>
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>{offer.timing}</span>
+                        </span>
+                      </div>
+
+                      {/* Title & Validity */}
+                      <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">
+                        {offer.name}
+                      </h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 font-sans leading-relaxed">
+                        {offer.validity}
+                      </p>
+
+                      {/* Price Block */}
+                      <div className="py-3 border-y border-slate-200 dark:border-white/10 mb-5">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
+                            ₹{offer.price}
+                          </span>
+                          <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">
+                            {offer.taxNote}
+                          </span>
+                        </div>
+                        <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] font-mono mt-1">
+                          {offer.laps}
+                        </div>
+                      </div>
+
+                      {/* Features */}
+                      <div className="space-y-2 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                        {offer.features.map((feat) => (
+                          <div key={feat} className="flex items-start gap-2">
+                            <span className="text-blue-600 dark:text-[#00D2FF] font-bold shrink-0">+</span>
+                            <span className="leading-snug">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Action Button */}
+                    <button
+                      onClick={() => {
+                        soundFx.playRev(1.3);
+                        onSelectPlan(offer.name, `₹${offer.price}`);
+                      }}
+                      className="w-full py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <span>{offer.buttonText}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Note banner */}
@@ -362,61 +526,64 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
 
         {/* Tab 2: Go-Karting + Food Combos */}
         {activeTab === 'food-combos' && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {foodCombos.map((combo) => (
                 <div
                   key={combo.id}
-                  className={`p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 relative border ${
+                  className={`p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative border ${
                     combo.popular
-                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,102,255,0.15)] dark:shadow-[0_15px_40px_rgba(0,82,255,0.25)] scale-[1.02] z-10 text-slate-900 dark:text-white'
+                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,102,255,0.15)] dark:shadow-[0_15px_40px_rgba(0,82,255,0.25)] text-slate-900 dark:text-white'
                       : 'bg-white dark:bg-[#0A0E1F]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/50 shadow-sm dark:shadow-md text-slate-900 dark:text-white'
                   }`}
                 >
                   <div>
-                    {/* Top Tag */}
-                    <div className="mb-3">
-                      <span className={`text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded-full ${combo.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
+                    {/* Top Tag & Timing */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className={`text-[10px] font-mono uppercase font-bold px-2.5 py-0.5 rounded-full ${combo.popular ? 'bg-blue-50 dark:bg-[#0052FF]/20 text-blue-700 dark:text-[#00D2FF] border border-blue-200 dark:border-[#0052FF]/40' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
                         {combo.badge}
+                      </span>
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                        {combo.timing}
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-1 tracking-tight">
+                    <h3 className="font-bold text-xl text-slate-900 dark:text-white mb-1 tracking-tight">
                       {combo.name}
                     </h3>
 
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed font-sans">
                       {combo.validity}
                     </p>
 
                     {combo.foodIncluded && (
-                      <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-1.5">
-                        <Utensils className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
-                        <span className="line-clamp-2">{combo.foodIncluded}</span>
+                      <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
+                        <Utensils className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
+                        <span>{combo.foodIncluded}</span>
                       </div>
                     )}
 
                     {/* Price */}
                     <div className="my-3 pb-3 border-b border-slate-200 dark:border-white/10">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white font-mono">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
                           ₹{combo.price}
                         </span>
                         <span className="text-xs font-medium uppercase text-slate-500 dark:text-slate-400 font-mono">
                           {combo.taxNote}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] mt-0.5 font-mono">
+                      <div className="text-xs font-semibold text-blue-600 dark:text-[#00D2FF] mt-1 font-mono">
                         {combo.laps}
                       </div>
                     </div>
 
                     {/* Features */}
-                    <div className="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                    <div className="space-y-2 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {combo.features.map((feat) => (
-                        <div key={feat} className="flex items-start gap-1.5">
+                        <div key={feat} className="flex items-start gap-2">
                           <span className="text-blue-600 dark:text-[#00D2FF] font-bold shrink-0">+</span>
-                          <span className="leading-snug line-clamp-1">{feat}</span>
+                          <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
                     </div>
@@ -427,13 +594,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       soundFx.playRev(1.3);
                       onSelectPlan(combo.name, `₹${combo.price}`);
                     }}
-                    className={`w-full py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                    className={`w-full py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                       combo.popular
-                        ? 'bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white shadow-md shadow-blue-600/30'
+                        ? 'bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white shadow-md shadow-blue-600/30'
                         : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
                     }`}
                   >
-                    <span>Reserve Combo</span>
+                    <span>{combo.buttonText || 'Reserve Combo'}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -443,7 +610,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             {/* Warning Banner */}
             <div className="p-4 rounded-2xl bg-white dark:bg-[#0A0E1F]/80 border border-slate-200 dark:border-white/10 text-center text-xs text-slate-600 dark:text-slate-400 font-medium flex items-center justify-center gap-2 shadow-sm">
               <Clock className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF]" />
-              <span>All food and kart combo passes are valid until 6:00 PM daily.</span>
+              <span>All food and kart combo passes are served fresh at Apex Rooftop Cafe until 6:00 PM daily.</span>
             </div>
           </div>
         )}
@@ -453,7 +620,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           <div className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
               {/* Product 1: 15-Minute Track Session */}
-              <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400/50 transition-all">
+              <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400/50 transition-all text-slate-900 dark:text-white">
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <span className="px-3.5 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-amber-400 font-bold text-xs uppercase tracking-wider font-mono">
@@ -505,7 +672,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       soundFx.playRev(1.4);
                       onSelectPlan('15-Minute Bike Track Session', '₹500');
                     }}
-                    className="w-full py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Book 15-Min Session (₹500)</span>
                     <ArrowRight className="w-4 h-4" />
@@ -515,7 +682,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     href="https://wa.me/919071718620?text=Hi%20Velocity%20Circuit,%20I%20want%20to%20check%20availability%20for%20the%2015-Minute%20Track%20Session%20(Rs%20500)"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
+                    className="w-full py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
                   >
                     <span>Check Track Slot via WhatsApp</span>
                   </a>
@@ -523,7 +690,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               </div>
 
               {/* Product 2: Superbike Dawn Session (4 Hours Unlimited) */}
-              <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative">
+              <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative text-slate-900 dark:text-white">
                 <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F]/95 p-8 h-full flex flex-col justify-between">
                   <div className="space-y-5">
                     <div className="flex items-center justify-between">
@@ -590,7 +757,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                         soundFx.playRev(1.4);
                         onSelectPlan('Superbike Dawn Session (4 Hours)', '₹1500');
                       }}
-                      className="w-full py-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
                       <span>Book Dawn Bike Slot (₹1500)</span>
                       <ArrowRight className="w-4 h-4 text-black" />
@@ -600,7 +767,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       href="https://wa.me/919071718620?text=Hi%20Velocity%20Circuit,%20I%20want%20to%20book%20the%206%20AM%20Bike%20Ride%20Session%20(Rs%201500)"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
+                      className="w-full py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white font-medium text-xs transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10"
                     >
                       <span>WhatsApp Desk: +91 9071718620</span>
                     </a>
@@ -650,7 +817,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => soundFx.playGearShift()}
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white font-bold text-xs uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer shrink-0 shadow-lg shadow-blue-600/30"
+            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white font-bold text-xs uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer shrink-0 shadow-lg shadow-blue-600/30"
           >
             Inquire via WhatsApp →
           </a>
