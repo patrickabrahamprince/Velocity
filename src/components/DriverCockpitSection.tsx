@@ -90,7 +90,7 @@ export const DriverCockpitSection: React.FC<DriverCockpitSectionProps> = ({
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-100 dark:bg-[#070A14] border border-slate-200 dark:border-white/10 overflow-hidden shadow-md">
-                    <img src={currentDriver.avatar} alt={currentDriver.name} className="w-full h-full object-cover" />
+                    <img src={currentDriver.avatar} alt={currentDriver.name} loading="lazy" decoding="async" width={64} height={64} className="w-full h-full object-cover" />
                   </div>
                   <span className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-md bg-[#0052FF] text-white font-mono font-bold text-[10px] border border-white/20">
                     #{currentDriver.racingNumber}

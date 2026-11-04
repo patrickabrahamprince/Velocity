@@ -113,6 +113,10 @@ export const InstagramWall: React.FC = () => {
                   <img
                     src={post.image}
                     alt={post.caption}
+                    loading="lazy"
+                    decoding="async"
+                    width={1376}
+                    height={768}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />

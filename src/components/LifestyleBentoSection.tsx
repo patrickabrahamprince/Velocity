@@ -30,6 +30,10 @@ export const LifestyleBentoSection: React.FC = () => {
               <img
                 src="/images/velocity_official_poster.jpg"
                 alt="Velocity Gift Cards"
+                loading="lazy"
+                decoding="async"
+                width={768}
+                height={1024}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />
@@ -55,6 +59,10 @@ export const LifestyleBentoSection: React.FC = () => {
               <img
                 src="/images/velocity_cafe_lifestyle.jpg"
                 alt="Birthdays and corporate events"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />
@@ -83,6 +91,10 @@ export const LifestyleBentoSection: React.FC = () => {
               <img
                 src="/images/hero_racing_kart.jpg"
                 alt="1166M Track"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />
@@ -107,6 +119,10 @@ export const LifestyleBentoSection: React.FC = () => {
               <img
                 src="/images/velocity_cafe_lifestyle.jpg"
                 alt="Apex Rooftop Diner"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />
@@ -131,6 +147,10 @@ export const LifestyleBentoSection: React.FC = () => {
               <img
                 src="/images/bike_track_sunrise.jpg"
                 alt="Dawn Superbike Session"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#070B18] via-transparent to-transparent opacity-90" />

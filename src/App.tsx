@@ -12,16 +12,18 @@ import { InstagramWall } from './components/InstagramWall';
 import { FaqSection } from './components/FaqSection';
 import { CircuitLocationSection } from './components/CircuitLocationSection';
 import { LocoFooter } from './components/LocoFooter';
-import { BookingModal } from './components/BookingModal';
-import { CapturedLeadsModal } from './components/CapturedLeadsModal';
-import { AuthModal } from './components/driver-os/AuthModal';
-import { DriverDashboardModal } from './components/driver-os/DriverDashboardModal';
-import { SarvamVoiceAgent } from './components/SarvamVoiceAgent';
 import { CursorGlow } from './components/CursorGlow';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { driverStore } from './utils/driverStore';
 import { smoothScroll } from './utils/smoothScroll';
 import type { DriverProfile } from './types/driverOS';
+
+// Lazy load non-critical modals and floating voice agent to dramatically accelerate initial page paint & TTI
+const BookingModal = React.lazy(() => import('./components/BookingModal').then(m => ({ default: m.BookingModal })));
+const CapturedLeadsModal = React.lazy(() => import('./components/CapturedLeadsModal').then(m => ({ default: m.CapturedLeadsModal })));
+const AuthModal = React.lazy(() => import('./components/driver-os/AuthModal').then(m => ({ default: m.AuthModal })));
+const DriverDashboardModal = React.lazy(() => import('./components/driver-os/DriverDashboardModal').then(m => ({ default: m.DriverDashboardModal })));
+const SarvamVoiceAgent = React.lazy(() => import('./components/SarvamVoiceAgent').then(m => ({ default: m.SarvamVoiceAgent })));
 
 function AppContent() {
   const { isDark } = useTheme();
@@ -167,38 +169,46 @@ function AppContent() {
         onOpenLeads={() => setIsLeadsOpen(true)}
       />
 
-      {/* 4. Official Sarvam AI Voice Agent docked at bottom right */}
-      <SarvamVoiceAgent onOpenBooking={() => handleOpenBooking()} />
+      {/* 4. Official Voice Agent & Modals (Code-split and Lazy Loaded) */}
+      <React.Suspense fallback={null}>
+        <SarvamVoiceAgent onOpenBooking={() => handleOpenBooking()} />
 
-      {/* 5. Modals */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        initialKart={selectedKart}
-        initialPlan={selectedPlan}
-      />
+        {/* 5. Modals */}
+        {isBookingOpen && (
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => setIsBookingOpen(false)}
+            initialKart={selectedKart}
+            initialPlan={selectedPlan}
+          />
+        )}
 
-      <CapturedLeadsModal
-        isOpen={isLeadsOpen}
-        onClose={() => setIsLeadsOpen(false)}
-      />
+        {isLeadsOpen && (
+          <CapturedLeadsModal
+            isOpen={isLeadsOpen}
+            onClose={() => setIsLeadsOpen(false)}
+          />
+        )}
 
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
-        onLoginSuccess={handleLoginSuccess}
-      />
+        {isAuthOpen && (
+          <AuthModal
+            isOpen={isAuthOpen}
+            onClose={() => setIsAuthOpen(false)}
+            onLoginSuccess={handleLoginSuccess}
+          />
+        )}
 
-      {currentDriver && (
-        <DriverDashboardModal
-          isOpen={isDriverDashboardOpen}
-          onClose={() => setIsDriverDashboardOpen(false)}
-          driver={currentDriver}
-          onUpdateDriver={(updated) => setCurrentDriver(updated)}
-          onOpenBooking={() => handleOpenBooking()}
-          onLogout={handleLogout}
-        />
-      )}
+        {isDriverDashboardOpen && currentDriver && (
+          <DriverDashboardModal
+            isOpen={isDriverDashboardOpen}
+            onClose={() => setIsDriverDashboardOpen(false)}
+            driver={currentDriver}
+            onUpdateDriver={(updated) => setCurrentDriver(updated)}
+            onOpenBooking={() => handleOpenBooking()}
+            onLogout={handleLogout}
+          />
+        )}
+      </React.Suspense>
     </div>
   );
 }

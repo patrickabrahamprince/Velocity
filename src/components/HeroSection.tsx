@@ -185,6 +185,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
               key={currentExp.image}
               src={currentExp.image}
               alt={currentExp.title}
+              width={1376}
+              height={768}
+              fetchPriority={activeExp === 0 ? "high" : "auto"}
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out hover:scale-105"
             />
 

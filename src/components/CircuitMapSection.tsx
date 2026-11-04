@@ -320,6 +320,10 @@ export const CircuitMapSection: React.FC<CircuitMapSectionProps> = ({ videoUrl =
                 <img
                   src="/images/hero_racing_kart.jpg"
                   alt="Velocity Circuit 4K Onboard Hot Lap"
+                  loading="lazy"
+                  decoding="async"
+                  width={1376}
+                  height={768}
                   className="w-full h-full object-cover filter brightness-[0.62] contrast-[1.15] saturate-[1.1] transition-transform duration-700 group-hover:scale-[1.01]"
                 />
                 {/* Motorsport Vignette & Scanline Grid Overlay */}

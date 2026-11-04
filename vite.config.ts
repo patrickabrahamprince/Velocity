@@ -19,6 +19,16 @@ export default defineConfig({
         location: resolve(import.meta.dirname, 'location/index.html'),
         apexCafe: resolve(import.meta.dirname, 'apex-cafe/index.html'),
       },
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/lucide-react')) {
+            return 'vendor-icons';
+          }
+        },
+      },
     },
   },
 })

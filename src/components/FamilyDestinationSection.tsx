@@ -48,6 +48,10 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               <img
                 src="/images/hero_racing_kart.jpg"
                 alt="Junior & Rookie Go Kart"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -79,6 +83,10 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               <img
                 src="/images/velocity_cafe_lifestyle.jpg"
                 alt="Apex Rooftop Cafe"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -110,6 +118,10 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               <img
                 src="/images/hero_racing_kart.jpg"
                 alt="Birthday Grand Prix"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -141,6 +153,10 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               <img
                 src="/images/circuit_satellite_aerial.jpg"
                 alt="Scenic Day Outing"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
