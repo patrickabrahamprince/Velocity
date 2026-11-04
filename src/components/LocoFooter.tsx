@@ -25,7 +25,7 @@ export function LocoFooter({ onOpenBooking, onOpenLeads }: LocoFooterProps) {
                 Step Onto the Track. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Let the Race Begin.</span>
               </h3>
               <p className="text-sm text-slate-600 dark:text-white/70 mt-2 font-normal font-apple-text">
-                Walk-ins open daily from 6:00 AM to 11:30 PM. Book online to apply coupon VELOCITY200 and skip the paddock line.
+                Walk-ins open daily from 6:00 AM to 11:30 PM. Book online to reserve your grid slot and skip the paddock queue.
               </p>
             </div>
 

@@ -145,7 +145,7 @@ class SarvamVoiceEngine {
 
     if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('how much') || q.includes('package')) {
       return {
-        text: "Our race packages start from ₹299 for the 5-lap Student Special, ₹499 for 8 laps, and ₹699 for our 10-lap All-Days Grand Prix. Use code VELOCITY200 at checkout to get ₹200 off your first race pass!",
+        text: "Our race packages start from ₹299 for the 5-lap Student Special, ₹499 for 8 laps, and ₹699 for our 10-lap All-Days Grand Prix. Book online to reserve your grid heat and receive live transponder telemetry on WhatsApp!",
         action: 'pricing',
       };
     }
@@ -201,7 +201,7 @@ class SarvamVoiceEngine {
 
     // Default welcome
     return {
-      text: "Welcome to Velocity International Circuit, Karnataka's biggest 1,166 meter circuit in Hoskote. Ask me about our 19 apex turns, race pricing, or tap below to claim your ₹200 race voucher!",
+      text: "Welcome to Velocity International Circuit, Karnataka's biggest 1,166 meter circuit in Hoskote. Ask me about our 19 apex turns, race pricing, or tap below to reserve your track session!",
       action: 'pricing',
     };
   }

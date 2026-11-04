@@ -87,11 +87,11 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
     {
       id: 'driver-os',
       title: 'Driver OS & VIP Repeat Rewards',
-      badge: 'Instant ₹200 Vouchers',
+      badge: 'Digital Driver Pass',
       image: '/images/kart_fleet_garage.jpg',
       badgeColor: 'bg-blue-600/90 text-white',
-      description: 'Connect your WhatsApp to your Velocity Driver Profile. Receive official transponder lap telemetry sheets and unlock ₹200 vouchers on every return.',
-      highlights: ['Instant WhatsApp Telemetry', '₹200 Discount on Every Return', 'Bangalore Driver Leaderboard'],
+      description: 'Connect your WhatsApp to your Velocity Driver Profile. Receive official transponder lap telemetry sheets and earn rewards on every visit.',
+      highlights: ['Instant WhatsApp Telemetry', 'Driver Club Loyalty Points', 'Bangalore Driver Leaderboard'],
       actionLabel: 'View Driver Telemetry',
       actionScroll: '#driver-os',
       popular: false,
@@ -222,7 +222,7 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
                     className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Flame className="w-4 h-4 fill-current" />
-                    <span>Book Passes Online (Save ₹200)</span>
+                    <span>Book Passes Online</span>
                   </button>
                 </div>
               </div>
@@ -344,7 +344,7 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
                 }}
                 className="px-6 py-3 rounded-full bg-[#0052FF] hover:bg-[#0042D9] text-white font-semibold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
               >
-                Book Online & Save ₹200
+                Book Track Passes Online
               </button>
               <a
                 href="#pricing"

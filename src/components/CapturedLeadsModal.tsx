@@ -110,7 +110,7 @@ export const CapturedLeadsModal: React.FC<CapturedLeadsModalProps> = ({ isOpen, 
                       </td>
                       <td className="py-3 px-3">
                         <a
-                          href={`https://wa.me/91${lead.phone}?text=${encodeURIComponent(`Hi ${lead.name}! This is Velocity International Circuit. We saw you claimed your ₹200 race voucher (code: ${lead.couponCode}). When would you like to race?`)}`}
+                          href={`https://wa.me/91${lead.phone}?text=${encodeURIComponent(`Hi ${lead.name}! This is Velocity International Circuit. We saw you registered for your digital driver pass. When would you like to race?`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-2.5 py-1 rounded-lg bg-[#25d366]/20 text-[#25d366] hover:bg-[#25d366]/30 font-bold text-[10px] uppercase tracking-wider inline-flex items-center gap-1"

@@ -166,12 +166,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [customerEmail, setCustomerEmail] = useState<string>('');
 
   // Voucher
-  const [couponCode, setCouponCode] = useState<string>('VELOCITY200');
-  const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; text: string } | null>({
-    code: 'VELOCITY200',
-    discount: 200,
-    text: '₹200 Online Welcome Voucher',
-  });
+  const [couponCode, setCouponCode] = useState<string>('');
+  const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; text: string } | null>(null);
   const [couponError, setCouponError] = useState<string>('');
 
   // Payment Confirmation
@@ -213,14 +209,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     if (code === 'FIRST15' || code === 'FAST15') {
       const disc = Math.round(subTotal * 0.15);
       setAppliedCoupon({ code, discount: disc, text: '15% First Booking Discount' });
-    } else if (
-      code.startsWith('RACER') ||
-      code.startsWith('REPEAT') ||
-      code === 'REPEAT200' ||
-      code === 'FAMILY200' ||
-      code === 'VELOCITY200'
-    ) {
-      setAppliedCoupon({ code, discount: Math.min(200, subTotal - 50), text: '₹200 VIP Voucher' });
     } else if (code === 'VIP20' || code === 'VIPRACER') {
       const disc = Math.round(subTotal * 0.20);
       setAppliedCoupon({ code, discount: disc, text: '20% VIP Driver Discount' });
@@ -228,7 +216,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       const disc = driverCount * 50;
       setAppliedCoupon({ code, discount: disc, text: '₹50/driver Student Discount' });
     } else {
-      setCouponError('Invalid coupon code. Try VELOCITY200 or FIRST15.');
+      setCouponError('Invalid coupon code. Try FIRST15 or VIP20.');
     }
   };
 
@@ -368,7 +356,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           {/* ================================================================ */}
           {step === 1 && !isPaid && (
             <div className="space-y-5">
-              {/* Category Filter Pills & ₹200 Badge */}
+              {/* Category Filter Pills */}
               <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
                 <div className="flex gap-1.5 p-1 bg-slate-100 rounded-xl text-xs font-medium">
                   <button
@@ -403,9 +391,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   </button>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold">
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Instant ₹200 Applied</span>
+                  <span>Official Circuit Rates</span>
                 </div>
               </div>
 
@@ -762,7 +750,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
                 <div className="text-[11px] font-mono text-slate-500 uppercase font-semibold flex items-center justify-between">
                   <span>Discount Coupon</span>
-                  <span className="text-emerald-700 font-bold">VELOCITY200 Applied</span>
+                  {appliedCoupon && <span className="text-emerald-700 font-bold">{appliedCoupon.code} Applied</span>}
                 </div>
                 <div className="flex gap-2">
                   <input
@@ -893,14 +881,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
               </div>
 
-              {/* Repeat Racer Reward Banner */}
-              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 max-w-md mx-auto text-left space-y-1">
-                <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-800">
-                  <span>🎁 VIP REPEAT RACER REWARD</span>
+              {/* Telemetry & Driver Club Confirmation */}
+              <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 max-w-md mx-auto text-left space-y-1">
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-blue-800">
+                  <span>🏁 DRIVER PROFILE ACTIVE</span>
                   <span>+150 PTS</span>
                 </div>
                 <div className="text-xs text-slate-600">
-                  Your personal VIP repeat code <strong className="font-mono text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">{repeatRacerCode}</strong> gives you <strong>₹200 OFF</strong> on your next visit or when shared with friends!
+                  Official RFID transponder lap times, sector splits, and Bengaluru leaderboard ranking will be sent directly to your WhatsApp after your session!
                 </div>
               </div>
 
@@ -943,7 +931,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             ) : (
               <div className="text-xs font-mono text-slate-500">
                 Total: <span className="text-[#0052FF] font-extrabold text-xl ml-1 font-mono">₹{grandTotal}</span>
-                <span className="text-[10px] text-emerald-600 font-bold block sm:inline sm:ml-2">(-₹200 Applied)</span>
+                {appliedCoupon && (
+                  <span className="text-[10px] text-emerald-600 font-bold block sm:inline sm:ml-2">(-₹{appliedCoupon.discount} Applied)</span>
+                )}
               </div>
             )}
 

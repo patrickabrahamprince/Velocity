@@ -14,13 +14,13 @@ export const faqData: FaqItem[] = [
     id: 'why-book-online',
     category: 'Pricing & Offers',
     question: 'Why should I book online on the website instead of buying tickets at the counter?',
-    answer: 'Booking on the website offers 4 major benefits: (1) Instant ₹200 discount using promo code VELOCITY200, (2) Fast-track entry to skip weekend waiting lines of 45–90 minutes, (3) Automatic sync with track transponders to receive your official lap sheet and speed rankings on WhatsApp, and (4) An instant ₹200 repeat racer voucher on your phone for future visits.',
+    answer: 'Booking on the website offers 3 major benefits: (1) Guaranteed grid slot reservation to skip weekend waiting lines of 45–90 minutes, (2) Automatic sync with track RFID transponders to receive your official lap sheet and speed telemetry on WhatsApp, and (3) Digital Driver OS profile tracking your personal best lap records and Bengaluru leaderboard rankings.',
   },
   {
     id: 'repeat-rewards',
     category: 'Pricing & Offers',
-    question: 'How do the ₹200 repeat vouchers and loyalty points work?',
-    answer: 'Every online booking connects your WhatsApp phone number to your personal Velocity Driver profile. After every completed race session, you automatically receive a private ₹200 discount code to use on your next visit (or share with friends) plus 150 Velocity Coins redeemable for free laps and rooftop cafe meals.',
+    question: 'How do the Driver OS loyalty points and lap telemetry work?',
+    answer: 'Every online booking connects your WhatsApp phone number to your personal Velocity Driver profile. After every completed race session, you automatically receive your official RFID transponder lap telemetry sheet on WhatsApp plus Velocity Coins redeemable for free rookie laps and rooftop cafe credits.',
   },
   {
     id: 'track-length',

@@ -396,7 +396,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[11px] font-mono font-bold">
                   <Sparkles className="w-3 h-3" />
-                  <span>INCLUDES +5 FREE ROOKIE LAPS & ₹200 VOUCHER</span>
+                  <span>INCLUDES +5 FREE ROOKIE LAPS & TELEMETRY</span>
                 </div>
                 <h4 className="text-xl font-bold text-slate-950 dark:text-white">
                   Create Driver Profile

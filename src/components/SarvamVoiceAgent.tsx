@@ -187,7 +187,7 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
                   onClick={() => handleQuickPrompt("What are the pricing and packages?")}
                   className="w-full text-left p-2 rounded-xl bg-white/[0.04] hover:bg-[#0052FF]/20 hover:border-[#0052FF]/40 border border-white/5 text-slate-300 hover:text-white transition-all flex items-center justify-between cursor-pointer"
                 >
-                  <span>⚡ Race passes & ₹200 discount code</span>
+                  <span>⚡ Race packages & lap pricing</span>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                 </button>
                 <button

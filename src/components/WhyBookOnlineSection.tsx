@@ -25,7 +25,7 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-white/70 font-normal font-apple-text leading-relaxed max-w-2xl mx-auto">
-              Skip the 45-minute paddock wait, unlock instant ₹200 savings with coupon VELOCITY200, and get your transponder lap telemetry delivered straight to your WhatsApp.
+              Skip the 45-minute paddock wait, reserve your guaranteed grid heat, and get official RFID transponder lap telemetry delivered straight to your WhatsApp.
             </p>
           </div>
         </div>
@@ -82,7 +82,7 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
                     <X className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <strong className="text-slate-900 dark:text-white">No repeat discount:</strong> You miss the ₹200 repeat driver voucher for future races.
+                    <strong className="text-slate-900 dark:text-white">Unreserved slot:</strong> Risk waiting in 45–90 minute paddock queues during peak evening & weekend sessions.
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
                       <Check className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <strong className="text-slate-900 dark:text-white">Instant ₹200 OFF (Code: VELOCITY200):</strong> Apply directly at checkout on all race sessions.
+                      <strong className="text-slate-900 dark:text-white">Guaranteed Grid Slot:</strong> Lock in your exact hour-to-hour heat with priority grid access.
                     </div>
                   </div>
 
@@ -144,7 +144,7 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
                       <Check className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <strong className="text-slate-900 dark:text-white">₹200 Repeat Voucher:</strong> Generates a return voucher for your next race day.
+                      <strong className="text-slate-900 dark:text-white">Digital Driver OS:</strong> Save personal bests, earn loyalty points, and store laps in digital pass.
                     </div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
                   }}
                   className="w-full py-4 rounded-full bg-gradient-to-r from-[#0052FF] to-[#2563EB] hover:brightness-110 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-blue-600/35 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <span>Book Online & Apply ₹200 Coupon</span>
+                  <span>Book Online & Skip the Queue</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -170,10 +170,10 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
         <div className="p-8 sm:p-10 rounded-[30px] bg-white dark:bg-[#0A0E1F]/90 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white space-y-6 shadow-sm dark:shadow-xl backdrop-blur-xl">
           <div className="text-center max-w-xl mx-auto space-y-1">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-              How Your Online Perks & Repeat Coupons Work
+              How Your Online Priority & Telemetry Works
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              A high-speed 3-step loop turning every lap into real savings
+              A seamless 3-step loop from booking to racing on Karnataka&apos;s biggest circuit
             </p>
           </div>
 
@@ -182,9 +182,9 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0052FF] to-[#003ECC] text-white font-mono font-bold flex items-center justify-center text-sm shadow-md">
                 1
               </div>
-              <h4 className="font-bold text-base text-slate-900 dark:text-white">Book & Save ₹200</h4>
+              <h4 className="font-bold text-base text-slate-900 dark:text-white">Reserve Grid Heat</h4>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                Use code <strong className="text-blue-600 dark:text-[#00D2FF] font-mono">VELOCITY200</strong> at online checkout to apply an instant ₹200 discount to your ticket.
+                Choose your date and 1-hour time slot online to lock in direct grid access and bypass counter queues.
               </p>
             </div>
 
@@ -202,9 +202,9 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0052FF] to-[#003ECC] text-white font-mono font-bold flex items-center justify-center text-sm shadow-md">
                 3
               </div>
-              <h4 className="font-bold text-base text-slate-900 dark:text-white">₹200 Return Voucher</h4>
+              <h4 className="font-bold text-base text-slate-900 dark:text-white">Driver OS Rewards</h4>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                Receive a private <strong className="text-blue-600 dark:text-[#00D2FF] font-mono">₹200 repeat code</strong> plus 150 Driver Club points to use whenever you or friends return.
+                Save personal best lap times, track sector speed records, and earn Velocity Coins on every visit.
               </p>
             </div>
           </div>

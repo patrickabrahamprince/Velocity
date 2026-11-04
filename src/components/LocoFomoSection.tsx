@@ -27,7 +27,7 @@ export function LocoFomoSection({ onOpenBooking }: LocoFomoSectionProps) {
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText('VELOCITY200');
+    navigator.clipboard.writeText('VIC-VIP-MEMBER');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -48,7 +48,7 @@ export function LocoFomoSection({ onOpenBooking }: LocoFomoSectionProps) {
         </h2>
 
         <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
-          Sign up & be the first to know about night floodlight GP races, secret weekend flash discounts, and new kart arrivals!
+          Sign up & be the first to know about night floodlight GP races, secret weekend flash events, and new kart arrivals!
         </p>
 
         {!isSubscribed ? (
@@ -69,22 +69,22 @@ export function LocoFomoSection({ onOpenBooking }: LocoFomoSectionProps) {
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#feb000] hover:bg-[#fcd107] text-black font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_25px_rgba(254,176,0,0.4)] flex items-center justify-center gap-2 shrink-0 cursor-pointer"
             >
               <Sparkles className="w-4 h-4 fill-current" />
-              <span>Unlock ₹200 OFF</span>
+              <span>Join VIP Grid Club</span>
             </button>
           </form>
         ) : (
           <div className="max-w-lg mx-auto p-6 rounded-2xl bg-black/60 border-2 border-[#feb000] shadow-2xl animate-in fade-in zoom-in-95 duration-300">
             <div className="flex items-center justify-center gap-2 text-[#feb000] font-extrabold text-sm uppercase tracking-wider mb-2">
               <Sparkles className="w-4 h-4" />
-              <span>Coupon Unlocked Successfully!</span>
+              <span>VIP Grid Access Unlocked!</span>
             </div>
             <p className="text-xs text-slate-300 mb-4">
-              Use code <strong className="text-white">VELOCITY200</strong> at checkout to get ₹200 off your track session.
+              Welcome to the Velocity Paddock Club! You will receive priority track alerts, floodlight GP invitations, and telemetry updates.
             </p>
 
             <div className="flex items-center justify-center gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-dashed border-[#feb000] font-mono-tech text-lg font-black text-[#feb000]">
-                <span>VELOCITY200</span>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-dashed border-[#feb000] font-mono text-sm font-bold text-[#feb000]">
+                <span>VIC-VIP-MEMBER</span>
                 <button
                   type="button"
                   onClick={handleCopyCode}

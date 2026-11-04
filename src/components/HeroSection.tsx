@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trophy, Flag, Sparkles, Phone, User, Check, Copy, Flame, MessageCircle, ShieldCheck, ArrowUpRight, ArrowRight, Zap, ChevronRight } from 'lucide-react';
+import { Trophy, Flag, Sparkles, Phone, User, Check, Copy, Flame, MessageCircle, MessageSquare, ShieldCheck, ArrowUpRight, ArrowRight, Zap, ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFx } from '../utils/soundEngine';
 import { leadStore, type CapturedLead } from '../utils/leadStore';
@@ -85,41 +85,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
     localStorage.setItem('vic_prefill_phone', cleanPhone);
   };
 
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText('VELOCITY200');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleSendToWhatsApp = () => {
     if (!capturedLead) return;
     const text = encodeURIComponent(
-      `Hi Velocity International Circuit! I just unlocked my ₹200 voucher (code: VELOCITY200). Please share upcoming slot availability for ${capturedLead.interest}.`
+      `Hi Velocity International Circuit! I'd like to book a session for ${capturedLead.interest}. Please share upcoming slot availability.`
     );
     window.open(`https://wa.me/919071718620?text=${text}`, '_blank');
   };
 
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-22 pb-8 sm:pb-10">
+    <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-6 sm:pb-8">
       {/* Background Ambient Lighting in Cobalt Blue */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[600px] h-[500px] bg-[#0052FF]/8 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-[#00D2FF]/6 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Main Hero Chassis */}
       <div className="relative rounded-[28px] sm:rounded-[36px] overflow-hidden bg-white dark:bg-[#070A14] border border-slate-200/90 dark:border-white/10 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.08)] dark:shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[520px] lg:min-h-[560px] xl:min-h-[580px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] lg:min-h-[530px] xl:min-h-[560px]">
           
           {/* Left Column (Editorial Headline & Booking CTAs) */}
-          <div className="lg:col-span-6 p-6 sm:p-8 lg:p-9 xl:p-10 flex flex-col justify-between z-10 bg-white/95 dark:bg-[#070A14]/95">
-            <div className="space-y-4 sm:space-y-5">
+          <div className="lg:col-span-6 p-6 sm:p-7 lg:p-8 xl:p-10 flex flex-col justify-between z-10 bg-white/95 dark:bg-[#070A14]/95">
+            <div className="space-y-3.5 sm:space-y-4">
               {/* Circuit Category Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200/80 dark:border-white/10 text-xs font-semibold text-blue-700 dark:text-sky-300">
                 <span className="w-2 h-2 rounded-full bg-[#0052FF] dark:bg-[#00D2FF] animate-pulse" />
                 <span>Karnataka&apos;s Biggest Outdoor Circuit • 1,166m</span>
               </div>
 
-              {/* Asphalt 8 Racing Style Display Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-tight">
+              {/* Asphalt 8 Racing Display Headline */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-tight">
                 Real Racing on <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF]">
                   Karnataka&apos;s Biggest
@@ -132,27 +126,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
                 Experience high-speed outdoor go-karting on authentic FIA-standard asphalt in Hoskote, Bangalore. 19 apex corners, tuned Honda 200cc karts, Fastrak zero-waiting sessions, and panoramic rooftop dining.
               </p>
 
-              {/* Primary Call-to-Action Buttons */}
-              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+              {/* Primary Call-to-Action Buttons - Locked side-by-side with matched font & height */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:flex-nowrap gap-2.5 sm:gap-3 pt-1">
                 <button
                   onClick={() => {
                     soundFx.playRev(1.4);
                     onOpenBooking(currentExp.title);
                   }}
-                  className="px-5 sm:px-6 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
+                  className="h-11 sm:h-12 px-5 sm:px-6 rounded-full bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
                 >
                   <Flame className="w-4 h-4 fill-current shrink-0" />
-                  <span className="whitespace-nowrap">Book Race Session (Save ₹200)</span>
+                  <span className="whitespace-nowrap leading-none">Book Race Session</span>
                   <ArrowRight className="w-4 h-4 ml-0.5 shrink-0" />
                 </button>
 
                 <a
                   href="#about"
                   onClick={() => soundFx.playGearShift()}
-                  className="px-4.5 sm:px-5 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-xs sm:text-sm transition-all active:scale-[0.98] inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+                  className="h-11 sm:h-12 px-4.5 sm:px-5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-semibold text-xs sm:text-sm transition-all active:scale-[0.98] inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
                 >
                   <Sparkles className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
-                  <span className="whitespace-nowrap">Explore What We Offer</span>
+                  <span className="whitespace-nowrap leading-none">Explore What We Offer</span>
                 </a>
               </div>
 
@@ -174,7 +168,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
             </div>
 
             {/* Bottom 4-Column Metric Strip */}
-            <div className="pt-4 mt-6 border-t border-slate-200/90 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="pt-3.5 sm:pt-4 mt-4 sm:mt-6 border-t border-slate-200/90 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               <div>
                 <div className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">1,166M</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-medium">Track Length</div>
@@ -231,22 +225,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
               ))}
             </div>
 
-            {/* Bottom Panel: Telemetry HUD + Instant ₹200 Voucher Drawer */}
-            <div className="relative z-10 space-y-3 pt-8">
+            {/* Bottom Panel: Telemetry HUD + WhatsApp Pass Drawer */}
+            <div className="relative z-10 space-y-2.5 pt-4 sm:pt-6">
               {/* Telemetry Tag */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs text-sky-300 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D2FF]" />
                 <span>{currentExp.telemetry}</span>
               </div>
 
-              {/* Instant ₹200 Pass Voucher Capsule */}
+              {/* Instant WhatsApp Grid Pass Capsule */}
               <div className="rounded-2xl bg-white/95 dark:bg-[#070A14]/95 backdrop-blur-xl p-3.5 sm:p-4 border border-white/30 dark:border-white/10 shadow-xl text-slate-900 dark:text-white">
                 {!capturedLead ? (
                   <form onSubmit={handleCaptureLead} className="flex flex-col sm:flex-row items-center gap-2.5">
                     <div className="flex-1 w-full space-y-1">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-bold text-slate-900 dark:text-white">Claim Instant ₹200 Track Voucher</span>
-                        <span className="font-semibold text-emerald-600 dark:text-emerald-400 font-mono">VELOCITY200</span>
+                        <span className="font-bold text-slate-900 dark:text-white">Get Direct Grid Pass on WhatsApp</span>
+                        <span className="font-semibold text-blue-600 dark:text-[#38BDF8] font-mono">LIVE TELEMETRY</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <input
@@ -264,7 +258,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
                       type="submit"
                       className="w-full sm:w-auto px-4.5 py-2.5 rounded-xl bg-[#0052FF] hover:bg-[#0042D9] text-white text-xs font-semibold whitespace-nowrap shadow-md cursor-pointer transition-all active:scale-95 shrink-0 sm:self-end"
                     >
-                      Unlock ₹200 Pass →
+                      Get WhatsApp Pass →
                     </button>
                   </form>
                 ) : (
@@ -272,7 +266,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
                     <div className="space-y-0.5">
                       <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                         <Check className="w-3.5 h-3.5 stroke-[3]" />
-                        <span>₹200 Voucher Ready: VELOCITY200</span>
+                        <span>Grid Pass Connected</span>
                       </div>
                       <div className="text-[11px] text-slate-500 dark:text-slate-400">
                         Registered to +91 {capturedLead.phone}
@@ -282,10 +276,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
                     <div className="flex items-center gap-2 shrink-0">
                       <button
                         type="button"
-                        onClick={handleCopyCode}
-                        className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 text-xs font-semibold hover:bg-slate-200 transition-colors cursor-pointer"
+                        onClick={handleSendToWhatsApp}
+                        className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                       >
-                        {copied ? 'Copied!' : 'Copy Code'}
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>Open WhatsApp</span>
                       </button>
                       <button
                         type="button"

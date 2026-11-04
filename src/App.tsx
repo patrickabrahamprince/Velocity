@@ -150,7 +150,7 @@ function AppContent() {
           onLogout={handleLogout}
         />
 
-        {/* Section 8: Repeat Racer VIP Club (Name & WhatsApp Lead Capture for ₹200 Voucher) */}
+        {/* Section 8: Repeat Racer VIP Club (Name & WhatsApp Lead Capture for Driver Pass) */}
         <RepeatRacerRewards
           onOpenBooking={() => handleOpenBooking()}
           onOpenDriverDashboard={() => setIsDriverDashboardOpen(true)}

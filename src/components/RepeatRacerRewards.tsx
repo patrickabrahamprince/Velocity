@@ -43,8 +43,8 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
     localStorage.setItem('vic_prefill_name', name.trim());
     localStorage.setItem('vic_prefill_phone', cleanPhone);
 
-    const randomCoupon = 'VELOCITY200';
-    setUnlockedCode(randomCoupon);
+    const passCode = 'VIC-DRIVER-PASS';
+    setUnlockedCode(passCode);
     setIsUnlocked(true);
 
     confetti({
@@ -78,7 +78,7 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
             </h2>
 
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-apple-text leading-relaxed max-w-xl">
-              Every online registration links directly to your WhatsApp. Earn reward points on every lap, receive real-time timing telemetry on your mobile, and unlock instant ₹200 return vouchers.
+              Every online registration links directly to your WhatsApp. Earn reward points on every lap, receive real-time timing telemetry on your mobile, and unlock VIP rewards.
             </p>
 
             {/* 4 Value Pillars */}
@@ -88,8 +88,8 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
                   <Gift className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-slate-900 dark:text-white font-apple-display">₹200 Welcome Voucher</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-apple-text">Instant ₹200 off for your race booking upon registering</div>
+                  <div className="font-semibold text-sm text-slate-900 dark:text-white font-apple-display">VIP Driver OS</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-apple-text">Save your lap records, sector times, and telemetry on your phone</div>
                 </div>
               </div>
 
@@ -135,8 +135,8 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
                     Digital Driver Pass
                   </span>
                 </div>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-semibold">
-                  Instant ₹200
+                <span className="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-blue-600 dark:text-[#38BDF8] font-mono text-[11px] font-semibold">
+                  VIP Club
                 </span>
               </div>
 
@@ -144,10 +144,10 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
                 <form onSubmit={handleClaimVoucher} className="space-y-4 pt-1">
                   <div>
                     <h3 className="font-bold text-xl text-slate-900 dark:text-white tracking-[-0.02em] font-apple-display">
-                      Unlock Your ₹200 Welcome Voucher
+                      Unlock Your Digital Driver Pass
                     </h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-apple-text">
-                      Enter your name and WhatsApp number to generate your coupon code:
+                      Enter your name and WhatsApp number to connect your digital telemetry pass:
                     </p>
                   </div>
 
@@ -189,13 +189,13 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
                     type="submit"
                     className="w-full py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold text-xs tracking-wide shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center justify-center gap-2 mt-2 font-apple-display"
                   >
-                    <span>Unlock ₹200 Code & Paddock Pass</span>
+                    <span>Unlock Digital Driver Pass</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
                   <div className="text-[11px] font-apple-text text-slate-500 dark:text-slate-400 text-center flex items-center justify-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span>Instant coupon code • Instant WhatsApp ticket receipt</span>
+                    <span>Instant pass sync • Official WhatsApp telemetry</span>
                   </div>
                 </form>
               ) : (
@@ -206,15 +206,15 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
 
                   <div>
                     <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase font-semibold">
-                      Your Coupon Code
+                      Digital Driver Pass Active
                     </div>
                     <div className="text-2xl font-mono font-bold text-blue-600 dark:text-[#38BDF8] tracking-wider mt-1 bg-blue-50 dark:bg-blue-950/40 py-2.5 rounded-xl border border-blue-200 dark:border-blue-500/30">
-                      {unlockedCode}
+                      VIC-PASS CONNECTED
                     </div>
                   </div>
 
                   <p className="text-xs text-slate-600 dark:text-slate-300 font-apple-text">
-                    Use code <strong className="text-slate-900 dark:text-white font-mono">{unlockedCode}</strong> at checkout for ₹200 off your race booking today!
+                    Your driver profile is active! Sector times and official lap records will sync directly to your WhatsApp.
                   </p>
 
                   <div className="space-y-2 pt-1">
@@ -225,7 +225,7 @@ export const RepeatRacerRewards: React.FC<RepeatRacerRewardsProps> = ({
                       }}
                       className="w-full py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold text-xs tracking-wide shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center justify-center gap-2 font-apple-display"
                     >
-                      <span>Apply Coupon & Book Race Now</span>
+                      <span>Book Track Passes Now</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>

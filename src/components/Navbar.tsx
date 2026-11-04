@@ -402,7 +402,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span>Driver OS & VIP Pass</span>
                   </div>
                   <div className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Get +5 Free Laps & ₹200 Voucher
+                    Get +5 Free Rookie Laps & Telemetry
                   </div>
                 </div>
                 <button

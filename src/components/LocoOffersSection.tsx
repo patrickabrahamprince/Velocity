@@ -37,7 +37,7 @@ export function LocoOffersSection({ onSelectOffer }: LocoOffersSectionProps) {
         '10 Laps in Tuned Honda 200cc Sprint Karts',
         '2x Cold-Pressed Fruit Juices or Shakes at Apex Rooftop Cafe',
         'Podium Photo Celebration with Winner Cap',
-        'Complimentary ₹200 Return Voucher for your next visit'
+        'Complimentary Lap Telemetry & Driver Club Points'
       ],
       popular: false
     },

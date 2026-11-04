@@ -59,7 +59,7 @@ export function FloatingWidgets({ onOpenBooking }: FloatingWidgetsProps) {
           <div className="p-5 space-y-3.5 text-xs text-slate-200">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0052FF]/15 border border-[#0052FF]/30 text-[#38BDF8] text-[11px] font-semibold">
               <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span>Instant ₹200 voucher applied to your WhatsApp reply</span>
+              <span>Official telemetry sheet sent to your WhatsApp</span>
             </div>
 
             {/* Name field */}

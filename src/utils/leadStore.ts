@@ -21,7 +21,7 @@ export const leadStore = {
       interest,
       source,
       timestamp: new Date().toISOString(),
-      couponCode: 'VELOCITY200'
+      couponCode: 'VIC-PASS'
     };
 
     leads.unshift(newLead);
