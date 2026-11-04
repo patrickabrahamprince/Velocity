@@ -300,26 +300,26 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW WITH DELIGHTFUL HOVER EFFECTS */}
         {activeTab === 'kart-offers' && (
           <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-6">
               {allKartOffers.map((offer) => (
                 <div
                   key={offer.id}
                   onMouseEnter={() => soundFx.playGearShift()}
-                  className={`group cursor-pointer p-6 sm:p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative overflow-hidden ${
+                  className={`group cursor-pointer p-6 sm:p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative ${
                     offer.popular
                       ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.22)] scale-[1.02] lg:-translate-y-2.5 hover:-translate-y-4 hover:shadow-[0_28px_65px_rgba(0,102,255,0.35)] dark:hover:shadow-[0_28px_65px_rgba(0,210,255,0.35)] z-10 text-slate-950 dark:text-white'
                       : 'bg-white dark:bg-[#0A0E22]/90 border border-slate-200 dark:border-white/10 hover:border-[#0066FF] dark:hover:border-[#00D2FF] hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,102,255,0.12)] dark:hover:shadow-[0_20px_50px_rgba(0,102,255,0.25)] text-slate-950 dark:text-white'
                   }`}
                 >
                   {/* Top Laser/Neon Glow Line on Hover */}
-                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#0066FF] dark:via-[#00D2FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className="absolute inset-x-8 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[#0066FF] dark:via-[#00D2FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                   {/* Floating Most Popular VIP Crown Badge on Fastrak */}
                   {offer.popular && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-20 transition-transform duration-300 group-hover:scale-105">
                       <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-[10px] font-mono uppercase tracking-wider shadow-md flex items-center gap-1.5">
-                        <Sparkles className="w-3 h-3 fill-current" />
-                        <span>MOST POPULAR • ZERO WAIT</span>
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        <span>★ MOST POPULAR CHOICE</span>
                       </span>
                     </div>
                   )}
