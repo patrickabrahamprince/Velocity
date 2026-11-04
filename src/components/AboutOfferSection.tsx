@@ -236,23 +236,27 @@ export const AboutOfferSection: React.FC<AboutOfferSectionProps> = ({ onOpenBook
         {/* ============================================================== */}
         <div id="offers" className="space-y-10 pt-4">
           
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/10 text-xs font-semibold text-blue-700 dark:text-sky-300">
-              <Sparkles className="w-3.5 h-3.5 text-[#0052FF] dark:text-[#38BDF8]" />
-              <span>What We Really Offer</span>
+          {/* Section Header Chassis */}
+          <div className="section-header-chassis text-center max-w-4xl mx-auto">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-[120px] pointer-events-none" />
+
+            <div className="relative z-10 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/10 text-xs font-semibold text-blue-700 dark:text-sky-300 shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-[#0052FF] dark:text-[#38BDF8]" />
+                <span>What We Really Offer</span>
+              </div>
+
+              <h3 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
+                6 Ways to Experience <br className="hidden sm:inline" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
+                  Karnataka&apos;s Biggest Circuit
+                </span>
+              </h3>
+
+              <p className="text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+                From solo high-speed flying laps to parent-child adventures, sunrise superbike sessions, and rooftop dining under stadium lights.
+              </p>
             </div>
-
-            <h3 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
-              6 Ways to Experience <br className="hidden sm:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
-                Karnataka&apos;s Biggest Circuit
-              </span>
-            </h3>
-
-            <p className="text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-              From solo high-speed flying laps to parent-child adventures, sunrise superbike sessions, and rooftop dining under stadium lights.
-            </p>
           </div>
 
           {/* 6 Rich Bento Grid Cards with Photos */}

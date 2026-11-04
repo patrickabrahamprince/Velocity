@@ -233,23 +233,25 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-blue-600/10 via-[#00D2FF]/10 to-transparent blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="space-y-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-slate-200/80 dark:border-white/10">
-          <div className="space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 dark:bg-white/[0.06] border border-blue-500/20 dark:border-white/[0.12] text-xs font-bold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-mono">
+        {/* Section Header Chassis */}
+        <div className="section-header-chassis flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#0052FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-3 max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 dark:bg-white/[0.06] border border-blue-500/20 dark:border-white/[0.12] text-xs font-bold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-mono shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#0066FF] dark:bg-[#00D2FF]" />
               <span>Transparent Passes • 1,166M Track</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
               Standard <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Race Packages</span>
             </h2>
-            <p className="text-sm text-slate-600 dark:text-white/70 max-w-xl font-normal leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-white/70 font-normal leading-relaxed">
               Transparent per-session pricing with zero hidden fees. Includes full safety briefing, DOT-certified helmets, balaclava & RFID transponder telemetry sheets.
             </p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="bg-slate-100/90 dark:bg-[#080C1A]/80 backdrop-blur-2xl p-1.5 rounded-full border border-slate-200 dark:border-white/[0.12] shadow-sm inline-flex flex-wrap items-center gap-1 shrink-0">
+          <div className="relative z-10 bg-slate-100/90 dark:bg-[#080C1A]/80 backdrop-blur-2xl p-1.5 rounded-full border border-slate-200 dark:border-white/[0.12] shadow-sm inline-flex flex-wrap items-center gap-1 shrink-0">
             <button
               onClick={() => {
                 soundFx.playGearShift();

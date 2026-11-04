@@ -66,7 +66,7 @@ html.dark body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Gameloft Asphalt 8 Official Racing Headers: Montserrat 900, Upright, Uppercase, Tight Tracking */
+/* Gameloft Asphalt 8 Official Racing Headers: Montserrat 900, Upright, Uppercase, Tight Tracking with Depth */
 .font-asphalt,
 .font-speed,
 .font-bison,
@@ -79,6 +79,54 @@ html.dark body {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.03em;
+  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .font-asphalt,
+html.dark .font-speed,
+html.dark .font-bison,
+html.dark .asphalt-header,
+html.dark .font-heading,
+html.dark .font-loco,
+html.dark .font-syne {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 102, 255, 0.18);
+}
+
+/* Premium Section Header Chassis with Padding, Depth & Multi-Layer Shadow */
+.section-header-chassis {
+  position: relative;
+  border-radius: 1.75rem;
+  padding: 1.75rem 1.5rem;
+  overflow: hidden;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .section-header-chassis {
+    border-radius: 2.25rem;
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-header-chassis {
+    padding: 2.5rem 3rem;
+  }
+}
+
+html.light .section-header-chassis,
+html:not(.dark) .section-header-chassis {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.07), 0 1px 3px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+html.dark .section-header-chassis {
+  background: rgba(8, 12, 27, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 70px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .font-apple-display,

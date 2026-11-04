@@ -64,14 +64,16 @@ export const InstagramWall: React.FC = () => {
   return (
     <section id="leaderboard" className="py-24 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-4 max-w-3xl">
-            <div className="apple-badge">
+        {/* Section Header Chassis */}
+        <div className="section-header-chassis flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#0052FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-4 max-w-3xl">
+            <div className="apple-badge shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] dark:bg-[#00D2FF] animate-pulse" />
               <span>Community & Telemetry Leaderboard</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
               Track Highlights &{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
                 Fastest Drivers
@@ -87,7 +89,7 @@ export const InstagramWall: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => soundFx.playRev(1.0)}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 transition-all cursor-pointer shrink-0 font-apple-display"
+            className="relative z-10 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 transition-all cursor-pointer shrink-0 font-apple-display"
           >
             <InstagramIcon className="w-4 h-4 text-white" />
             <span>Follow @velocity_international</span>

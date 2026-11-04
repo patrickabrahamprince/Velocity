@@ -10,20 +10,22 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
   return (
     <section id="family" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/10 text-xs font-semibold text-blue-700 dark:text-sky-300">
+        {/* Section Header Chassis */}
+        <div className="section-header-chassis flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#0052FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/10 text-xs font-semibold text-blue-700 dark:text-sky-300 shadow-sm">
               <Users className="w-3.5 h-3.5 text-[#0052FF] dark:text-[#00D2FF]" />
               <span>Bangalore Weekend Destination</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
               High-Speed Fun for <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
                 Kids, Parents & Friends
               </span>
             </h2>
-            <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed">
+            <p className="text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
               More than just an outdoor asphalt circuit. Velocity is a weekend day-out hub where families race together, relax over delicious food at the Apex diner, and celebrate birthdays.
             </p>
           </div>
@@ -33,7 +35,7 @@ export const FamilyDestinationSection: React.FC<FamilyDestinationSectionProps> =
               soundFx.playRev(1.4);
               onOpenBooking('10 Laps Normal Session (₹699 + Tax)');
             }}
-            className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md shadow-blue-600/30 shrink-0 cursor-pointer flex items-center gap-2"
+            className="relative z-10 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md shadow-blue-600/30 shrink-0 cursor-pointer flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4 fill-current" />
             <span>Book Race Session</span>

@@ -80,10 +80,10 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Floating Island Glass Capsule Navbar */}
       <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pointer-events-none">
         <div
-          className={`max-w-7xl mx-auto rounded-full px-3 sm:px-4.5 py-1.5 sm:py-2 flex items-center justify-between pointer-events-auto min-h-[52px] sm:min-h-[56px] transition-all duration-300 w-full shadow-lg ${
+          className={`max-w-7xl mx-auto rounded-full px-3.5 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between pointer-events-auto min-h-[54px] sm:min-h-[58px] transition-all duration-300 w-full ${
             isDark
-              ? 'bg-[#080C1A]/90 backdrop-blur-2xl border border-white/[0.14] shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.15)] text-white'
-              : 'bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_15px_40px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,1)] text-slate-900'
+              ? 'bg-[#080C1A]/95 backdrop-blur-2xl border border-white/[0.16] shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.18)] text-white'
+              : 'bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_20px_50px_rgba(15,23,42,0.1),0_2px_8px_rgba(15,23,42,0.04),inset_0_1px_0_rgba(255,255,255,1)] text-slate-900'
           }`}
         >
           {/* Brand Logo: Balanced Racing Lockup */}

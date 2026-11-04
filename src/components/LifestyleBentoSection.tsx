@@ -5,21 +5,26 @@ export const LifestyleBentoSection: React.FC = () => {
   return (
     <section id="lifestyle" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
-        {/* Apple Keynote Style Section Header */}
-        <div className="space-y-4 max-w-3xl">
-          <div className="apple-badge">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] dark:bg-[#00D2FF] animate-pulse" />
-            <span>Circuit Lifestyle & Dining</span>
+        {/* Apple Keynote Style Section Header Chassis */}
+        <div className="section-header-chassis">
+          {/* Subtle Ambient Radial Lighting */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-[#0052FF]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
+          
+          <div className="relative z-10 space-y-4 max-w-3xl">
+            <div className="apple-badge shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] dark:bg-[#00D2FF] animate-pulse" />
+              <span>Circuit Lifestyle & Dining</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
+              More Than Racing <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
+                The Ultimate Trackside Destination
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-apple-text leading-relaxed">
+              From rooftop artisanal burgers overlooking Karnataka&apos;s biggest circuit to VIP gift passes and corporate championships.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
-            More Than Racing <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">
-              The Ultimate Trackside Destination
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-apple-text leading-relaxed">
-            From rooftop artisanal burgers overlooking Karnataka&apos;s biggest circuit to VIP gift passes and corporate championships.
-          </p>
         </div>
 
         {/* Top Row: 2 Large Bento Cards */}

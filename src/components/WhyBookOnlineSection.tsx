@@ -10,20 +10,24 @@ export const WhyBookOnlineSection: React.FC<WhyBookOnlineSectionProps> = ({ onOp
   return (
     <section id="why-book" className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="space-y-12">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/[0.12] text-xs font-semibold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-apple-display shadow-sm">
-            <Gift className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
-            <span>VIP Online Advantage</span>
+        {/* Section Header Chassis */}
+        <div className="section-header-chassis text-center max-w-4xl mx-auto">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/[0.06] border border-blue-200 dark:border-white/[0.12] text-xs font-semibold tracking-[0.16em] uppercase text-blue-700 dark:text-sky-300 font-apple-display shadow-sm">
+              <Gift className="w-3.5 h-3.5 text-[#0066FF] dark:text-[#00D2FF]" />
+              <span>VIP Online Advantage</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
+              Why Book Online <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Instead of Walking In?</span>
+            </h2>
+
+            <p className="text-sm sm:text-base text-slate-600 dark:text-white/70 font-normal font-apple-text leading-relaxed max-w-2xl mx-auto">
+              Skip the 45-minute paddock wait, unlock instant ₹200 savings with coupon VELOCITY200, and get your transponder lap telemetry delivered straight to your WhatsApp.
+            </p>
           </div>
-
-          <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
-            Why Book Online <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Instead of Walking In?</span>
-          </h2>
-
-          <p className="text-sm sm:text-base text-slate-600 dark:text-white/70 font-normal font-apple-text leading-relaxed">
-            Skip the 45-minute paddock wait, unlock instant ₹200 savings with coupon VELOCITY200, and get your transponder lap telemetry delivered straight to your WhatsApp.
-          </p>
         </div>
 
         {/* Comparison: Walk-in vs Online Booking */}

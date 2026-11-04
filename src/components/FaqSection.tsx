@@ -99,20 +99,24 @@ export const FaqSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-[#0052FF]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="space-y-12 relative z-10">
-        {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.06] border border-slate-300 dark:border-white/[0.12] text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-sky-300 font-apple-display shadow-sm">
-            <HelpCircle className="w-3.5 h-3.5 text-blue-600 dark:text-[#00D2FF]" />
-            <span>Frequently Asked Questions</span>
+        {/* Section Header Chassis */}
+        <div className="section-header-chassis text-center max-w-3xl mx-auto">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#0052FF]/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.06] border border-slate-300 dark:border-white/[0.12] text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-sky-300 font-apple-display shadow-sm">
+              <HelpCircle className="w-3.5 h-3.5 text-blue-600 dark:text-[#00D2FF]" />
+              <span>Frequently Asked Questions</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em] drop-shadow-sm">
+              Track Intel & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Racer Guide</span>
+            </h2>
+
+            <p className="text-sm sm:text-base text-slate-600 dark:text-white/70 font-normal font-apple-text leading-relaxed">
+              Everything you need to know about track specs, prices, timing, safety rules, and booking your race in Hoskote, Bangalore.
+            </p>
           </div>
-
-          <h2 className="text-3xl sm:text-5xl lg:text-5xl font-asphalt text-slate-950 dark:text-white leading-[1.05] tracking-[-0.03em]">
-            Track Intel & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#00D2FF]">Racer Guide</span>
-          </h2>
-
-          <p className="text-sm text-slate-600 dark:text-white/70 font-normal font-apple-text leading-relaxed">
-            Everything you need to know about track specs, prices, timing, safety rules, and booking your race in Hoskote, Bangalore.
-          </p>
         </div>
 
         {/* Category Filter Pills */}
