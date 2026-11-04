@@ -10,7 +10,7 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
   const [isOpen, setIsOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [currentText, setCurrentText] = useState("Hi! I am Velocity's Voice Concierge, powered by Sarvam AI. Tap any question or press the mic to talk with me!");
+  const [currentText, setCurrentText] = useState("Hi! I am Velocity's Voice Concierge. Tap any question or press the mic to talk with us!");
   const [selectedVoice, setSelectedVoice] = useState<'arvind' | 'meera'>('arvind');
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
         <div className="mb-3 w-[calc(100vw-3rem)] max-w-sm rounded-[28px] p-2 bg-gradient-to-b from-[#0052FF]/30 via-slate-800/20 to-black/40 border border-[#0052FF]/30 shadow-[0_25px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-200">
           <div className="rounded-[22px] bg-[#070A14]/95 p-4 sm:p-5 border border-white/10 space-y-4">
             
-            {/* Header: Sarvam AI Identity */}
+            {/* Header: Identity */}
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div className="flex items-center gap-2.5">
                 <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#0052FF] to-[#00D2FF] flex items-center justify-center text-white shadow-lg shadow-blue-600/30">
@@ -77,11 +77,11 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h4 className="font-extrabold text-sm text-white tracking-tight">Sarvam Voice Agent</h4>
+                    <h4 className="font-extrabold text-sm text-white tracking-tight">Talk to Us</h4>
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
                   <p className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-wider">
-                    Powered by Sarvam AI • bulbul:v1
+                    Velocity Voice Concierge • Online
                   </p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
             {/* Quick Questions */}
             <div className="space-y-1.5">
               <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
-                Ask Sarvam Voice:
+                Ask Velocity Voice:
               </span>
               <div className="flex flex-col gap-1.5 text-xs">
                 <button
@@ -223,20 +223,20 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
         </div>
       )}
 
-      {/* Floating Sarvam Voice Pill Trigger */}
+      {/* Floating Talk to Us Pill Trigger */}
       <button
         onClick={() => {
           if (!isOpen) {
             setIsOpen(true);
             sarvamVoice.speak(
-              `Hello! I am your Sarvam AI voice assistant for Velocity International Circuit. How can I help you today?`
+              `Hello! Welcome to Velocity International Circuit. How can we help you today?`
             );
           } else {
             sarvamVoice.stop();
             setIsOpen(false);
           }
         }}
-        aria-label="Open Sarvam Voice Assistant"
+        aria-label="Talk to Us"
         className="group flex items-center gap-2.5 bg-[#070A14]/95 hover:bg-[#0D1224] border border-[#0052FF]/40 hover:border-[#00D2FF]/60 px-4 py-2.5 rounded-full shadow-[0_10px_35px_rgba(0,82,255,0.35)] backdrop-blur-xl transition-all duration-300 cursor-pointer"
       >
         {/* Animated Soundwave / Green Status Dot */}
@@ -246,7 +246,7 @@ export const SarvamVoiceAgent: React.FC<SarvamVoiceAgentProps> = ({ onOpenBookin
         </span>
 
         <span className="text-xs font-bold text-white group-hover:text-[#00D2FF] transition-colors flex items-center gap-1.5">
-          <span>Sarvam Voice AI</span>
+          <span>Talk to Us</span>
         </span>
 
         <div className="w-5 h-5 rounded-full bg-[#0052FF]/30 text-[#00D2FF] flex items-center justify-center group-hover:scale-110 transition-transform">
