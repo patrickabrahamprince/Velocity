@@ -1,5 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { X, Check, Video, Zap, Trophy, Shield, CreditCard, ChevronRight, ChevronLeft, Sparkles, User, Phone, Mail } from 'lucide-react';
+import {
+  X,
+  Check,
+  Video,
+  Zap,
+  Trophy,
+  Shield,
+  CreditCard,
+  ChevronRight,
+  ChevronLeft,
+  Sparkles,
+  User,
+  Phone,
+  Mail,
+  Calendar,
+  Clock,
+  Plus,
+} from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFx } from '../utils/soundEngine';
 import { leadStore } from '../utils/leadStore';
@@ -20,20 +37,77 @@ interface Addon {
 }
 
 const availableAddons: Addon[] = [
-  { id: 'standard-no-inclusions', name: 'Standard Session (Without Any Inclusions)', price: 0, icon: Shield, description: 'Standard track session only — no optional upgrades or add-ons' },
   { id: 'gopro', name: 'GoPro 4K Helmet Cam Video', price: 199, icon: Video, description: 'Raw 60FPS high-bitrate onboard video sent to WhatsApp' },
   { id: 'balaclava', name: 'Velocity Pro Balaclava', price: 199, icon: Shield, description: 'Brand new breathable sanitized headwear (yours to keep)' },
   { id: 'telemetry', name: 'FIA Sector Telemetry Sheet', price: 149, icon: Zap, description: 'Corner-by-corner apex speeds & braking delta printout' },
   { id: 'podium', name: 'Podium Champagne & Trophy', price: 499, icon: Trophy, description: 'Podium presentation with champagne celebration' },
 ];
 
+const racePackages = [
+  {
+    name: '10 Laps Normal Session (₹699 + Tax)',
+    price: 699,
+    laps: '10 Laps',
+    desc: 'Valid Every Day • Full 1,166M Track • Standard Queue',
+    badge: '🔥 ALL-DAYS',
+    category: 'kart',
+  },
+  {
+    name: '10 Laps Fastrak VIP Session (₹899 + Tax)',
+    price: 899,
+    laps: '10 Laps',
+    desc: 'Zero Waiting • Priority Fastrak Lane & Direct Grid Access',
+    badge: '⚡ ZERO WAITING',
+    category: 'kart',
+  },
+  {
+    name: '8 Laps Weekday Thrill (₹499 + Tax)',
+    price: 499,
+    laps: '8 Laps',
+    desc: 'Monday to Friday • 8 Full Throttle Laps',
+    badge: 'WEEKDAY',
+    category: 'kart',
+  },
+  {
+    name: '5 Laps Student Special (₹299 + Tax)',
+    price: 299,
+    laps: '5 Laps',
+    desc: 'Mon to Fri (9 AM - 6 PM) • Show Valid Student ID',
+    badge: 'STUDENT',
+    category: 'kart',
+  },
+  {
+    name: 'Birthday & Group GP (₹999 + Tax)',
+    price: 999,
+    laps: '6 Laps + Buffet',
+    desc: '6 Laps + Party Buffet (Minimum 20 People)',
+    badge: 'GROUPS',
+    category: 'kart',
+  },
+  {
+    name: 'Biker 15-Min Track Session (₹500 + Tax)',
+    price: 500,
+    laps: '15 Minutes',
+    desc: '15 Mins • 300cc-1000cc+ Motorcycles on Track',
+    badge: 'BIKER 15M',
+    category: 'bike',
+  },
+  {
+    name: 'Biker Morning Track Pass (₹1,500 + Tax)',
+    price: 1500,
+    laps: '4 Hours',
+    desc: '6 AM - 10 AM Track + Breakfast & Coffee at Apex Cafe',
+    badge: 'BIKER 4H',
+    category: 'bike',
+  },
+];
+
 const timeSlots = [
-  { time: '06:00 AM - 10:00 AM', label: 'Dawn Biker & Early Birds', slotsLeft: 6, tag: 'HIGH GRIP' },
-  { time: '10:30 AM - 12:00 PM', label: 'Morning Warmup', slotsLeft: 8, tag: 'FAST' },
-  { time: '12:30 PM - 03:00 PM', label: 'Afternoon Heatwave', slotsLeft: 12, tag: 'OPEN' },
-  { time: '03:30 PM - 05:30 PM', label: 'Golden Hour Sprint', slotsLeft: 4, tag: 'POPULAR' },
-  { time: '06:00 PM - 08:00 PM', label: 'Sunset Apex Battle', slotsLeft: 2, tag: 'FILLING FAST' },
-  { time: '08:30 PM - 11:00 PM', label: 'Night Floodlight Rush', slotsLeft: 5, tag: 'CYBER NIGHT' },
+  { time: '06:00 AM - 10:00 AM', label: 'Dawn Track & Early Birds', tag: 'HIGH GRIP' },
+  { time: '10:30 AM - 01:30 PM', label: 'Morning Warmup Session', tag: 'FAST' },
+  { time: '02:00 PM - 05:00 PM', label: 'Afternoon Heatwave', tag: 'OPEN' },
+  { time: '05:30 PM - 08:00 PM', label: 'Sunset Apex Battle', tag: 'MOST POPULAR' },
+  { time: '08:30 PM - 11:30 PM', label: 'Night Floodlight Racing', tag: 'NIGHT GP' },
 ];
 
 export const BookingModal: React.FC<BookingModalProps> = ({
@@ -41,22 +115,40 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   onClose,
   initialKart,
 }) => {
+  // Steps: 1 = Choose Pass, 2 = Date & Time, 3 = Driver & Confirm
   const [step, setStep] = useState<number>(1);
-  const [selectedKart, setSelectedKart] = useState<string>(initialKart || '10 Laps Normal Session (₹699 + Tax)');
-  const [selectedDate, setSelectedDate] = useState<string>('2026-10-21');
-  const [selectedSlot, setSelectedSlot] = useState<string>(timeSlots[4].time);
+  const [activeCategory, setActiveCategory] = useState<'all' | 'kart' | 'bike'>('all');
+  const [selectedKart, setSelectedKart] = useState<string>(initialKart || racePackages[0].name);
+
+  // Today's Date formatted YYYY-MM-DD
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    try {
+      return new Date().toISOString().split('T')[0];
+    } catch {
+      return '2026-11-04';
+    }
+  });
+
+  const [selectedSlot, setSelectedSlot] = useState<string>(timeSlots[3].time);
   const [driverCount, setDriverCount] = useState<number>(1);
-  const [selectedAddons, setSelectedAddons] = useState<string[]>(['gopro']);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
+  const [showAddons, setShowAddons] = useState<boolean>(false);
+
+  // Customer contact info
   const [customerName, setCustomerName] = useState<string>(() => localStorage.getItem('vic_prefill_name') || '');
   const [customerPhone, setCustomerPhone] = useState<string>(() => localStorage.getItem('vic_prefill_phone') || '');
   const [customerEmail, setCustomerEmail] = useState<string>('');
+
+  // Voucher
   const [couponCode, setCouponCode] = useState<string>('VELOCITY200');
   const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number; text: string } | null>({
     code: 'VELOCITY200',
     discount: 200,
-    text: '₹200 Early Bird Voucher',
+    text: '₹200 Online Welcome Voucher',
   });
   const [couponError, setCouponError] = useState<string>('');
+
+  // Payment Confirmation
   const [isPaid, setIsPaid] = useState<boolean>(false);
   const [bookingRef, setBookingRef] = useState<string>('');
   const [repeatRacerCode, setRepeatRacerCode] = useState<string>('');
@@ -74,14 +166,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!isOpen) return null;
 
   // Calculate Base Price
-  let baseKartPrice = 699;
-  if (selectedKart.includes('299')) baseKartPrice = 299;
-  else if (selectedKart.includes('499')) baseKartPrice = 499;
-  else if (selectedKart.includes('500')) baseKartPrice = 500;
-  else if (selectedKart.includes('699')) baseKartPrice = 699;
-  else if (selectedKart.includes('899')) baseKartPrice = 899;
-  else if (selectedKart.includes('999')) baseKartPrice = 999;
-  else if (selectedKart.includes('1,500') || selectedKart.includes('1500')) baseKartPrice = 1500;
+  const currentPackage = racePackages.find((p) => p.name === selectedKart) || racePackages[0];
+  const baseKartPrice = currentPackage.price;
 
   const addonsTotal = selectedAddons.reduce((acc, addonId) => {
     const found = availableAddons.find((a) => a.id === addonId);
@@ -101,7 +187,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     if (code === 'FIRST15' || code === 'FAST15') {
       const disc = Math.round(subTotal * 0.15);
       setAppliedCoupon({ code, discount: disc, text: '15% First Booking Discount' });
-    } else if (code.startsWith('RACER') || code.startsWith('REPEAT') || code === 'REPEAT200' || code === 'FAMILY200' || code === 'VELOCITY200') {
+    } else if (
+      code.startsWith('RACER') ||
+      code.startsWith('REPEAT') ||
+      code === 'REPEAT200' ||
+      code === 'FAMILY200' ||
+      code === 'VELOCITY200'
+    ) {
       setAppliedCoupon({ code, discount: Math.min(200, subTotal - 50), text: '₹200 VIP Voucher' });
     } else if (code === 'VIP20' || code === 'VIPRACER') {
       const disc = Math.round(subTotal * 0.20);
@@ -116,30 +208,27 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const toggleAddon = (id: string) => {
     soundFx.playGearShift();
-    if (id === 'standard-no-inclusions') {
-      if (selectedAddons.includes('standard-no-inclusions')) {
-        setSelectedAddons([]);
-      } else {
-        setSelectedAddons(['standard-no-inclusions']);
-      }
+    if (selectedAddons.includes(id)) {
+      setSelectedAddons(selectedAddons.filter((a) => a !== id));
     } else {
-      const withoutStandard = selectedAddons.filter((a) => a !== 'standard-no-inclusions');
-      if (withoutStandard.includes(id)) {
-        setSelectedAddons(withoutStandard.filter((a) => a !== id));
-      } else {
-        setSelectedAddons([...withoutStandard, id]);
-      }
+      setSelectedAddons([...selectedAddons, id]);
     }
   };
 
   const handleCompletePayment = () => {
-    if (!customerName || !customerPhone) {
+    if (!customerName.trim() || !customerPhone.trim()) {
       alert('Please fill in your name and WhatsApp number to receive your ticket & lap pass.');
       return;
     }
 
+    const cleanPhone = customerPhone.replace(/\D/g, '').slice(-10);
+    if (cleanPhone.length < 10) {
+      alert('Please enter a valid 10-digit mobile number');
+      return;
+    }
+
     if (!agreedToTerms) {
-      alert('Please agree to the SAWOL BANGALORE LLP / Velocity International Circuit Terms & Indemnity Declaration to proceed.');
+      alert('Please agree to the Safety Rules & Indemnity Declaration to proceed.');
       return;
     }
 
@@ -151,7 +240,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     setIsPaid(true);
 
     // Save Lead to leadStore
-    const cleanPhone = customerPhone.replace(/\D/g, '').slice(-10);
     leadStore.saveLead(customerName, cleanPhone, selectedKart, 'Booking Checkout');
     localStorage.setItem('vic_prefill_name', customerName);
     localStorage.setItem('vic_prefill_phone', cleanPhone);
@@ -161,7 +249,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     existingBookings.push({
       bookingId: randomRef,
       name: customerName,
-      phone: customerPhone,
+      phone: cleanPhone,
       email: customerEmail,
       package: selectedKart,
       driverCount,
@@ -183,96 +271,200 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     });
   };
 
+  const filteredPackages = racePackages.filter((p) => {
+    if (activeCategory === 'all') return true;
+    return p.category === activeCategory;
+  });
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-2xl animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#080C1A]/95 border border-white/[0.14] rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.9)] overflow-hidden text-white flex flex-col max-h-[92vh] backdrop-blur-2xl">
-        {/* Modal Header */}
-        <div className="p-5 sm:p-6 bg-[#0B0F22]/90 border-b border-white/[0.08] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0071E3] to-[#1d4ed8] flex items-center justify-center font-bold text-sm text-white shadow-lg shadow-blue-600/30 font-apple-display">
-              VIC
-            </div>
-            <div>
-              <h3 className="font-bold text-base sm:text-lg text-white tracking-[-0.02em] font-apple-display">
-                Reserve Track Session
-              </h3>
-              <div className="text-[11px] font-mono text-slate-400 flex items-center gap-2">
-                <span className="text-[#38BDF8] font-semibold">Step {step} of 4</span>
-                <span>•</span>
-                <span>Karnataka&apos;s Biggest Circuit (1,166m)</span>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-md animate-in fade-in duration-200">
+      {/* PURE CLEAN WHITE MODAL CONTAINER */}
+      <div className="relative w-full max-w-2xl bg-white border border-slate-200/90 rounded-[28px] shadow-[0_25px_70px_rgba(15,23,42,0.25)] overflow-hidden text-slate-900 flex flex-col max-h-[92vh]">
+        
+        {/* Header: Clean White with Simple Progress Bar */}
+        <div className="p-5 sm:p-6 bg-white border-b border-slate-100 flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#0052FF] flex items-center justify-center font-extrabold text-sm text-white shadow-md shadow-blue-500/25">
+                VIC
+              </div>
+              <div>
+                <h3 className="font-extrabold text-lg sm:text-xl text-slate-950 tracking-tight">
+                  Reserve Track Session
+                </h3>
+                <div className="text-xs font-mono text-slate-500 flex items-center gap-1.5 mt-0.5">
+                  <span className="text-[#0052FF] font-bold">Step {step} of 3</span>
+                  <span>•</span>
+                  <span>Karnataka&apos;s Biggest Circuit (1,166m)</span>
+                </div>
               </div>
             </div>
+
+            <button
+              onClick={onClose}
+              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          {/* Clean 3-Step Visual Progress Bar */}
+          {!isPaid && (
+            <div className="grid grid-cols-3 gap-2 pt-1">
+              <div className="space-y-1">
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 1 ? 'bg-[#0052FF]' : 'bg-slate-200'}`} />
+                <span className={`text-[10px] font-mono uppercase tracking-wider block font-semibold ${step === 1 ? 'text-[#0052FF]' : 'text-slate-400'}`}>
+                  1. Choose Pass
+                </span>
+              </div>
+              <div className="space-y-1">
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 2 ? 'bg-[#0052FF]' : 'bg-slate-200'}`} />
+                <span className={`text-[10px] font-mono uppercase tracking-wider block font-semibold ${step === 2 ? 'text-[#0052FF]' : 'text-slate-400'}`}>
+                  2. Date & Time
+                </span>
+              </div>
+              <div className="space-y-1">
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${step >= 3 ? 'bg-[#0052FF]' : 'bg-slate-200'}`} />
+                <span className={`text-[10px] font-mono uppercase tracking-wider block font-semibold ${step === 3 ? 'text-[#0052FF]' : 'text-slate-400'}`}>
+                  3. Checkout
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Modal Step Content (Scrollable) */}
-        <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6">
-          {/* STEP 1: Select Machine / Package */}
+        {/* Modal Scrollable Body */}
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6 bg-white">
+          
+          {/* ================================================================ */}
+          {/* STEP 1: CHOOSE RACE PASS & DRIVER COUNT                          */}
+          {/* ================================================================ */}
           {step === 1 && !isPaid && (
-            <div className="space-y-4">
-              <div className="text-xs font-mono text-slate-400 uppercase font-semibold tracking-wider flex items-center justify-between">
-                <span>Choose Race Pass or Food Combo</span>
-                <span className="text-emerald-400 text-[11px]">Instant ₹200 Applied</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { name: '10 Laps Normal Session (₹699 + Tax)', desc: 'Valid Every Day • Full 1,166M Track • Standard Queue', badge: '🔥 NORMAL' },
-                  { name: '10 Laps Fastrak VIP Session (₹899 + Tax)', desc: 'Zero Waiting • Priority Fastrak Lane & Direct Grid Access', badge: '⚡ ZERO WAITING' },
-                  { name: '8 Laps Weekday Thrill (₹499 + Tax)', desc: 'Monday to Friday • 8 Fast Laps', badge: 'WEEKDAY' },
-                  { name: '5 Laps Student Special (₹299 + Tax)', desc: 'Mon to Fri (9 AM - 6 PM) • Show Student ID', badge: 'STUDENTS' },
-                  { name: 'Birthday & Group GP (₹999 + Tax)', desc: '6 Laps + Party Buffet (Min 20 People)', badge: 'GROUPS' },
-                  { name: 'Biker 15-Min Track Session (₹500 + Tax)', desc: '15 Mins • Half or Full Track (Subject to Track Availability)', badge: 'BIKERS 15M' },
-                  { name: 'Biker Morning Track Pass (₹1,500 + Tax)', desc: '6 AM - 10 AM Track + Warm Breakfast & Coffee', badge: 'BIKERS 4H' },
-                ].map((item) => (
+            <div className="space-y-5">
+              {/* Category Filter Pills & ₹200 Badge */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
+                <div className="flex gap-1.5 p-1 bg-slate-100 rounded-xl text-xs font-medium">
                   <button
-                    key={item.name}
-                    onClick={() => {
-                      soundFx.playGearShift();
-                      setSelectedKart(item.name);
-                    }}
-                    className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
-                      selectedKart === item.name
-                        ? 'bg-[#0052FF]/15 border-[#0052FF] shadow-md shadow-blue-600/20'
-                        : 'bg-white/[0.03] border-white/10 hover:border-white/20'
+                    onClick={() => setActiveCategory('all')}
+                    className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                      activeCategory === 'all'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-sm text-white">{item.name}</span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-semibold">
-                        {item.badge}
-                      </span>
-                    </div>
-                    <div className="text-xs text-slate-400 font-sans">{item.desc}</div>
+                    All Passes ({racePackages.length})
                   </button>
-                ))}
-              </div>
-
-              {/* Drivers Counter */}
-              <div className="bg-white/[0.04] p-4 rounded-2xl border border-white/10 flex items-center justify-between mt-4">
-                <div>
-                  <div className="font-semibold text-sm text-white">Number of Karts / Drivers</div>
-                  <div className="text-xs text-slate-400">Race together in the same group heat</div>
+                  <button
+                    onClick={() => setActiveCategory('kart')}
+                    className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                      activeCategory === 'kart'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    🏎️ Karting
+                  </button>
+                  <button
+                    onClick={() => setActiveCategory('bike')}
+                    className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                      activeCategory === 'bike'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    🏍️ Superbikes
+                  </button>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Instant ₹200 Applied</span>
+                </div>
+              </div>
+
+              {/* Package Cards List */}
+              <div className="space-y-2.5">
+                {filteredPackages.map((item) => {
+                  const isSelected = selectedKart === item.name;
+
+                  return (
+                    <div
+                      key={item.name}
+                      onClick={() => {
+                        soundFx.playGearShift();
+                        setSelectedKart(item.name);
+                      }}
+                      className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-center justify-between gap-3 ${
+                        isSelected
+                          ? 'bg-blue-50/60 border-[#0052FF] ring-2 ring-[#0052FF]/20 shadow-sm'
+                          : 'bg-white hover:bg-slate-50 border-slate-200'
+                      }`}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                            isSelected
+                              ? 'bg-[#0052FF] text-white'
+                              : 'bg-slate-100 text-slate-600'
+                          }`}>
+                            {item.badge}
+                          </span>
+                          <span className="font-bold text-sm text-slate-950 truncate">
+                            {item.name.replace(/ \(₹\d+.*?\)/, '')}
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-500 font-sans truncate">
+                          {item.desc}
+                        </div>
+                      </div>
+
+                      <div className="text-right shrink-0 flex items-center gap-3">
+                        <div>
+                          <div className="font-mono font-extrabold text-base text-slate-950">
+                            ₹{item.price}
+                          </div>
+                          <div className="text-[10px] font-mono text-slate-400 uppercase">
+                            +18% Tax
+                          </div>
+                        </div>
+
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
+                          isSelected
+                            ? 'bg-[#0052FF] border-[#0052FF] text-white'
+                            : 'border-slate-300 text-transparent'
+                        }`}>
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Number of Drivers Counter */}
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center justify-between">
+                <div>
+                  <div className="font-bold text-sm text-slate-950">
+                    Number of Drivers / Karts
+                  </div>
+                  <div className="text-xs text-slate-500 font-sans mt-0.5">
+                    Race together on the same starting grid
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
                   <button
                     onClick={() => {
                       soundFx.playGearShift();
                       setDriverCount(Math.max(1, driverCount - 1));
                     }}
-                    className="w-8 h-8 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 cursor-pointer flex items-center justify-center transition-colors"
+                    className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold flex items-center justify-center transition-colors cursor-pointer text-base"
+                    aria-label="Decrease drivers"
                   >
                     -
                   </button>
-                  <span className="font-mono font-bold text-lg text-white w-6 text-center">
+                  <span className="font-mono font-bold text-base text-slate-900 w-8 text-center">
                     {driverCount}
                   </span>
                   <button
@@ -280,329 +472,347 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       soundFx.playGearShift();
                       setDriverCount(Math.min(10, driverCount + 1));
                     }}
-                    className="w-8 h-8 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 cursor-pointer flex items-center justify-center transition-colors"
+                    className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold flex items-center justify-center transition-colors cursor-pointer text-base"
+                    aria-label="Increase drivers"
                   >
                     +
                   </button>
                 </div>
               </div>
+
+              {/* Optional Upgrades (Clean Expandable Accordion) */}
+              <div className="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <button
+                  type="button"
+                  onClick={() => setShowAddons(!showAddons)}
+                  className="w-full p-4 text-left flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-blue-600" />
+                    <span className="text-xs font-bold text-slate-900">
+                      Optional Upgrades (GoPro 4K, Pro Balaclava, Telemetry)
+                    </span>
+                    {selectedAddons.length > 0 && (
+                      <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-mono text-[10px] font-bold">
+                        {selectedAddons.length} added (+₹{addonsTotal})
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs font-mono font-bold text-blue-600">
+                    {showAddons ? 'Hide ▲' : 'Customize +'}
+                  </span>
+                </button>
+
+                {showAddons && (
+                  <div className="p-4 pt-0 border-t border-slate-100 space-y-2 mt-2">
+                    {availableAddons.map((addon) => {
+                      const isChecked = selectedAddons.includes(addon.id);
+                      const Icon = addon.icon;
+
+                      return (
+                        <div
+                          key={addon.id}
+                          onClick={() => toggleAddon(addon.id)}
+                          className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
+                            isChecked
+                              ? 'bg-blue-50/70 border-blue-500'
+                              : 'bg-white hover:bg-slate-50 border-slate-200'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                              isChecked ? 'bg-[#0052FF] text-white' : 'bg-slate-100 text-slate-600'
+                            }`}>
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-xs text-slate-900">{addon.name}</div>
+                              <div className="text-[11px] text-slate-500">{addon.description}</div>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2 font-mono text-xs font-bold text-slate-900">
+                            <span>+₹{addon.price}</span>
+                            <div className={`w-4 h-4 rounded border flex items-center justify-center ${
+                              isChecked ? 'bg-[#0052FF] border-[#0052FF] text-white' : 'border-slate-300'
+                            }`}>
+                              {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
-          {/* STEP 2: Date & Time Slot */}
+          {/* ================================================================ */}
+          {/* STEP 2: DATE & TIME SLOT SELECTION                               */}
+          {/* ================================================================ */}
           {step === 2 && !isPaid && (
-            <div className="space-y-4">
-              <div>
-                <label className="text-xs font-mono text-slate-400 font-medium uppercase tracking-wider block mb-2">
-                  Select Date
+            <div className="space-y-5">
+              {/* Date Picker */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono text-slate-600 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Choose Race Date</span>
                 </label>
                 <input
                   type="date"
                   value={selectedDate}
+                  min={new Date().toISOString().split('T')[0]}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/10 rounded-2xl p-3.5 text-white font-mono text-sm focus:outline-none focus:border-[#0052FF] transition-colors"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-900 font-mono text-sm focus:outline-none focus:border-[#0052FF] focus:bg-white transition-colors cursor-pointer"
                 />
               </div>
 
-              <div>
-                <label className="text-xs font-mono text-slate-400 font-medium uppercase tracking-wider block mb-2">
-                  Choose Time Slot
+              {/* Time Slots Grid */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono text-slate-600 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Select Arrival Time Slot</span>
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {timeSlots.map((slot) => (
-                    <button
-                      key={slot.time}
-                      onClick={() => {
-                        soundFx.playGearShift();
-                        setSelectedSlot(slot.time);
-                      }}
-                      className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer ${
-                        selectedSlot === slot.time
-                          ? 'bg-[#0052FF]/15 border-[#0052FF] text-white shadow-md'
-                          : 'bg-white/[0.03] border-white/10 hover:border-white/20'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-bold text-white">{slot.time}</span>
-                        <span className="text-[9px] font-mono text-slate-300 bg-white/10 px-2 py-0.5 rounded-full font-medium">
-                          {slot.slotsLeft} slots left
-                        </span>
-                      </div>
-                      <div className="text-xs text-slate-400 mt-1">{slot.label}</div>
-                    </button>
-                  ))}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {timeSlots.map((slot) => {
+                    const isSelected = selectedSlot === slot.time;
+
+                    return (
+                      <button
+                        key={slot.time}
+                        onClick={() => {
+                          soundFx.playGearShift();
+                          setSelectedSlot(slot.time);
+                        }}
+                        className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                          isSelected
+                            ? 'bg-blue-50/70 border-[#0052FF] ring-2 ring-[#0052FF]/20 shadow-sm'
+                            : 'bg-white hover:bg-slate-50 border-slate-200'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-mono text-xs font-extrabold text-slate-950">
+                            {slot.time}
+                          </span>
+                          <span className={`text-[9px] font-mono px-2 py-0.5 rounded-full font-bold uppercase ${
+                            isSelected
+                              ? 'bg-[#0052FF] text-white'
+                              : 'bg-slate-100 text-slate-600'
+                          }`}>
+                            {slot.tag}
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-500 font-sans">
+                          {slot.label}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
+
+              {/* Track Hours Notice */}
+              <div className="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center gap-2.5 text-xs text-blue-800">
+                <Sparkles className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>Track is open daily 6:00 AM – 11:30 PM with stadium floodlights for night sessions.</span>
+              </div>
             </div>
           )}
 
-          {/* STEP 3: Add-ons */}
+          {/* ================================================================ */}
+          {/* STEP 3: DRIVER DETAILS & CHECKOUT                                */}
+          {/* ================================================================ */}
           {step === 3 && !isPaid && (
             <div className="space-y-4">
-              <div className="text-xs font-mono text-slate-400 font-semibold uppercase tracking-wider">
-                Optional Upgrades
+              <div className="text-xs font-mono text-slate-600 font-bold uppercase tracking-wider">
+                Driver Contact (For WhatsApp Ticket & Lap Times)
               </div>
 
-              <div className="space-y-3">
-                {availableAddons.map((addon) => {
-                  const isChecked = selectedAddons.includes(addon.id);
-                  const Icon = addon.icon;
-                  return (
-                    <div
-                      key={addon.id}
-                      onClick={() => toggleAddon(addon.id)}
-                      className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                        isChecked
-                          ? 'bg-[#0052FF]/10 border-[#0052FF]'
-                          : 'bg-white/[0.03] border-white/10 hover:border-white/20'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                          isChecked ? 'bg-[#0052FF] text-white' : 'bg-white/10 text-slate-400'
-                        }`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="font-bold text-sm text-white">{addon.name}</div>
-                          <div className="text-xs text-slate-400 font-sans">{addon.description}</div>
-                        </div>
-                      </div>
-
-                      <div className="text-right">
-                        <div className="font-mono font-bold text-base text-white">
-                          {addon.price === 0 ? '₹0' : `+₹${addon.price}`}
-                        </div>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ml-auto mt-1 ${
-                          isChecked ? 'bg-[#0052FF] border-[#0052FF]' : 'border-white/20'
-                        }`}>
-                          {isChecked && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* STEP 4: Driver Information & Checkout */}
-          {step === 4 && !isPaid && (
-            <div className="space-y-4">
-              <div className="text-xs font-mono text-slate-400 font-semibold uppercase tracking-wider">
-                Driver Contact (For WhatsApp Ticket & Lap Times):
-              </div>
-
+              {/* Contact Inputs */}
               <div className="space-y-3">
                 <div className="relative">
-                  <User className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+                  <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                   <input
                     type="text"
                     required
                     placeholder="Full Name *"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full bg-white/[0.05] border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-[#0052FF] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-[#0052FF] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div className="relative">
-                  <Phone className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-500 border-r border-slate-200 pr-2">
+                    +91
+                  </div>
                   <input
                     type="tel"
                     required
-                    placeholder="WhatsApp Mobile Number (+91) *"
+                    placeholder="WhatsApp Mobile Number *"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full bg-white/[0.05] border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#0052FF] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-14 pr-4 py-3 text-slate-900 font-mono text-sm focus:outline-none focus:border-[#0052FF] focus:bg-white transition-colors"
                   />
                 </div>
 
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+                  <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                   <input
                     type="email"
                     placeholder="Email Address (Optional)"
                     value={customerEmail}
                     onChange={(e) => setCustomerEmail(e.target.value)}
-                    className="w-full bg-white/[0.05] border border-white/10 rounded-2xl pl-11 pr-4 py-3 text-white text-sm focus:outline-none focus:border-[#0052FF] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-[#0052FF] focus:bg-white transition-colors"
                   />
                 </div>
               </div>
 
-              {/* Coupon Code Input */}
-              <div className="bg-white/[0.03] p-4 rounded-2xl border border-white/10 space-y-2">
-                <div className="text-[11px] font-mono text-slate-400 uppercase flex items-center justify-between">
+              {/* Coupon Code Box */}
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                <div className="text-[11px] font-mono text-slate-500 uppercase font-semibold flex items-center justify-between">
                   <span>Discount Coupon</span>
-                  <span className="text-[#38BDF8] font-semibold">VELOCITY200 preapplied</span>
+                  <span className="text-emerald-700 font-bold">VELOCITY200 Applied</span>
                 </div>
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Enter coupon code (e.g. VELOCITY200)"
+                    placeholder="Enter coupon code"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    className="flex-1 bg-white/[0.05] border border-white/10 rounded-xl px-3.5 py-2 text-xs font-mono uppercase text-white focus:outline-none focus:border-[#0052FF]"
+                    className="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-mono uppercase text-slate-900 focus:outline-none focus:border-[#0052FF]"
                   />
                   <button
                     type="button"
                     onClick={handleApplyCoupon}
-                    className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-mono font-bold rounded-xl cursor-pointer transition-colors"
+                    className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-mono font-bold rounded-xl cursor-pointer transition-colors"
                   >
                     Apply
                   </button>
                 </div>
                 {appliedCoupon && (
-                  <div className="text-xs text-emerald-400 font-medium flex items-center justify-between pt-1">
-                    <span>✓ Coupon {appliedCoupon.code} applied ({appliedCoupon.text})</span>
-                    <span>-₹{appliedCoupon.discount}</span>
+                  <div className="text-xs text-emerald-700 font-medium flex items-center justify-between pt-0.5">
+                    <span>✓ {appliedCoupon.code} applied ({appliedCoupon.text})</span>
+                    <span className="font-bold font-mono">-₹{appliedCoupon.discount}</span>
                   </div>
                 )}
                 {couponError && (
-                  <div className="text-xs text-rose-400 font-medium pt-1">
+                  <div className="text-xs text-rose-600 font-medium pt-0.5">
                     {couponError}
                   </div>
                 )}
               </div>
 
-              {/* Order Summary Box */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2 text-xs font-mono">
-                <div className="flex justify-between text-slate-300">
-                  <span>{selectedKart} × {driverCount}</span>
-                  <span className="font-semibold text-white">₹{baseKartPrice * driverCount}</span>
+              {/* Transparent Order Summary */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-mono">
+                <div className="flex justify-between text-slate-600">
+                  <span>{currentPackage.name.replace(/ \(₹\d+.*?\)/, '')} × {driverCount}</span>
+                  <span className="font-bold text-slate-900">₹{baseKartPrice * driverCount}</span>
                 </div>
                 {selectedAddons.map((aid) => {
                   const add = availableAddons.find((a) => a.id === aid);
                   return (
-                    <div key={aid} className="flex justify-between text-slate-400">
+                    <div key={aid} className="flex justify-between text-slate-500">
                       <span>+ {add?.name}</span>
                       <span>₹{add?.price}</span>
                     </div>
                   );
                 })}
                 {appliedCoupon && (
-                  <div className="flex justify-between text-emerald-400 font-semibold">
-                    <span>Discount ({appliedCoupon.code})</span>
+                  <div className="flex justify-between text-emerald-700 font-bold">
+                    <span>Online Voucher ({appliedCoupon.code})</span>
                     <span>-₹{appliedCoupon.discount}</span>
                   </div>
                 )}
-                <div className="border-t border-white/10 pt-2 flex justify-between text-sm font-bold text-white">
-                  <span>Total Amount</span>
-                  <span className="font-mono text-xl text-[#38BDF8]">₹{grandTotal}</span>
+                <div className="border-t border-slate-200 pt-2 flex items-baseline justify-between">
+                  <span className="text-sm font-bold text-slate-950 uppercase">Total Amount</span>
+                  <span className="font-mono text-2xl font-extrabold text-[#0052FF]">
+                    ₹{grandTotal}
+                  </span>
                 </div>
               </div>
 
-              {/* Terms & Conditions and Indemnity Form Agreement */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+              {/* Simple Terms & Indemnity Agreement */}
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                 <label className="flex items-start gap-2.5 cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={agreedToTerms}
                     onChange={(e) => setAgreedToTerms(e.target.checked)}
-                    className="mt-1 w-4 h-4 rounded border-white/30 text-[#0052FF] focus:ring-0 bg-white/10 cursor-pointer shrink-0"
+                    className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#0052FF] focus:ring-0 cursor-pointer shrink-0"
                   />
-                  <span className="text-xs text-slate-300 leading-snug">
-                    I agree to the <strong className="text-white">Velocity International Circuit / SAWOL BANGALORE LLP</strong> Terms & Conditions and <strong className="text-[#38BDF8]">Indemnity Waiver Declaration</strong>.
+                  <span className="text-xs text-slate-600 leading-snug">
+                    I agree to the <strong className="text-slate-900">Velocity International Circuit</strong> Safety Rules & Indemnity Declaration.
                   </span>
                 </label>
 
                 <button
                   type="button"
                   onClick={() => setShowFullTerms(!showFullTerms)}
-                  className="text-[11px] font-mono text-[#38BDF8] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="text-[11px] font-mono text-[#0052FF] hover:underline block cursor-pointer"
                 >
-                  <span>{showFullTerms ? 'Hide Indemnity Terms ▲' : 'View Full Indemnity & Circuit Waiver Document ▼'}</span>
+                  {showFullTerms ? 'Hide Waiver Terms ▲' : 'Read Full Safety & Waiver Declaration ▼'}
                 </button>
 
                 {showFullTerms && (
-                  <div className="p-3.5 rounded-xl bg-black/50 border border-white/10 text-[11px] text-slate-300 space-y-2 font-sans max-h-52 overflow-y-auto leading-relaxed">
-                    <div className="font-bold text-white uppercase text-[10px] font-mono border-b border-white/10 pb-1">
-                      SAWOL BANGALORE LLP • VELOCITY INTERNATIONAL CIRCUIT INDEMNITY FORM
-                    </div>
-                    <div className="space-y-1.5">
-                      <p className="font-semibold text-slate-200">The undersigned participant declares:</p>
-                      <p>• Aware that engaging in activities at Velocity International Circuit is under his/her own responsibility & Liability subject to applicable laws & regulations.</p>
-                      <p>• Medically fit to participate in activities at Velocity International Circuit.</p>
-                      <p>• Over 18 years of age (if under 18, the presence of a legal guardian is mandatory) and holds a full valid driving license (Aadhar Card optional).</p>
-                      <p className="font-semibold text-slate-200 pt-1">The undersigned herewith:</p>
-                      <p>• Waives, releases & always indemnifies in full SAWOL BANGALORE LLP & Velocity International Circuit, associated companies, employees, directors, partners, and agents from any claim for damages, injury or negligence.</p>
-                      <p>• Understands that the activity is dangerous & will ensure full conformance with track marshals, safety flags, and circuit regulations.</p>
-                      <p>• Acknowledges & Agrees that he/she shall be exclusively liable for all losses or damages to persons or property around him/her directly or indirectly from actions at the circuit or premises.</p>
-                      <p>• The law applicable to the waiver shall be the Judicature of India subject to the exclusive jurisdiction of the system of courts in Bengaluru, Karnataka.</p>
-                      <p className="text-[10px] font-mono text-slate-400 pt-1">Registered Entity: SAWOL BANGALORE LLP, #14 Flat No. 003, Island Exotic, Benson Town, Bengaluru, Karnataka 560 046.</p>
-                    </div>
+                  <div className="p-3 rounded-lg bg-white border border-slate-200 text-[11px] text-slate-600 space-y-1.5 font-sans max-h-36 overflow-y-auto leading-relaxed">
+                    <p className="font-bold text-slate-800">SAWOL BANGALORE LLP • VELOCITY INTERNATIONAL CIRCUIT INDEMNITY:</p>
+                    <p>• Participant acknowledges go-karting involves inherent motorsport risks and assumes responsibility.</p>
+                    <p>• Participant agrees to follow marshal instructions, safety flag rules, and circuit directives at all times.</p>
+                    <p>• Helmets, balaclavas, and closed shoes are mandatory on track.</p>
                   </div>
                 )}
               </div>
 
-              {/* Cancellation & Weather Refund Policy (Below Payment) */}
-              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 space-y-2">
-                <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>⏱️ Cancellation & Refund Policy</span>
-                </div>
-                <div className="space-y-1.5 text-xs text-slate-300 leading-relaxed font-sans">
-                  <div className="flex items-start gap-2">
-                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                    <span><strong>Before 8 Hours:</strong> 100% Full Refund if informed at least 8 hours prior to your scheduled session.</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-rose-400 font-bold shrink-0">✕</span>
-                    <span><strong>Within 1 Hour:</strong> No Refund if informed less than 1 hour prior to your booking.</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-sky-400 font-bold shrink-0">🌧️</span>
-                    <span><strong>Rain or Track Maintenance:</strong> In case of rain, wet track or unavoidable track maintenance, bookings cannot be refunded, but your session can be freely redeemed and rescheduled on your next ride.</span>
-                  </div>
-                </div>
+              {/* Simple Cancellation Policy Note */}
+              <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-amber-800 space-y-1">
+                <span className="font-bold font-mono uppercase">⏱️ Cancellation Policy:</span>
+                <div>100% full refund if informed 8+ hours prior. In case of rain, pass is freely rescheduled to any future session.</div>
               </div>
             </div>
           )}
 
-          {/* CONFIRMED SCREEN */}
+          {/* ================================================================ */}
+          {/* CONFIRMED SCREEN                                                 */}
+          {/* ================================================================ */}
           {isPaid && (
             <div className="text-center py-6 space-y-5">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
-                <Check className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+                <Check className="w-7 h-7 stroke-[3]" />
               </div>
 
               <div className="space-y-1">
-                <h3 className="font-bold text-2xl text-white">
+                <h3 className="font-extrabold text-2xl text-slate-950">
                   Race Booking Confirmed 🏁
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500 font-sans">
                   Your track session slot and RFID transponder are now reserved.
                 </p>
               </div>
 
-              {/* Booking Summary Card */}
-              <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-slate-300">
-                <div className="text-[#38BDF8] font-bold text-sm">BOOKING ID: #{bookingRef}</div>
+              {/* Receipt Summary Card */}
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left space-y-2 text-xs font-mono text-slate-700">
+                <div className="text-[#0052FF] font-extrabold text-sm">BOOKING ID: #{bookingRef}</div>
                 <div>DRIVER: {customerName || 'Lead Racer'}</div>
                 <div>WHATSAPP: {customerPhone}</div>
                 <div>PACKAGE: {selectedKart.replace('270cc', '200cc')} (Qty: {driverCount})</div>
                 <div>DATE & TIME: {selectedDate} ({selectedSlot})</div>
                 <div>CIRCUIT: Velocity International Circuit, Hoskote</div>
-                <div className="text-emerald-400 font-semibold pt-2 border-t border-white/10">
+                <div className="text-emerald-700 font-bold pt-2 border-t border-slate-200">
                   ✓ Paid: ₹{grandTotal} • WhatsApp Ticket & QR Pass Dispatched
-                </div>
-
-                {/* Cancellation & Reschedule terms note */}
-                <div className="pt-2 border-t border-white/10 text-[11px] text-slate-400 font-sans space-y-1">
-                  <div className="text-amber-400 font-bold font-mono text-[10px] uppercase">Cancellation & Weather Policy:</div>
-                  <div>• Before 8 hours: Full Refund</div>
-                  <div>• Within 1 hour: No Refund</div>
-                  <div>• Rain or Track Maintenance: Can be redeemed & rescheduled on your next ride</div>
                 </div>
               </div>
 
-              {/* Repeat Customer Retention Box */}
-              <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 max-w-md mx-auto text-left space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-400">
+              {/* Repeat Racer Reward Banner */}
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 max-w-md mx-auto text-left space-y-1">
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-800">
                   <span>🎁 VIP REPEAT RACER REWARD</span>
                   <span>+150 PTS</span>
                 </div>
-                <div className="text-xs text-slate-300">
-                  Your personal VIP repeat code <strong className="font-mono text-white bg-black/40 px-2 py-0.5 rounded border border-white/10">{repeatRacerCode}</strong> gives you <strong>₹200 OFF</strong> on your next visit or when shared with friends!
+                <div className="text-xs text-slate-600">
+                  Your personal VIP repeat code <strong className="font-mono text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">{repeatRacerCode}</strong> gives you <strong>₹200 OFF</strong> on your next visit or when shared with friends!
                 </div>
               </div>
 
@@ -612,14 +822,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   href={`https://wa.me/919071718620?text=${encodeURIComponent(`Hi Velocity Circuit! I booked online. Ref: ${bookingRef}, Name: ${customerName}, Phone: ${customerPhone}, Slot: ${selectedDate} ${selectedSlot}, Kart: ${selectedKart}. Please confirm my digital pass & timing transponder!`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2"
+                  className="px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2"
                 >
                   <span>Open WhatsApp Pass ↗</span>
                 </a>
 
                 <button
                   onClick={onClose}
-                  className="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs uppercase tracking-wider cursor-pointer transition-colors"
                 >
                   Done
                 </button>
@@ -628,33 +838,34 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           )}
         </div>
 
-        {/* Modal Footer / Next Buttons */}
+        {/* Modal Footer / Navigation Buttons */}
         {!isPaid && (
-          <div className="p-5 sm:p-6 bg-[#0B0F22]/90 border-t border-white/[0.08] flex items-center justify-between">
+          <div className="p-5 sm:p-6 bg-white border-t border-slate-100 flex items-center justify-between">
             {step > 1 ? (
               <button
                 onClick={() => {
                   soundFx.playGearShift();
                   setStep(step - 1);
                 }}
-                className="px-4 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono uppercase text-slate-300 flex items-center gap-1 cursor-pointer transition-colors font-apple-display"
+                className="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-mono uppercase text-slate-700 flex items-center gap-1 cursor-pointer transition-colors font-bold"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
               </button>
             ) : (
-              <div className="text-xs font-mono text-slate-400">
-                Total: <span className="text-[#38BDF8] font-bold text-xl ml-1 font-apple-mono tracking-tight">₹{grandTotal}</span>
+              <div className="text-xs font-mono text-slate-500">
+                Total: <span className="text-[#0052FF] font-extrabold text-xl ml-1 font-mono">₹{grandTotal}</span>
+                <span className="text-[10px] text-emerald-600 font-bold block sm:inline sm:ml-2">(-₹200 Applied)</span>
               </div>
             )}
 
-            {step < 4 ? (
+            {step < 3 ? (
               <button
                 onClick={() => {
                   soundFx.playGearShift();
                   setStep(step + 1);
                 }}
-                className="px-6 py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] font-semibold text-xs tracking-wide text-white shadow-lg shadow-blue-600/25 flex items-center gap-1.5 cursor-pointer transition-all font-apple-display"
+                className="px-6 py-3 rounded-full bg-[#0052FF] hover:bg-[#0040D0] font-bold text-xs uppercase tracking-wider text-white shadow-lg shadow-blue-600/25 flex items-center gap-1.5 cursor-pointer transition-all active:scale-98"
               >
                 <span>Continue</span>
                 <ChevronRight className="w-4 h-4" />
@@ -662,7 +873,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             ) : (
               <button
                 onClick={handleCompletePayment}
-                className="px-6 sm:px-8 py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] font-semibold text-xs sm:text-sm tracking-wide text-white shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer transition-all font-apple-display"
+                className="px-6 sm:px-8 py-3 rounded-full bg-[#0052FF] hover:bg-[#0040D0] font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer transition-all active:scale-98"
               >
                 <CreditCard className="w-4 h-4 text-white" />
                 <span>Confirm & Pay ₹{grandTotal}</span>
