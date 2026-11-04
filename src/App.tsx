@@ -138,12 +138,13 @@ function AppContent() {
         {/* Section 6: Family & Friends Destination */}
         <FamilyDestinationSection onOpenBooking={(pkg) => handleOpenBooking(pkg)} />
 
-        {/* Section 7: Driver OS Telemetry & Inline Phone + Name Login */}
+        {/* Section 7: Driver OS Telemetry & Cockpit HUD */}
         <DriverCockpitSection
           currentDriver={currentDriver}
           onDriverLogin={(d) => setCurrentDriver(d)}
           onOpenDriverDashboard={() => setIsDriverDashboardOpen(true)}
           onOpenBooking={() => handleOpenBooking()}
+          onOpenAuth={() => setIsAuthOpen(true)}
         />
 
         {/* Section 8: Repeat Racer VIP Club (Name & WhatsApp Lead Capture for ₹200 Voucher) */}
