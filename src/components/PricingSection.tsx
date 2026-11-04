@@ -102,7 +102,7 @@ const allKartOffers: KartOffer[] = [
     taxNote: '+ 18% TAX',
     laps: '5 Laps • Student Special',
     badge: 'STUDENT PASS',
-    badgeStyle: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25 font-bold',
+    badgeStyle: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25 font-bold',
     popular: false,
     timing: '9 AM – 6 PM',
     features: [
@@ -297,22 +297,26 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           </div>
         </div>
 
-        {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW */}
+        {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW WITH DELIGHTFUL HOVER EFFECTS */}
         {activeTab === 'kart-offers' && (
           <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-3">
               {allKartOffers.map((offer) => (
                 <div
                   key={offer.id}
-                  className={`p-6 sm:p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative ${
+                  onMouseEnter={() => soundFx.playGearShift()}
+                  className={`group cursor-pointer p-6 sm:p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative overflow-hidden ${
                     offer.popular
-                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.22)] scale-[1.02] lg:-translate-y-2.5 z-10 text-slate-950 dark:text-white'
-                      : 'bg-white dark:bg-[#0A0E22]/90 border border-slate-200 dark:border-white/10 hover:border-blue-400/50 shadow-sm dark:shadow-md text-slate-950 dark:text-white'
+                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] dark:border-[#00D2FF] shadow-[0_20px_50px_rgba(0,102,255,0.22)] scale-[1.02] lg:-translate-y-2.5 hover:-translate-y-4 hover:shadow-[0_28px_65px_rgba(0,102,255,0.35)] dark:hover:shadow-[0_28px_65px_rgba(0,210,255,0.35)] z-10 text-slate-950 dark:text-white'
+                      : 'bg-white dark:bg-[#0A0E22]/90 border border-slate-200 dark:border-white/10 hover:border-[#0066FF] dark:hover:border-[#00D2FF] hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,102,255,0.12)] dark:hover:shadow-[0_20px_50px_rgba(0,102,255,0.25)] text-slate-950 dark:text-white'
                   }`}
                 >
+                  {/* Top Laser/Neon Glow Line on Hover */}
+                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#0066FF] dark:via-[#00D2FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                   {/* Floating Most Popular VIP Crown Badge on Fastrak */}
                   {offer.popular && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-20">
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap z-20 transition-transform duration-300 group-hover:scale-105">
                       <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-extrabold text-[10px] font-mono uppercase tracking-wider shadow-md flex items-center gap-1.5">
                         <Sparkles className="w-3 h-3 fill-current" />
                         <span>MOST POPULAR • ZERO WAIT</span>
@@ -323,18 +327,22 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   <div>
                     {/* 1. Header Top Strip: Badge & Timing */}
                     <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
-                      <span className={`text-[10px] font-mono uppercase font-bold tracking-wider px-2.5 py-1 rounded-lg border ${offer.badgeStyle}`}>
+                      <span className={`text-[10px] font-mono uppercase font-bold tracking-wider px-2.5 py-1 rounded-lg border transition-colors duration-200 ${
+                        offer.popular
+                          ? 'border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-[#00D2FF]'
+                          : 'border-slate-200 dark:border-white/10 group-hover:border-blue-500/40 group-hover:bg-blue-500/10 group-hover:text-blue-600 dark:group-hover:text-[#00D2FF]'
+                      }`}>
                         {offer.badge}
                       </span>
-                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1 whitespace-nowrap">
-                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1 whitespace-nowrap group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0 group-hover:text-blue-500 transition-colors" />
                         <span>{offer.timing}</span>
                       </span>
                     </div>
 
                     {/* 2. Title & Unified 1-Line Tagline */}
                     <div className="mb-4">
-                      <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug">
+                      <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug group-hover:text-blue-600 dark:group-hover:text-[#00D2FF] transition-colors duration-200">
                         {offer.name}
                       </h3>
                       <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1 truncate">
@@ -342,46 +350,51 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       </p>
                     </div>
 
-                    {/* 3. Price Block (Horizontally aligned across all cards!) */}
-                    <div className="py-4 border-y border-slate-100 dark:border-white/10 mb-5">
+                    {/* 3. Price Block (Horizontally aligned, scales slightly on hover) */}
+                    <div className="py-4 border-y border-slate-100 dark:border-white/10 mb-5 group-hover:border-blue-200 dark:group-hover:border-blue-500/20 transition-colors">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-mono">
+                        <span className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white font-mono transition-transform duration-200 group-hover:scale-[1.03] inline-block origin-left">
                           ₹{offer.price}
                         </span>
                         <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500">
                           {offer.taxNote}
                         </span>
                       </div>
-                      <div className={`text-xs font-semibold mt-1 font-mono ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-600 dark:text-slate-400'}`}>
+                      <div className={`text-xs font-semibold mt-1 font-mono transition-colors ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-[#00D2FF]'}`}>
                         {offer.laps}
                       </div>
                     </div>
 
-                    {/* 4. Features List (Exactly 5 items each, perfect vertical balance) */}
+                    {/* 4. Features List (Checkmarks glow on hover) */}
                     <div className="space-y-2.5 mb-6 text-xs text-slate-600 dark:text-slate-300 font-sans">
                       {offer.features.map((feat) => (
                         <div key={feat} className="flex items-start gap-2">
-                          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${offer.popular ? 'text-blue-600 dark:text-[#00D2FF]' : 'text-slate-400 dark:text-slate-500'}`} />
+                          <Check className={`w-4 h-4 shrink-0 mt-0.5 transition-all duration-200 ${
+                            offer.popular 
+                              ? 'text-blue-600 dark:text-[#00D2FF]' 
+                              : 'text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-[#00D2FF] group-hover:scale-110'
+                          }`} />
                           <span className="leading-snug">{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* 5. CTA Button */}
+                  {/* 5. CTA Button with Arrow Translation on Hover */}
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       soundFx.playRev(offer.popular ? 1.4 : 1.3);
                       onSelectPlan(offer.fullName, `₹${offer.price}`);
                     }}
-                    className={`w-full py-3.5 px-4 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-[0.98] ${
+                    className={`w-full py-3.5 px-4 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 active:scale-[0.98] ${
                       offer.popular
-                        ? 'bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white shadow-lg shadow-blue-500/35'
-                        : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-950 dark:text-white border border-slate-200 dark:border-white/10'
+                        ? 'bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white shadow-lg shadow-blue-500/35 group-hover:shadow-blue-500/50'
+                        : 'bg-slate-100 hover:bg-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-slate-950 text-slate-950 dark:text-white border border-slate-200 dark:border-white/10 group-hover:border-transparent group-hover:shadow-md'
                     }`}
                   >
                     <span className="whitespace-nowrap">{offer.buttonText}</span>
-                    <ArrowRight className="w-4 h-4 shrink-0" />
+                    <ArrowRight className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
                   </button>
                 </div>
               ))}
@@ -401,12 +414,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               {foodCombos.map((combo) => (
                 <div
                   key={combo.id}
-                  className={`p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative border ${
+                  onMouseEnter={() => soundFx.playGearShift()}
+                  className={`group cursor-pointer p-7 rounded-3xl flex flex-col justify-between transition-all duration-300 relative border overflow-hidden hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,102,255,0.15)] dark:hover:shadow-[0_20px_50px_rgba(0,102,255,0.25)] ${
                     combo.popular
-                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] shadow-[0_15px_40px_rgba(0,102,255,0.15)] dark:shadow-[0_15px_40px_rgba(0,82,255,0.25)] text-slate-900 dark:text-white'
-                      : 'bg-white dark:bg-[#0A0E22]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/50 shadow-sm dark:shadow-md text-slate-900 dark:text-white'
+                      ? 'bg-white dark:bg-[#0D132A] border-2 border-[#0052FF] dark:border-[#00D2FF] shadow-[0_15px_40px_rgba(0,102,255,0.15)] dark:shadow-[0_15px_40px_rgba(0,82,255,0.25)] text-slate-900 dark:text-white'
+                      : 'bg-white dark:bg-[#0A0E22]/90 border-slate-200 dark:border-white/10 hover:border-[#0052FF]/60 shadow-sm dark:shadow-md text-slate-900 dark:text-white'
                   }`}
                 >
+                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#0066FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                   <div>
                     {/* Top Tag & Timing */}
                     <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100 dark:border-white/5">
@@ -420,7 +436,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     </div>
 
                     <div className="mb-4">
-                      <h3 className="font-bold text-xl text-slate-900 dark:text-white tracking-tight">
+                      <h3 className="font-bold text-xl text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-[#00D2FF] transition-colors">
                         {combo.name}
                       </h3>
                       <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
@@ -438,7 +454,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     {/* Price */}
                     <div className="my-3 pb-3 border-b border-slate-200 dark:border-white/10">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
+                        <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono group-hover:scale-[1.03] transition-transform inline-block origin-left">
                           ₹{combo.price}
                         </span>
                         <span className="text-xs font-medium uppercase text-slate-500 dark:text-slate-400 font-mono">
@@ -462,18 +478,19 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   </div>
 
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       soundFx.playRev(1.3);
                       onSelectPlan(combo.name, `₹${combo.price}`);
                     }}
                     className={`w-full py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                       combo.popular
                         ? 'bg-gradient-to-r from-[#0052FF] to-[#00D2FF] hover:brightness-110 text-white shadow-md shadow-blue-600/30'
-                        : 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
+                        : 'bg-slate-100 hover:bg-slate-900 hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-slate-950 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10'
                     }`}
                   >
                     <span>{combo.buttonText}</span>
-                    <ArrowRight className="w-4 h-4 shrink-0" />
+                    <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               ))}
@@ -492,7 +509,12 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           <div className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
               {/* Product 1: 15-Minute Track Session */}
-              <div className="rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400/50 transition-all text-slate-900 dark:text-white">
+              <div 
+                onMouseEnter={() => soundFx.playGearShift()}
+                className="group cursor-pointer rounded-[28px] bg-white dark:bg-[#0A0E1F]/95 p-8 border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-sm dark:shadow-xl relative hover:border-amber-400 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(251,191,36,0.15)] transition-all text-slate-900 dark:text-white overflow-hidden"
+              >
+                <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                 <div className="space-y-5">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/5">
                     <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-amber-400 font-bold text-xs uppercase tracking-wider font-mono">
@@ -505,7 +527,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   </div>
 
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2 group-hover:text-amber-500 transition-colors">
                       {bikeOffers[0].name}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
@@ -516,7 +538,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   {/* Price */}
                   <div className="py-4 border-y border-slate-200 dark:border-white/10">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono">
+                      <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono group-hover:scale-[1.03] transition-transform inline-block origin-left">
                         ₹{bikeOffers[0].price}
                       </span>
                       <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
@@ -541,14 +563,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
 
                 <div className="pt-6 space-y-3">
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       soundFx.playRev(1.4);
                       onSelectPlan('15-Minute Bike Track Session', '₹500');
                     }}
-                    className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 group-hover:shadow-lg"
                   >
                     <span>Book 15-Min Session (₹500)</span>
-                    <ArrowRight className="w-4 h-4 shrink-0" />
+                    <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
                   </button>
 
                   <a
@@ -563,7 +586,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               </div>
 
               {/* Product 2: Superbike Dawn Session (4 Hours Unlimited) */}
-              <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative text-slate-900 dark:text-white">
+              <div 
+                onMouseEnter={() => soundFx.playGearShift()}
+                className="group cursor-pointer rounded-[28px] p-1.5 bg-gradient-to-b from-amber-500/30 via-amber-500/10 to-transparent border border-amber-400 dark:border-amber-500/50 shadow-xl relative text-slate-900 dark:text-white hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(245,158,11,0.25)] transition-all overflow-hidden"
+              >
                 <div className="rounded-[24px] bg-white dark:bg-[#0A0E1F]/95 p-8 h-full flex flex-col justify-between">
                   <div className="space-y-5">
                     <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/5">
@@ -576,7 +602,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     </div>
 
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 leading-tight">
+                      <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-amber-500 transition-colors">
                         Superbike Dawn Session <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500">
                           4 Hours Unlimited
@@ -601,7 +627,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     {/* Price */}
                     <div className="py-4 border-y border-slate-200 dark:border-white/10">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono">
+                        <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-mono group-hover:scale-[1.03] transition-transform inline-block origin-left">
                           ₹{bikeOffers[1].price}
                         </span>
                         <span className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 font-mono">
@@ -626,14 +652,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
 
                   <div className="pt-6 space-y-3">
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         soundFx.playRev(1.4);
                         onSelectPlan('Superbike Dawn Session (4 Hours)', '₹1500');
                       }}
-                      className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2 group-hover:shadow-xl"
                     >
                       <span>Book Dawn Bike Slot (₹1500)</span>
-                      <ArrowRight className="w-4 h-4 text-black shrink-0" />
+                      <ArrowRight className="w-4 h-4 text-black shrink-0 transition-transform group-hover:translate-x-1" />
                     </button>
 
                     <a
