@@ -91,6 +91,7 @@ function AppContent() {
   const handleLogout = () => {
     driverStore.logout();
     setCurrentDriver(null);
+    setIsDriverDashboardOpen(false);
   };
 
   return (
@@ -109,6 +110,7 @@ function AppContent() {
         onOpenBooking={() => handleOpenBooking()}
         currentDriver={currentDriver}
         onOpenAuth={() => setIsAuthOpen(true)}
+        onLogout={handleLogout}
         onOpenDriverDashboard={() => {
           if (currentDriver) {
             setIsDriverDashboardOpen(true);
@@ -145,6 +147,7 @@ function AppContent() {
           onOpenDriverDashboard={() => setIsDriverDashboardOpen(true)}
           onOpenBooking={() => handleOpenBooking()}
           onOpenAuth={() => setIsAuthOpen(true)}
+          onLogout={handleLogout}
         />
 
         {/* Section 8: Repeat Racer VIP Club (Name & WhatsApp Lead Capture for ₹200 Voucher) */}
@@ -196,6 +199,7 @@ function AppContent() {
             isOpen={isAuthOpen}
             onClose={() => setIsAuthOpen(false)}
             onLoginSuccess={handleLoginSuccess}
+            onLogout={handleLogout}
           />
         )}
 

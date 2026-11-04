@@ -150,6 +150,43 @@ const defaultRacer: DriverProfile = {
   ],
 };
 
+const arjunRacer: DriverProfile = {
+  id: 'dr-9845012345',
+  phone: '9845012345',
+  name: 'Arjun Rao',
+  dob: '1995-04-20',
+  city: 'Bangalore (Hoskote)',
+  tier: 'Pro Racer',
+  avatar: '/images/velocity_official_poster.jpg',
+  racingNumber: '44',
+  totalVisits: 12,
+  totalLaps: 84,
+  bestLapTime: '00:54.212s',
+  bestLapSeconds: 54.212,
+  globalRank: 1,
+  lapBalance: 14,
+  pointsBalance: 1980,
+  moneyBalance: 500,
+  referralCode: 'ARJUN44',
+  referralEarnings: 650,
+  createdAt: '2026-06-10',
+  laps: generateMockLaps(54.212),
+  coupons: [
+    {
+      id: 'cp-arjun-1',
+      code: 'REPEAT200',
+      title: '₹200 Repeat Racer Voucher',
+      description: 'Auto-credited from previous race heat',
+      discountValue: 200,
+      discountType: 'fixed',
+      expiryDate: '2026-12-31',
+      status: 'active',
+      tag: 'REPEAT REWARD',
+    },
+  ],
+  bookings: [],
+};
+
 export const driverStore = {
   // Get currently logged-in driver from LocalStorage
   getCurrentDriver(): DriverProfile | null {
@@ -180,14 +217,15 @@ export const driverStore = {
   getAllDrivers(): DriverProfile[] {
     const raw = localStorage.getItem(DRIVERS_DB_KEY);
     if (!raw) {
-      const initial = [defaultRacer];
+      const initial = [defaultRacer, arjunRacer];
       localStorage.setItem(DRIVERS_DB_KEY, JSON.stringify(initial));
       return initial;
     }
     try {
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) && parsed.length > 0 ? parsed : [defaultRacer, arjunRacer];
     } catch {
-      return [defaultRacer];
+      return [defaultRacer, arjunRacer];
     }
   },
 
@@ -253,6 +291,79 @@ export const driverStore = {
 
     this.saveDriver(newDriver);
     return { driver: newDriver, isNew: true };
+  },
+
+  // Direct Sign Up for New Racers
+  signUpNewDriver(params: {
+    name: string;
+    phone: string;
+    city?: string;
+    racingNumber?: string;
+    kartPreference?: string;
+  }): DriverProfile {
+    const cleanPhone = params.phone.replace(/\D/g, '').slice(-10);
+    const autoNumber = params.racingNumber?.replace(/\D/g, '') || String(Math.floor(10 + Math.random() * 89));
+    
+    // Check if driver already exists
+    const all = this.getAllDrivers();
+    const existing = all.find((d) => d.phone === cleanPhone);
+    if (existing) {
+      existing.name = params.name.trim() || existing.name;
+      if (params.city) existing.city = params.city.trim();
+      this.saveDriver(existing);
+      return existing;
+    }
+
+    const newDriver: DriverProfile = {
+      id: `dr-${cleanPhone}`,
+      phone: cleanPhone,
+      name: params.name.trim() || `Racer #${autoNumber}`,
+      dob: '2000-01-01',
+      city: params.city?.trim() || 'Bangalore',
+      tier: 'Rookie',
+      avatar: '/images/hero_racing_kart.jpg',
+      racingNumber: autoNumber.padStart(2, '0').slice(-2),
+      totalVisits: 1,
+      totalLaps: 0,
+      bestLapTime: '--:--.---',
+      bestLapSeconds: 99.999,
+      globalRank: 120 + Math.floor(Math.random() * 50),
+      lapBalance: 5, // +5 Free Welcome Rookie Laps
+      pointsBalance: 250,
+      moneyBalance: 0,
+      referralCode: `VIC${autoNumber}${cleanPhone.slice(-3)}`,
+      referralEarnings: 0,
+      createdAt: new Date().toISOString().split('T')[0],
+      laps: [],
+      coupons: [
+        {
+          id: `cp-welcome-${Date.now()}`,
+          code: 'VELOCITY200',
+          title: '₹200 Welcome Racer Voucher',
+          description: 'Auto-applied for your race session',
+          discountValue: 200,
+          discountType: 'fixed',
+          expiryDate: '2026-12-31',
+          status: 'active',
+          tag: 'WELCOME PERK',
+        },
+        {
+          id: `cp-repeat-${Date.now()}`,
+          code: 'FIRST15',
+          title: '15% First Session Discount',
+          description: 'Valid for your first race session',
+          discountValue: 15,
+          discountType: 'percent',
+          expiryDate: '2026-12-31',
+          status: 'active',
+          tag: 'ONLINE BONUS',
+        },
+      ],
+      bookings: [],
+    };
+
+    this.saveDriver(newDriver);
+    return newDriver;
   },
 
   // Onboarding profile update
