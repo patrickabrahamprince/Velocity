@@ -133,26 +133,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
               </p>
 
               {/* Primary Call-to-Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
                 <button
                   onClick={() => {
                     soundFx.playRev(1.4);
                     onOpenBooking(currentExp.title);
                   }}
-                  className="px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="px-5 sm:px-6 py-3.5 rounded-full bg-gradient-to-r from-[#0052FF] via-[#0066FF] to-[#00D2FF] hover:brightness-110 text-white font-semibold text-xs sm:text-sm tracking-wide shadow-lg shadow-blue-600/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap shrink-0 border border-transparent"
                 >
-                  <Flame className="w-4 h-4 fill-current" />
-                  <span>Book Race Session (Save ₹200)</span>
-                  <ArrowRight className="w-4 h-4 ml-0.5" />
+                  <Flame className="w-4 h-4 fill-current shrink-0" />
+                  <span className="whitespace-nowrap">Book Race Session (Save ₹200)</span>
+                  <ArrowRight className="w-4 h-4 ml-0.5 shrink-0" />
                 </button>
 
                 <a
                   href="#about"
                   onClick={() => soundFx.playGearShift()}
-                  className="px-5 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-xs sm:text-sm transition-all active:scale-[0.98] inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                  className="px-4.5 sm:px-5 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-xs sm:text-sm transition-all active:scale-[0.98] inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
                 >
-                  <Sparkles className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF]" />
-                  <span>Explore What We Offer</span>
+                  <Sparkles className="w-4 h-4 text-[#0066FF] dark:text-[#00D2FF] shrink-0" />
+                  <span className="whitespace-nowrap">Explore What We Offer</span>
                 </a>
               </div>
 

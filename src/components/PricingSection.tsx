@@ -300,7 +300,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* TAB 1: ALL 4 KARTING OFFERS IN ONE SINGLE ROW WITH DELIGHTFUL HOVER EFFECTS */}
         {activeTab === 'kart-offers' && (
           <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch pt-8 sm:pt-10">
               {allKartOffers.map((offer) => (
                 <div
                   key={offer.id}
